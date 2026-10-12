@@ -225,7 +225,8 @@ def check_name() -> None:
 
 def check_links() -> None:
     link = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
-    for path in sorted(p for p in PLUGIN.rglob("*.md") if RESULTS not in p.parents):
+    assets = CONVENTIONS / "assets"  # template links point into a user's project, not into the pack
+    for path in sorted(p for p in PLUGIN.rglob("*.md") if RESULTS not in p.parents and assets not in p.parents):
         for target in link.findall(path.read_text(encoding="utf-8")):
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue

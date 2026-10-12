@@ -4,6 +4,7 @@ kind: feature
 status: draft
 summary: First release of scrubjay, six commands and two practices that give coding agents a spec workflow and project memory in docs/.
 request: the Stage 1 design in reference/design.md
+approved: {by: yousef, via: in session}
 ---
 # Build scrubjay v0.1
 

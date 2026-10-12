@@ -10,7 +10,8 @@ Session 2026-10-12: started at T1; first message: "then go".
   - note: evals settled under plugin/evals/ (D52); CI green on the PR merged as #3.
 - [x] T4 docs-conventions: SKILL.md with the charter and the claim format, references per file, templates under assets/, cases -> from-template, no-placeholders, one-job, claim-format, docs-format
   - note: 6 cases at 1.00 with the plugin; without it the decision scored 0.67 and the plan 0.33, so the skill is what makes them pass.
-- [ ] T5 docs-init, test-first on scrubjay-example, with the first domain and the issue tracker, cases with a scaffold, by-hand protocol for the block -> creates-skeleton, writes-block, answers-from-docs, links-claude-md, docs-path, existing-spec-tools, rerun-safe
+- [x] T5 docs-init, test-first on scrubjay-example, with the first domain and the issue tracker, cases with a scaffold, by-hand protocol for the block -> creates-skeleton, writes-block, answers-from-docs, links-claude-md, docs-path, existing-spec-tools, rerun-safe
+  - note: 7 cases at 1.00; by hand, both agents answer from behavior/ without reading code after two block fixes (D55, D56). Transcripts under checks/by-hand.
 - [ ] T6 docs-map, test-first on returns in scrubjay-example -> one-domain, drafts-claims, only-what-it-needs, owner-confirms, reads-old-specs
 - [ ] T7 spec-build core and resume, test-first with a hand-written tasks.md on a branch of scrubjay-example -> task-by-task, test-first, sets-building, resumes, session-line, notes, stays-in-scope
 - [ ] T8 spec-build, changing course -> updates-owner-file, rechecks-tasks, waits-for-recheck-ok, renews-go, follow-up-spec

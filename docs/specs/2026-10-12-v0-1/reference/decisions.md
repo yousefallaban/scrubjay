@@ -287,3 +287,13 @@ Supersedes the title half of D7; the branch stays the link to the spec while wor
 Extends D17 and D50. GitHub renders a markdown file's frontmatter and shows "Error in user YAML" when `{{slot}}` opens a flow mapping. `key: "{{slot}}"` parses, and the filled value is valid with or without the quotes. The static check fails an unquoted slot.
 - Why: a template that errors in the repo browser looks broken, and a parser-valid template is what a later checker needs anyway.
 - Revisit when: never.
+
+**D55. `index.md` carries a one-line Behavior section pointing at `behavior/`.**
+Extends D44. The by-hand check on Codex showed the gap: with the Behavior column gone and the path rule living in a template comment that is removed on write, the written `index.md` pointed at nothing under `behavior/`, and an agent following the block's "load only what they link to" answered from the code without ever opening the behavior file. One real line fixes it without bringing back a per-row column that drifts.
+- Why: the block only works if the first file it names leads to the claims.
+- Revisit when: never.
+
+**D56. The block tells agents to answer what the product does from `behavior/` and to open the code only to change it.**
+Extends D24's block. The by-hand check on Claude Code found the block alone was not enough: the agent read the behavior file first, cited the claim, then opened the code to compare, three runs out of three. One bullet added to the block, and the next run answered from the docs and said so, with no code read. Codex had already done so after D55.
+- Why: bet A is only worth something if a documented answer stops the agent from re-deriving it. The bullet states the rule the block implied.
+- Revisit when: a release check shows agents still opening the code for documented behavior.

@@ -15,5 +15,8 @@ The owner is who says go for that domain; on a solo project, that is you. A doma
 | --- | --- | --- |
 | {{domain}} | {{what it covers}} | {{person or team}} |
 
+## Behavior
+See [behavior/](behavior/): one folder per domain, one file per capability, each a short list of claims with IDs.
+
 ## Architecture
 See [architecture/](architecture/): one file per area, `stack.md` first.

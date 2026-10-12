@@ -10,6 +10,7 @@ cat > AGENTS.md <<'MD'
 - Start every task at docs/index.md, or at the active spec's tasks.md on a spec
   branch, and load only what they link to. Load glossary.md when naming things and
   decisions/ before changing a lasting choice.
+- Answer what the product does from docs/behavior/; open the code only to change it.
 - Every code change belongs to a spec in docs/specs/. None yet: start one (spec-start).
 - One branch per spec, named after its slug. The active spec is the one matching the current branch.
 - Every session adds its line to tasks.md. If something changes mid-way, update spec.md
@@ -33,6 +34,9 @@ A small webshop where customers buy outdoor gear and send items back when they d
 | Domain | Covers | Owner |
 | --- | --- | --- |
 | returns | sending items back, refunds | Sanne |
+
+## Behavior
+See [behavior/](behavior/): one folder per domain, one file per capability, each a short list of claims with IDs.
 
 ## Architecture
 See [architecture/](architecture/): one file per area, `stack.md` first.
