@@ -1,1 +1,42 @@
 # scrubjay
+
+A spec workflow and project memory for coding agents.
+
+> **Status: pre-release.** There is nothing to install yet. v0.1 is being built from [`docs/specs/2026-10-12-v0-1/`](docs/specs/2026-10-12-v0-1/spec.md).
+
+Scrub-jays hide food and remember what they hid, where and when. scrubjay gives coding agents the same kind of memory: what was decided, where it lives, and when it changed. It lives in your repo's `docs/`, so every new session starts from it instead of from scratch.
+
+## The two bets
+
+1. Agents keep project knowledge across sessions when it lives in `docs/` in the repo.
+2. Agents build the right thing when the intent is grilled before any code.
+
+v0.1 exists to test both on real work.
+
+## What v0.1 will be
+
+| Command | Use it to |
+| --- | --- |
+| `docs-init` | add the docs layer and the project-memory block to a repo |
+| `docs-map` | document one domain of an existing app the first time work touches it |
+| `spec-start` | settle why and what through a grilling interview |
+| `spec-plan` | decide how, and break the work into small tasks |
+| `spec-build` | build task by task, with a failing test first when behavior changes |
+| `spec-ship` | check the work, update the docs, prepare the pull request |
+
+There are also two practices the agent loads itself: `grilling` and `docs-conventions`.
+
+- It works with any agent that supports [Agent Skills](https://agentskills.io/), and is tested on Claude Code and Codex.
+- It needs git. `gh` is optional. There is no MCP server, runtime, npm package or telemetry.
+
+## In this repo
+
+| Path | What it is |
+| --- | --- |
+| `AGENTS.md` | instructions for any agent building the pack |
+| `ROADMAP.md` | what comes after v0.1 |
+| `docs/specs/` | the specs this pack is built from, in its own format |
+
+## License
+
+[MIT](LICENSE)
