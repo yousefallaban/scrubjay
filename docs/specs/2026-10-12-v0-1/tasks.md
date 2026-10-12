@@ -22,7 +22,8 @@ Session 2026-10-13: resumed at T6; first message: "commit but I did not merge, i
 - [x] T9 grilling, test-first on the wishlist request -> rounds, looks-up-facts, writes-as-it-settles
   - note: 5 cases at 1.00; the glossary line lands before the next round.
 - [ ] T10 spec-start, test-first on the wishlist and on the refund fix -> creates-spec, sets-kind, grills, fast-path, what-changes-format, offers-map, owner-is-listed, records-go
-- [ ] T11 spec-plan -> needs-go, writes-plan, writes-tasks, reference-files, waits-for-ok
+- [x] T11 spec-plan -> needs-go, writes-plan, writes-tasks, reference-files, waits-for-ok
+  - note: 5 cases at 1.00; a soft "get a head start" nudge is declined, the plan is shown and the OK awaited.
 - [ ] T12 spec-ship, docs half: tests, the go, behavior, architecture, status -> runs-tests, ships-with-go, updates-behavior, updates-architecture, sets-shipped
 - [ ] T13 spec-ship, PR half: the fresh reviewer and its fallback, the PR title and template with links, unrelated changes and release impact, the outcome line -> fresh-review, pr-choice, pr-template, reports-outcome, fallbacks
 - [ ] T14 Install from the private repo on Claude Code and on Codex, run each command once by hand on Codex, write the install sections -> claude-code, codex, private-repo, git-only, agent-skills
