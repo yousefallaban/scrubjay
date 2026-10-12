@@ -27,3 +27,5 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 
 | Date | Agent | Reached the PR text | Resume named the next task | Session lines | Transcripts |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-13 | Claude Code 2.1.272 | steps 1 to 3 done: docs-init, docs-map (15 claims), spec-start grilled in 2 rounds to 10 claims with the go recorded; step 4 stopped by the usage limit | pending, step 5 | pending | `transcripts/dogfood-claude-*.jsonl` |
+| 2026-10-13 | Codex 0.154.0 | step 1 done in a worktree `.wt-codex`; step 2 running when the session ended | pending | pending | `transcripts/dogfood-codex-*.jsonl` |
