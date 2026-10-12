@@ -1,6 +1,6 @@
 Purpose: rules for `index.md`. Template: `assets/index.md`.
 
-Frontmatter: `product`, the product name; `docs-format`, the template version the project uses.
+Frontmatter: `product`, the product name; `docs-format`, the template version the project uses; `issue-tracker`, optional, the address a ticket key is appended to, such as `https://example.atlassian.net/browse/`, deleted when the team has none.
 
 What it is: who uses the product and for what, in 2 to 4 sentences, in the user's words. Not a feature list.
 

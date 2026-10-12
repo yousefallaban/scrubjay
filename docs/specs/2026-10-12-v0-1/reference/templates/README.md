@@ -4,6 +4,7 @@ Every file the skills write starts from one of these templates. In the pack they
 
 - `{{slot}}` is filled in by the skill that writes the file.
 - `<!-- ... -->` comments are guidance for the skill. They are removed when the file is written, so project files never contain them. Frontmatter carries no comments; its rules are below.
+- A slot in frontmatter is quoted, `key: "{{slot}}"`, so the template is valid YAML before it is filled. The quotes go when the slot is filled, unless the value needs them to stay valid YAML.
 - A section marked `optional` is deleted when it would be empty. Never leave it blank, and never write "None" or "TBD".
 - Heading names are fixed. Agents find content by heading, so never rename one.
 - `docs-format` in `index.md` records which template version a project uses. A template change applies to new files only.
@@ -23,6 +24,7 @@ Every file the skills write starts from one of these templates. In the pack they
 
 Frontmatter rules:
 
+- `index.md`: `issue-tracker` is optional, the address a ticket key is appended to; delete the line when the team has none. docs-init asks for it.
 - `spec.md`: `status` is `draft`, `building` or `shipped`; the owner's go is never a status. `issue` is optional and the line is deleted when there is none. At the owner's go, add `approved: {by: <owner>, via: <in session, a message link, or a PR>}`; record a go only when the user reports one, never infer it, and git dates the line. After a change to Why or What changes, remove the line; the owner's new go writes it back.
 - `decision.md`: `status` is `accepted` or `superseded by <id>`. A decision is never edited once accepted; a new one supersedes it, and only the old one's status changes.
 

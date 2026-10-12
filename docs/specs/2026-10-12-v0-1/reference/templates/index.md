@@ -1,6 +1,7 @@
 ---
-product: {{product name}}
+product: "{{product name}}"
 docs-format: 1
+issue-tracker: "{{address a ticket key is appended to, such as https://example.atlassian.net/browse/}}"
 ---
 # {{Product name}}
 

@@ -186,6 +186,10 @@ def check_templates() -> None:
             fail(path, "frontmatter is malformed")
         if text.count("{{") != text.count("}}"):
             fail(path, "unbalanced {{ }} slots")
+        if text.startswith("---\n"):
+            for line in text[4:text.find("\n---", 4)].splitlines():
+                if re.match(r"^[A-Za-z0-9_$-]+:\s*[\[{]", line):
+                    fail(path, "frontmatter slot must be quoted to stay valid YAML", line.strip())
     index = assets / "index.md"
     if index.is_file() and "docs-format:" not in index.read_text(encoding="utf-8"):
         fail(index, "must carry docs-format in its frontmatter")

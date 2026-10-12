@@ -1,5 +1,5 @@
 ---
-spec: {{spec id}}
+spec: "{{spec id}}"
 ---
 <!-- One line per session, above the tasks, newest last. Facts only, never a verdict:
 Session {{YYYY-MM-DD}}: resumed at {{Tn}}; first message: "{{gist of the user's first message}}".

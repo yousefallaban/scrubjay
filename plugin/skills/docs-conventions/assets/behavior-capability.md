@@ -1,5 +1,5 @@
 ---
-capability: {{domain}}/{{capability}}
+capability: "{{domain}}/{{capability}}"
 ---
 # {{Capability as a verb phrase}}
 

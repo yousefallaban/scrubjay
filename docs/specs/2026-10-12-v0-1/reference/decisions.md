@@ -277,3 +277,13 @@ Supersedes the "no Claude Code manifest" half of D45. Loading does not need `plu
 Settles the trade-off left open in plan.md. `claude plugin eval` refuses an `--eval-dir` outside the plugin root, tested on 2.1.272: "must stay inside the plugin root (no ..)". Cases are plain prompt and grader files, so shipping them costs users nothing but a folder. The by-hand protocols for the block-driven claims are not eval cases and stay in the repo next to the checks.
 - Why: the runner decides where cases go. The `plugin-folder` claim now names eval cases as part of what users receive.
 - Revisit when: the runner accepts a cases directory outside the plugin.
+
+**D53. The PR title is `type(scope): objective`, and the description fills the repo's own template when it has one, else spec-ship's with Links, Description, Unrelated changes, Release impact, Review and Outcome.**
+Supersedes the title half of D7; the branch stays the link to the spec while work is open. Type is the kind, feature or fix, with `refactor` for a fix that changes no behavior. Scope is the ticket key from the spec's `issue:` line, else the slug. Objective is the spec's title. The ticket link joins the `issue-tracker` address in `index.md` to the key. Unrelated changes are the files the fresh review found outside plan.md. Release impact is proposed from the kind and the claims, MINOR for a feature, PATCH for a fix with claims, no release impact for a fix without, MAJOR when a claim is removed, and confirmed by the user in one question. Nothing is asked that the spec folder already holds.
+- Why: this is the shape teams already use for pull requests, so a shipped spec lands in a review queue looking like every other PR, and the ticket key reaches the main branch history. A repo with its own template keeps it.
+- Revisit when: a team needs commit message conventions from the pack as well; for now a company skill can add them.
+
+**D54. A slot in template frontmatter is quoted, so every template is valid YAML before it is filled.**
+Extends D17 and D50. GitHub renders a markdown file's frontmatter and shows "Error in user YAML" when `{{slot}}` opens a flow mapping. `key: "{{slot}}"` parses, and the filled value is valid with or without the quotes. The static check fails an unquoted slot.
+- Why: a template that errors in the repo browser looks broken, and a parser-valid template is what a later checker needs anyway.
+- Revisit when: never.
