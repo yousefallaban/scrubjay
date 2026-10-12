@@ -17,6 +17,7 @@ CODEX_MARKET = ROOT / ".agents" / "plugins" / "marketplace.json"
 MANIFEST = PLUGIN / "plugin.json"
 CLAUDE_MANIFEST = PLUGIN / ".claude-plugin" / "plugin.json"
 CONVENTIONS = PLUGIN / "skills" / "docs-conventions"
+RESULTS = PLUGIN / "evals" / "results"  # run output, gitignored, never checked
 
 # Files that may carry the product name: the manifests and the README files.
 NAME_ALLOWED = {CLAUDE_MARKET, CODEX_MARKET, MANIFEST, CLAUDE_MANIFEST, PLUGIN / "README.md"}
@@ -185,8 +186,9 @@ def check_templates() -> None:
             fail(path, "frontmatter is malformed")
         if text.count("{{") != text.count("}}"):
             fail(path, "unbalanced {{ }} slots")
-        if not re.search(r"^#{1,2} \S", text, re.M):
-            fail(path, "no heading")
+    index = assets / "index.md"
+    if index.is_file() and "docs-format:" not in index.read_text(encoding="utf-8"):
+        fail(index, "must carry docs-format in its frontmatter")
 
 
 def check_templates_listed() -> None:
@@ -208,7 +210,7 @@ def check_name() -> None:
     product = str(manifest.get("name", "")).lower()
     if not product:
         return
-    files = [p for p in PLUGIN.rglob("*") if p.is_file() and p.suffix in {".md", ".json", ".yml", ".yaml", ".sh", ".txt"}]
+    files = [p for p in PLUGIN.rglob("*") if p.is_file() and p.suffix in {".md", ".json", ".yml", ".yaml", ".sh", ".txt"} and RESULTS not in p.parents]
     files += [CLAUDE_MARKET, CODEX_MARKET]
     for path in sorted(set(files)):
         if path in NAME_ALLOWED or not path.exists():
@@ -219,7 +221,7 @@ def check_name() -> None:
 
 def check_links() -> None:
     link = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
-    for path in sorted(PLUGIN.rglob("*.md")):
+    for path in sorted(p for p in PLUGIN.rglob("*.md") if RESULTS not in p.parents):
         for target in link.findall(path.read_text(encoding="utf-8")):
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue

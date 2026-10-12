@@ -1,0 +1,83 @@
+#!/usr/bin/env sh
+# Builds a small webshop project with a docs/ memory already in place.
+set -eu
+mkdir -p docs/behavior docs/decisions docs/specs docs/architecture src
+cat > AGENTS.md <<'MD'
+# Webshop
+
+<!-- project-memory:start · managed by docs-init; edit outside these markers -->
+## Project memory
+- Start every task at docs/index.md, or at the active spec's tasks.md on a spec
+  branch, and load only what they link to. Load glossary.md when naming things and
+  decisions/ before changing a lasting choice.
+- Every code change belongs to a spec in docs/specs/. None yet: start one (spec-start).
+- One branch per spec, named after its slug. The active spec is the one matching the current branch.
+- Every session adds its line to tasks.md. If something changes mid-way, update spec.md
+  or plan.md, then recheck every task.
+- Write specs, plans, tasks, glossary terms and decisions into docs/,
+  never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/.
+- Before opening a pull request, ship the spec (spec-ship); the PR title starts with the slug.
+<!-- project-memory:end -->
+MD
+cat > docs/index.md <<'MD'
+---
+product: Webshop
+docs-format: 1
+---
+# Webshop
+
+## What it is
+A small webshop where customers buy outdoor gear and send items back when they don't fit. Support handles returns and refunds.
+
+## Domains
+| Domain | Covers | Owner |
+| --- | --- | --- |
+| returns | sending items back, refunds | Sanne |
+
+## Architecture
+See [architecture/](architecture/): one file per area, `stack.md` first.
+MD
+cat > docs/architecture/stack.md <<'MD'
+---
+area: stack
+---
+# Stack
+
+## Commands
+| Task | Command |
+| --- | --- |
+| Test | bun test |
+MD
+cat > src/returns.ts <<'TS'
+export const RETURN_WINDOW_DAYS = 30;
+TS
+git init -q && git add -A && git -c user.name=fixture -c user.email=fixture@example.com commit -q -m "fixture"
+mkdir -p docs/specs/2026-10-12-add-wishlist
+cat > docs/specs/2026-10-12-add-wishlist/spec.md <<'MD'
+---
+id: 2026-10-12-add-wishlist
+kind: feature
+status: draft
+summary: Customers can save products to a wishlist and find them again.
+request: customers can save items to a wishlist
+approved: {by: sanne, via: in session}
+---
+# Add wishlist
+
+## Why
+Customers lose track of products they like and leave without buying.
+
+## What changes
+
+### Add · wishlist/save-item
+- A signed-in customer can save a product to their wishlist {#saves-item}
+  e.g. Sanne taps Save on "Rain jacket" -> it appears in her wishlist
+- Saving the same product twice keeps one entry {#no-duplicates}
+  e.g. Sanne saves "Rain jacket" again -> it still appears once
+- A customer sees their saved products in the order they saved them {#lists-saved}
+  e.g. Sanne saved a jacket, then a map -> the jacket is listed first
+
+## Not doing
+Sharing wishlists; price-drop alerts.
+MD
+git add -A && git -c user.name=fixture -c user.email=fixture@example.com commit -q -m "spec"
