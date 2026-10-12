@@ -265,3 +265,15 @@ Supersedes the section order in D41. The standard puts what and when in `descrip
 Extends D17. The removal rule covered `<!-- -->` comments only, so a skill following it literally would leave YAML `#` guidance in every project file.
 - Why: placeholder text gets treated as real content by later agents, and the no-placeholders claim forbids it.
 - Revisit when: never.
+
+## Building, from T3 on
+
+**D51. The plugin carries a small Claude Code manifest after all, kept in sync with the Agent Plugins one by the static check.**
+Supersedes the "no Claude Code manifest" half of D45. Loading does not need `plugin/.claude-plugin/plugin.json`, but `claude plugin validate` refuses a plugin directory without one, and under `--strict` it wants `version`, `description` and `author` too. The file holds name, version, description, author, repository and license; `checks/check.py` fails when its name, version or description differ from `plugin/plugin.json`.
+- Why: CI runs the strict validator, and a `version` lets Claude Code users pin a release once there is one.
+- Revisit when: the validator accepts a plugin without a manifest.
+
+**D52. Eval cases live under `plugin/evals/` and ship with the plugin. By-hand protocols and transcripts live under `checks/by-hand/`.**
+Settles the trade-off left open in plan.md. `claude plugin eval` refuses an `--eval-dir` outside the plugin root, tested on 2.1.272: "must stay inside the plugin root (no ..)". Cases are plain prompt and grader files, so shipping them costs users nothing but a folder. The by-hand protocols for the block-driven claims are not eval cases and stay in the repo next to the checks.
+- Why: the runner decides where cases go. The `plugin-folder` claim now names eval cases as part of what users receive.
+- Revisit when: the runner accepts a cases directory outside the plugin.
