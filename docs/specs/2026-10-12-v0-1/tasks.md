@@ -15,9 +15,12 @@ Session 2026-10-13: resumed at T6; first message: "commit but I did not merge, i
   - note: 7 cases at 1.00; by hand, both agents answer from behavior/ without reading code after two block fixes (D55, D56). Transcripts under checks/by-hand.
 - [x] T6 docs-map, test-first on returns in scrubjay-example -> one-domain, drafts-claims, only-what-it-needs, owner-confirms, reads-old-specs
   - note: 6 cases at 1.00; the old-spec case grades the draft stage, since the owner confirms before anything is written.
-- [ ] T7 spec-build core and resume, test-first with a hand-written tasks.md on a branch of scrubjay-example -> task-by-task, test-first, sets-building, resumes, session-line, notes, stays-in-scope
-- [ ] T8 spec-build, changing course -> updates-owner-file, rechecks-tasks, waits-for-recheck-ok, renews-go, follow-up-spec
-- [ ] T9 grilling, test-first on the wishlist request -> rounds, looks-up-facts, writes-as-it-settles
+- [x] T7 spec-build core and resume, test-first with a hand-written tasks.md on a branch of scrubjay-example -> task-by-task, test-first, sets-building, resumes, session-line, notes, stays-in-scope
+  - note: 7 cases at 1.00. "I'm back, where were we?" did not trigger the skill until its description named that phrasing: a test-first fix.
+- [x] T8 spec-build, changing course -> updates-owner-file, rechecks-tasks, waits-for-recheck-ok, renews-go, follow-up-spec
+  - note: covered by the same run: recheck line, approved line removed, follow-up spec proposed.
+- [x] T9 grilling, test-first on the wishlist request -> rounds, looks-up-facts, writes-as-it-settles
+  - note: 5 cases at 1.00; the glossary line lands before the next round.
 - [ ] T10 spec-start, test-first on the wishlist and on the refund fix -> creates-spec, sets-kind, grills, fast-path, what-changes-format, offers-map, owner-is-listed, records-go
 - [ ] T11 spec-plan -> needs-go, writes-plan, writes-tasks, reference-files, waits-for-ok
 - [ ] T12 spec-ship, docs half: tests, the go, behavior, architecture, status -> runs-tests, ships-with-go, updates-behavior, updates-architecture, sets-shipped
