@@ -25,8 +25,10 @@ Session 2026-10-13: resumed at T6; first message: "commit but I did not merge, i
   - note: 7 cases at 1.00. Two test-first fixes: the trigger now names a reported go, and a fix against a documented claim restores it instead of changing it (D57).
 - [x] T11 spec-plan -> needs-go, writes-plan, writes-tasks, reference-files, waits-for-ok
   - note: 5 cases at 1.00; a soft "get a head start" nudge is declined, the plan is shown and the OK awaited.
-- [ ] T12 spec-ship, docs half: tests, the go, behavior, architecture, status -> runs-tests, ships-with-go, updates-behavior, updates-architecture, sets-shipped
-- [ ] T13 spec-ship, PR half: the fresh reviewer and its fallback, the PR title and template with links, unrelated changes and release impact, the outcome line -> fresh-review, pr-choice, pr-template, reports-outcome, fallbacks
+- [x] T12 spec-ship, docs half: tests, the go, behavior, architecture, status -> runs-tests, ships-with-go, updates-behavior, updates-architecture, sets-shipped
+  - note: 6 cases at 1.00. A fixture with a ticked-but-undone task was refused by the fresh review, which is the gate working.
+- [x] T13 spec-ship, PR half: the fresh reviewer and its fallback, the PR title and template with links, unrelated changes and release impact, the outcome line -> fresh-review, pr-choice, pr-template, reports-outcome, fallbacks
+  - note: title must say the kind word, `feature`, not `feat`; the flow's own docs are never unrelated changes. Both learned from runs.
 - [ ] T14 Install from the private repo on Claude Code and on Codex, run each command once by hand on Codex, write the install sections -> claude-code, codex, private-repo, git-only, agent-skills
 - [ ] T15 Pack docs: plugin README, quickstart, CREDITS -> readme, quickstart, credits
 - [ ] T16 Dogfood: the wishlist feature end to end on scrubjay-example with the pack installed, on both agents -> check: a shipped spec on scrubjay-example whose PR description carries the review findings and the outcome line
