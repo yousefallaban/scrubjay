@@ -2,7 +2,7 @@
 
 A spec workflow and project memory for coding agents.
 
-> **Status: pre-release.** There is nothing to install yet. v0.1 is being built from [`docs/specs/2026-10-12-v0-1/`](docs/specs/2026-10-12-v0-1/spec.md).
+> **Status: pre-release.** v0.1 is being built from [`docs/specs/2026-10-12-v0-1/`](docs/specs/2026-10-12-v0-1/spec.md). The installable pack lives in [`plugin/`](plugin/README.md), which holds the install steps per agent, the commands and the quickstart.
 
 Scrub-jays hide food and remember what they hid, where and when. scrubjay gives coding agents the same kind of memory: what was decided, where it lives, and when it changed. It lives in your repo's `docs/`, so every new session starts from it instead of from scratch.
 
@@ -35,7 +35,13 @@ There are also two practices the agent loads itself: `grilling` and `docs-conven
 | --- | --- |
 | `AGENTS.md` | instructions for any agent building the pack |
 | `ROADMAP.md` | what comes after v0.1 |
+| `plugin/` | the pack users install: skills, templates, manifests, eval cases |
+| `checks/` | the static checks CI runs, and the by-hand protocols with their transcripts |
 | `docs/specs/` | the specs this pack is built from, in its own format |
+
+## Developing the pack
+
+Any coding agent can build it: the instructions are in `AGENTS.md`. Run `sh checks/run.sh` before a pull request; CI runs the same. Eval cases run with `claude plugin eval plugin --scaffold --allow-tools Write Edit --trust-plugin`, see [`plugin/evals/README.md`](plugin/evals/README.md).
 
 ## License
 

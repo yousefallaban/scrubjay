@@ -44,6 +44,6 @@ scrubjay-example                                       new, separate repo: a sma
 
 ## Risks
 - Agents skip steps under pressure. Covered by test-first skills and the behavior case per skill, case-minimum.
-- One fact in research.md is still marked verify: how skills inside a Codex plugin are named, settled in T14. `user-invocable: false` passes Claude Code's strict validator (T4), and the eval directory question is settled (D52).
+- Every fact in research.md marked verify is now settled: Codex names plugin skills `$<plugin>:<skill>` (T14). `user-invocable: false` passes Claude Code's strict validator (T4), and the eval directory question is settled (D52).
 - docs-conventions is resident in every command. Its size is measured in T2 and T4, and references/ absorb what the charter doesn't need.
 - The block fails to load in Claude Code through a parent CLAUDE.md. Covered by links-claude-md and its by-hand check.
