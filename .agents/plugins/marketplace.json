@@ -1,0 +1,20 @@
+{
+  "name": "yousefallaban",
+  "interface": {
+    "displayName": "Plugins by Yousef Allaban"
+  },
+  "plugins": [
+    {
+      "name": "scrubjay",
+      "source": {
+        "source": "local",
+        "path": "./plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

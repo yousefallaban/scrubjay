@@ -1,0 +1,14 @@
+{
+  "name": "yousefallaban",
+  "description": "Plugins by Yousef Allaban",
+  "owner": {
+    "name": "Yousef Allaban"
+  },
+  "plugins": [
+    {
+      "name": "scrubjay",
+      "source": "./plugin",
+      "description": "A spec workflow and project memory for coding agents, kept in your repo's docs/"
+    }
+  ]
+}

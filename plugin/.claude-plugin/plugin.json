@@ -1,0 +1,10 @@
+{
+  "name": "scrubjay",
+  "version": "0.1.0",
+  "description": "A spec workflow and project memory for coding agents, kept in your repo's docs/",
+  "author": {
+    "name": "Yousef Allaban"
+  },
+  "repository": "https://github.com/yousefallaban/scrubjay",
+  "license": "MIT"
+}

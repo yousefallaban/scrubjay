@@ -24,3 +24,4 @@ build/
 coverage/
 *.log
 .eval-results/
+plugin/evals/results/
