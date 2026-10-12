@@ -297,3 +297,8 @@ Extends D44. The by-hand check on Codex showed the gap: with the Behavior column
 Extends D24's block. The by-hand check on Claude Code found the block alone was not enough: the agent read the behavior file first, cited the claim, then opened the code to compare, three runs out of three. One bullet added to the block, and the next run answered from the docs and said so, with no code read. Codex had already done so after D55.
 - Why: bet A is only worth something if a documented answer stops the agent from re-deriving it. The bullet states the rule the block implied.
 - Revisit when: a release check shows agents still opening the code for documented behavior.
+
+**D57. A fix for code that breaks a claim `behavior/` already states changes no claim. It writes "No behavior change.", names the claim it restores, and needs no new go.**
+Extends D32. Found while testing spec-start on "partial refunds are one cent off" against a behavior file that already stated the half-up rule: the agent wrote no Change claim, since the documented behavior was right and the code was wrong. That is the model working as designed. The spec carries `restores: returns/submit-return#partial-refund`, spec-build's one task names that claim, and the failing test carries its reference. The owner approved the claim when it was written, so the fix needs no second go.
+- Why: a Change with a `was:` line equal to the new text says nothing, and a go for restoring what the owner already approved is ceremony.
+- Revisit when: a fix changes what a claim says as well; that is a Change, with a go.
