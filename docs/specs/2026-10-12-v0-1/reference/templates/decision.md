@@ -1,7 +1,6 @@
 ---
 id: {{YYYY-MM-DD-slug}}
-status: accepted    # or "superseded by <id>"; a decision is never edited once accepted,
-                    # a new one supersedes it and only the old one's status changes
+status: accepted
 spec: {{spec id}}
 date: {{YYYY-MM-DD}}
 ---

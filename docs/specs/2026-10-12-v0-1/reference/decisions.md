@@ -154,3 +154,114 @@ It is a small app with its starting state tagged `baseline`. Experiments run on 
 The building agent writes `plan.md` and `tasks.md` for this spec and works task by task. At ship, `behavior/`, `architecture/` and `decisions/` are created from what proved true.
 - Why: building the pack with the pack gives daily friction feedback, and it avoids mapping everything up front, which the design itself forbids.
 - Revisit when: v0.1 ships. From then on, the pack's own commands run here.
+
+## Review of 2026-10-12
+
+Appended after a fresh review of the spec against the two bets. Each entry says which earlier decision it supersedes or extends.
+
+**D30. v0.1 testing is static checks in CI, cases as plain files, Claude Code as the eval runner, and Codex by hand.**
+Supersedes the neutral case format, per-agent runners, fixture projects and the Codex release gate in D26 and D27. Static checks (frontmatter, manifests, templates, name, links) run on every PR. Cases are the plain prompt and criteria files that `claude plugin eval init` writes, so any agent or person can read them. Before release, every case passes on Claude Code and each command is run once by hand on Codex.
+- Why: a case format, two runners and fixtures test the pack, not the bets, and they were the largest block of work in the spec. Codex plugin installs are UI-driven, so a Codex runner can't be scripted anyway.
+- Revisit when: a second contributor arrives, or skills regress after a model change.
+
+**D31. The bets are measured in files the flow already writes.**
+`spec.md` records what the spec started from as `request:`. Every session writes one line above the tasks in `tasks.md`: date, where it resumed, whether it needed re-explaining. spec-ship puts the session count, the re-explain count and what changed between the request and the shipped claims into the PR description.
+- Why: v0.1 exists to test the bets, and nothing recorded whether they held. The kill-or-rethink rule in ROADMAP needs numbers, not an impression.
+- Revisit when: the measures are never read, or a measure is needed that these lines can't give.
+
+**D32. Two kinds, feature and fix. Three statuses, draft, building and shipped. One go rule.**
+Supersedes the kind table and status list in D6. A feature is grilled and planned and needs the owner's go before planning. A fix takes the fast path, writes a failing test first, and needs the owner's go before ship only when it has claims. A fix with no claims writes "No behavior change." Refactor and chore are fixes. The owner is whoever `index.md` lists for the domain; when that is the user, their OK in session is the go. The go is the `approved` line, never a status.
+- Why: the bets need one distinction, whether the change alters behavior. Four kinds with four approvers was where a first-time user got lost, refactor's "engineering" go was recorded nowhere, and `status: approved` duplicated the line D8 already made the single source of truth.
+- Revisit when: a real refactor or chore shows it needs its own steps.
+
+**D33. Changing course lives in spec-build, and ambiguous claim IDs are written as `capability#id`.**
+The five change-course claims sit under spec/build, since that is where a change arrives. Tests and tasks reference a claim by `capability#id` whenever the bare ID is not unique in the spec.
+- Why: a claim no skill owns won't be written. Bare IDs collided across capabilities and broke the task-to-claim link.
+- Revisit when: a change arrives so often outside building that it needs its own command.
+
+**D34. Existing Spec Kit, OpenSpec or Kiro folders are only marked never-write.**
+Supersedes the archive option in D19. docs-init lists the folders it finds in the block's never-write slot and says so. Nothing is moved, imported or recorded in `index.md`. docs-map still reads them as input on touch.
+- Why: the archive flow was four artifacts for users of other tools, on a release that tests the bets on our own work, and the riskiest file operation docs-init did.
+- Revisit when: users arrive from those tools and ask for a guided migration.
+
+**D35. Skills instruct, they don't enforce. Best-effort claims say so, and each is its skill's behavior case.**
+Claims such as "leaves everything outside the markers untouched", "only refreshes the block", "asks before touching a file not in the plan", "copies without rewording" and "writes a failing test first" are best-effort. The spec says so once, up front. The `safe-update` claim is dropped: only docs-format 1 exists, so there is no migration to test, and a pack update runs nothing in the project.
+- Why: a markdown skill can only change what the agent is told. Ticking an unenforceable claim as done gives false confidence. Enforcement is the backlog checker.
+- Revisit when: the checker arrives.
+
+**D36. docs-init writes `index.md` and `architecture/stack.md`. There is no `architecture/index.md`, folders are created on first write, and `index.md` has no company-knowledge section in v0.1.**
+Supersedes the skeleton in D11 and defers D18 to the roadmap as direction. stack.md holds the project's commands from the start, so spec-ship can run the tests on a repo that never ran docs-map. The architecture folder listing is its own index.
+- Why: every file three skills must keep in sync is a place for docs/ to go stale, which is bet A's failure mode. Empty folders don't survive a commit. The test command had no source on the quickstart path.
+- Revisit when: an architecture folder grows past what a listing explains.
+
+**D37. docs-init adds the CLAUDE.md import only when a CLAUDE.md exists.**
+Claude Code 2.1.277 and later reads AGENTS.md when no CLAUDE.md exists in the folder or above it. With a CLAUDE.md present it reads only CLAUDE.md, unless that file imports AGENTS.md. Bedrock, Vertex, Foundry and older versions still need the import; the README says so.
+- Why: the earlier claim targeted the case that now needs nothing and missed the case that silently drops the block.
+- Revisit when: Claude Code reads both files by default.
+
+**D38. One marketplace file serves both agents, and the plugin manifest is a root `plugin.json` in the Agent Plugins format.**
+Extends D20 and D22. `.claude-plugin/marketplace.json` lists the plugin with a relative source into the plugin subfolder; Codex accepts that path as a legacy location and supports `git-subdir`. The plugin root carries `plugin.json` with the Agent Plugins schema, which Codex reads. A `.claude-plugin/plugin.json` is added only if Claude Code refuses a root manifest; its eval docs name both locations, so this is checked at build.
+- Why: one file per concern instead of one per agent, and fewer manifests for the static checks and the name rule to cover.
+- Revisit when: either agent drops support for the shared location.
+
+**D39. spec-ship updates exactly the architecture files plan.md lists, and reference files are not marked.**
+Supersedes the promotion mechanics in D14. plan.md's "Architecture to update at ship" names each area file and the reference file it comes from. spec-ship applies that list. The reference file stays as it was.
+- Why: a "stays true" judgment at ship was the step most likely to be skipped or done wrong, and the plan already made the call. Bet A needs architecture/ to be true, not reference files to be annotated.
+- Revisit when: plans regularly miss an architecture update that ship then has to find.
+
+**D40. The baseline run comes before any skill, and bet A is built before bet B.**
+Extends D29. The first task runs OpenSpec plus Matt Pocock's `grill-me` on one real task. The docs layer, the block and resume come next. Grilling comes after.
+- Why: the baseline says how much to build, and it checks bet B's premise for free since grill-me exists. Bet A is the riskier bet: the comparison we cite says no pack has solved it.
+- Revisit when: never. This is the order for v0.1.
+
+**D41. Every skill has overview, when to use, process and verification. Rationalizations and red flags only where an agent is tempted to skip.**
+Supersedes D5. docs-init and spec-ship need no rationalization table; spec-start, spec-build and grilling do.
+- Why: fixed sections bloat the simple skills, and D5's own revisit clause said to drop a section that never changes behavior.
+- Revisit when: test-first writing shows a simple skill being skipped.
+
+## Second review of 2026-10-12: architecture and best practices
+
+**D42. docs-init always makes a root CLAUDE.md import AGENTS.md, and ends by confirming the block loads.**
+Supersedes D37. Claude Code counts a `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md` in the working directory or any directory above it, so a parent folder's file, an older version, or Bedrock, Vertex and Foundry hide AGENTS.md with no error. docs-init writes the import into an existing CLAUDE.md or creates a one-line one, an adapter file the neutrality rule allows, and its last step is to start a session and confirm the block is in context.
+- Why: the block is the only thing that sends an unprompted session to `docs/`. If it isn't loaded, bet A fails for a reason that has nothing to do with the bet, and the measures in D31 mean nothing.
+- Revisit when: Claude Code reads AGENTS.md regardless of CLAUDE.md files above the repo.
+
+**D43. The block-driven claims are checked by hand on `scrubjay-example`, on both agents, with transcripts kept. Cases that need a repo state carry a scaffold script.**
+Extends D30. `claude plugin eval` runs load no project instructions: no CLAUDE.md, no `.claude/` directory, nothing from above or inside the workspace. So `answers-from-docs`, `resumes` and `session-line` can't be graded by the eval runner; a prompt that tells the agent to read tasks.md tests nothing about the block. Each eval run starts in an empty directory, so a behavior case that needs files or git state names a Bash scaffold script in its case folder, run with `--scaffold`.
+- Why: these three claims are bet A. The runner gives trigger and behavior coverage for the commands and zero evidence for the block.
+- Revisit when: the eval runner can load project instructions, or a cross-agent runner appears.
+
+**D44. `index.md` lists at least one domain from init, and the row for a new domain is added the moment it is named. The Behavior column is dropped.**
+Extends D32 and D36. docs-init asks for the first domain and its owner. spec-start and docs-map add a row when they meet a domain that has none, before any go is asked. The path to a domain's behavior is a rule stated once above the table, not a column.
+- Why: an empty required table broke the no-placeholders rule, the owner lookup had no row to find for a new domain when the go was needed, and a derived column drifts.
+- Revisit when: a domain needs more than a name, a scope and an owner.
+
+**D45. Two marketplace files, one per agent, each validated against its own schema. One root `plugin.json` for Codex. No Claude Code manifest.**
+Supersedes the one-file half of D38. Codex requires `policy.installation`, `policy.authentication` and `category` on every entry at `.agents/plugins/marketplace.json`; Claude Code's validator warns on those as unknown fields, so one shared file never passes `--strict`. Claude Code's own manifest is optional: without `.claude-plugin/plugin.json` it loads `skills/` from the standard layout and takes the plugin name from the marketplace entry. A root `plugin.json` is not read by Claude Code and is read by Codex, so it is Codex's manifest. Manifests are adapter files. The marketplace clone in a user's cache is the whole repo; only the installed plugin folder is clean, and the spec says so.
+- Why: each agent reads its own documented path, and CI can run each validator strictly.
+- Revisit when: either agent reads the other's location without warnings.
+
+**D46. Templates live under `assets/` in the docs-conventions skill. Command skills never name a template path. docs-conventions holds the charter and the claim format; per-file rules are references loaded by the command that writes the file.**
+The Agent Skills standard keeps file references one level deep from a skill's root, and Claude Code's skill directory variable points at the skill's own folder, not the plugin root. A `../docs-conventions/templates/x.md` reference works only when the pack is installed whole. So a command says "load docs-conventions and write from its template for `<file>`", and docs-conventions lists its templates under `assets/`. Its SKILL.md holds only the charter table and the claim format; section rules per file go to `references/<file>.md`, loaded on demand. The baseline task measures resident tokens and records the number.
+- Why: a broken template reference makes the agent improvise a file shape, which is bet A's drift failure. docs-conventions is loaded by every command, so every line in it is a recurring cost.
+- Revisit when: an agent resolves plugin-root paths from a skill, or the measured cost is small.
+
+**D47. The block is root-only in v0.1. docs-init names nested AGENTS.md files it finds, and monorepos with nested files are under Not doing.**
+The AGENTS.md convention says the closest file to the edited file wins. Claude Code concatenates; whether Codex and others drop the root file inside a package is unverified.
+- Why: the design cited the nearest-wins rule as the reason for one root block without noticing it cuts the other way.
+- Revisit when: a monorepo user arrives. The fix is the same block, same markers, in each nested file, which `rerun-safe` already covers.
+
+**D48. The session line records facts, and the re-explain count comes from the user at ship.**
+Supersedes the session line in D31. Each session writes the date, where it resumed, and the gist of the user's first message. spec-ship asks the user which sessions needed re-explaining and puts that count in the PR description.
+- Why: "whether it needed re-explaining" was the agent grading itself, and the kill-or-rethink rule keys on that number.
+- Revisit when: a transcript-based measure exists that needs no one's verdict.
+
+**D49. A skill body starts with the process, then verification, then red flags where D41 allows. What and when live in the description. Practices are marked not user-invocable.**
+Supersedes the section order in D41. The standard puts what and when in `description` and recommends a body of steps, examples and edge cases; Claude Code keeps only the start of a skill after compaction, so an overview at the top spends the lines that survive. Practices carry Claude Code's `user-invocable: false`; if an agent's validator rejects an unknown top-level key, the key moves under `metadata`. Checked at build, and the frontmatter check whitelists the keys each agent reads.
+- Why: no duplicated text at the top of every skill, and the slash menu shows commands only.
+- Revisit when: the standard adds an invocation field of its own.
+
+**D50. Frontmatter carries no comments. Frontmatter rules live in docs-conventions, and the templates README until then.**
+Extends D17. The removal rule covered `<!-- -->` comments only, so a skill following it literally would leave YAML `#` guidance in every project file.
+- Why: placeholder text gets treated as real content by later agents, and the no-placeholders claim forbids it.
+- Revisit when: never.

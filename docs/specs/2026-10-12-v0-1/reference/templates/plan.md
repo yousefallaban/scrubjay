@@ -13,7 +13,8 @@ A choice that outlives the spec links to its decision record. -->
 {{path}}    {{new | changed | deleted}}: {{one-line reason}}
 
 ## Architecture to update at ship
-<!-- optional: when an architecture area changes. Which files change, and the reference file each comes from. -->
+<!-- optional: when an architecture area changes. spec-ship updates exactly these files,
+each from the reference file it names. -->
 - {{area}}.md, from reference/{{file}}
 
 ## Rollout

@@ -1,12 +1,10 @@
 ---
 id: {{YYYY-MM-DD-slug}}
-kind: {{feature | fix | refactor | chore}}
+kind: {{feature | fix}}
 status: draft
 summary: {{one user-facing line; reused in release notes}}
-issue: {{tracker key}}    # optional: delete the line if there is none
-# At the owner's go, add: approved: {by: <owner>, via: <in session, a message link, or a PR>}
-# Record a go only when the user reports one; never infer it. Git dates the line.
-# After a change to Why or What changes, remove the line; the owner's new go writes it back.
+request: {{the sentence, issue or commits it started from}}
+issue: {{tracker key}}
 ---
 # {{Title as a verb phrase}}
 
@@ -14,7 +12,7 @@ issue: {{tracker key}}    # optional: delete the line if there is none
 <!-- required: the problem, who has it, and what it costs to leave it, in 2 to 5 lines. No solution. -->
 
 ## What changes
-<!-- required, except refactor and chore. A refactor writes "No behavior change."
+<!-- required. A fix that changes no behavior writes "No behavior change." and nothing else here.
 Use only the headings below that apply, one per capability.
 Claims read exactly as they will in behavior/, so spec-ship copies them without rewording. -->
 
@@ -32,7 +30,7 @@ Claims read exactly as they will in behavior/, so spec-ship copies them without 
   reason: {{why it stops being true}}
 
 ## Not doing
-<!-- required for features, optional otherwise: what is deliberately out, so scope can't creep silently. -->
+<!-- required for a feature, optional for a fix: what is deliberately out, so scope can't creep silently. -->
 
 ## Open questions
 <!-- while drafting: questions only the owner can answer. Delete the section when empty;

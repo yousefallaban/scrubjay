@@ -8,6 +8,8 @@ Purpose: the Stage 1 (v0) design, exported from the design doc on 2026-10-12 (re
 > - "How we test it" predates D26 to D28 on testing patterns.
 > - The approval is shown as `approved: {by, on}` and is "renewed". It is now `approved: {by, via}`, removed on a change to Why or What changes and written back at the new go (D8).
 > - The flow diagram didn't survive the export, so it appears as a placeholder line.
+> - After the review of 2026-10-12 (D30 to D41): there are two kinds (feature, fix) and three statuses (draft, building, shipped); changing course lives in spec-build; spec-ship updates the architecture files plan.md lists and writes no "Promoted to" line; there is no `architecture/index.md` and no company-knowledge section in `index.md`; docs-init writes `stack.md`; existing spec tools are only marked never-write; testing is static checks, plain case files, Claude Code evals and Codex by hand. Claude Code now reads AGENTS.md when no CLAUDE.md exists, so the "reads CLAUDE.md rather than AGENTS.md" line is outdated.
+> - After the second review of 2026-10-12 (D42 to D50): docs-init always writes the CLAUDE.md import; the block names glossary and decisions and is root-only; `index.md` has no Behavior column and lists a domain from init; two marketplace files, one per agent, and no Claude Code manifest; templates live under `assets/` in docs-conventions and are never referenced by path from another skill; the session line records facts and the re-explain count comes from the user; frontmatter carries no comments.
 
 ---
 
