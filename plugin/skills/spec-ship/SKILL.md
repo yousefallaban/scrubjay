@@ -13,7 +13,7 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 2. Find the active spec from the branch. Read `spec.md`, `plan.md`, `tasks.md`. If a task is unticked, say which and stop.
 3. Gate on the go. A feature, or a fix with claims under What changes, needs the `approved` line. Without it, say "The owner of <domain>/<capability> hasn't said go" and stop. A fix with "No behavior change" needs none.
 4. Run the project's test command from `architecture/stack.md`. If anything fails, report it and stop. No docs change on a red run.
-5. Fresh review. Ask a reviewer that did not write the code, a sub-agent with a fresh context, to compare the branch's diff against main with the claims in `spec.md` and the Files list in `plan.md`, and to report: claims with no test carrying their reference, behavior in the diff that no claim covers, files changed outside the plan, and anything in the diff that contradicts a claim. Keep the findings for the pull request; code files outside the plan become its Unrelated changes. The docs the flow itself writes, the spec folder, `behavior/`, `architecture/`, `decisions/`, `glossary.md`, `index.md`, the block in `AGENTS.md` and the `CLAUDE.md` import, are never unrelated.
+5. Fresh review. Ask a reviewer that did not write the code, a sub-agent with a fresh context or a separate session the user opens, to compare the branch's diff against main with the claims in `spec.md` and the Files list in `plan.md`, and to report: claims with no test carrying their reference, behavior in the diff that no claim covers, files changed outside the plan, and anything in the diff that contradicts a claim. Keep the findings for the pull request; code files outside the plan become its Unrelated changes. The docs the flow itself writes, the spec folder, `behavior/`, `architecture/`, `decisions/`, `glossary.md`, `index.md`, the block in `AGENTS.md` and the `CLAUDE.md` import, are never unrelated.
 6. Update `behavior/`. For each `### Add · <domain>/<capability>`, create or extend `behavior/<domain>/<capability>.md` from its template with the claims copied word for word. For each Change, replace the claim with that ID in place. For each Remove, delete the claim. Reword nothing.
 7. Update architecture. For each line under Architecture to update at ship in `plan.md`, update that area file from the named reference file, creating it from its template when it doesn't exist. Leave the reference file as it is. Add a domain row to `index.md` only when one is still missing.
 8. Set `status: shipped` in `spec.md`. The status becomes true on the main branch exactly when the pull request merges.
@@ -54,14 +54,14 @@ Sessions: <n>, re-explained: <n>. <what grilling added, changed or kept out>.
 | Excuse | Rule |
 | --- | --- |
 | "One flaky test, I'll ship anyway." | Red run, no ship. Fix or stop. |
-| "I reviewed my own diff carefully." | The reviewer is a fresh context that didn't write the code. |
+| "I reviewed my own diff carefully." | The reviewer is a fresh context that didn't write the code. A review done in this session is never written up as fresh: without a sub-agent, stop, hand the user the review prompt, and wait for the findings. |
 | "I'll tidy the claim wording while copying." | Claims are copied word for word. Rewording is a Change in a later spec. |
 | "No owner around, but the fix is small." | A fix with claims needs the go. Show the text to paste and stop. |
 | "I'll merge it, the user asked to ship." | spec-ship never merges. |
 
 ## Fallbacks
 
-- No sub-agents: ask the user to open a fresh session with the review prompt and paste the findings back, and say so in the pull request.
+- No sub-agents: stop before any docs change, give the user the review prompt to run in a fresh session, wait for the findings, and say in the pull request that the review ran in a separate session.
 - No shell in this session: ask the user to run the test command and report the result, and ship only on a reported green run.
 - No `gh`: show the title and the description to paste.
 - No question tool: ask the two questions in plain text and wait.
