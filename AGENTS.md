@@ -4,36 +4,43 @@ Instructions for any coding agent working on this repo: Claude Code, Codex, Copi
 
 ## What this repo is
 
-scrubjay is a skill pack that gives coding agents a spec workflow and a project memory kept in `docs/`. It is pre-release: the pack doesn't exist yet, and you are building v0.1.
+scrubjay is a skill pack that gives coding agents a spec workflow and a project memory kept in `docs/`. The installable pack lives in `plugin/`; this repo's docs, checks and CI support its development.
 
 ## Start here
 
-1. Read `docs/specs/2026-10-12-v0-1/spec.md`. These are the requirements. Don't change Why or What changes without the owner's (Yousef's) go. The `approved` line in its frontmatter says whether the current text has it.
-2. Read `reference/decisions.md`, which lists every decision with its reason. Where it disagrees with `design.md`, decisions.md wins.
-3. Read `reference/design.md` for the full design, and `reference/research.md` for the standards, install facts and sources.
-4. `reference/templates/` holds the agreed templates. They become the pack's templates.
+1. Read the current version from `plugin/plugin.json` and confirm that `plugin/.claude-plugin/plugin.json` agrees. The manifests are the version source; branch names and old specs are not.
+2. Find the active spec in `docs/specs/` from the branch's purpose: `chore/public-repo-setup` maps to `docs/specs/<date>-public-repo-setup/`. Read its `tasks.md` first when it exists. The original first-release spec is history, not the default task for every session.
+3. Read that spec's `spec.md` and `plan.md` when it has one. Don't change Why or What changes without the owner's (Yousef's) go. The `approved` line says whether the current requirements have it.
+4. Read the relevant files in `docs/behavior/`, `docs/architecture/` and `docs/decisions/`. Load the active spec's `reference/` files as needed; where a decision disagrees with a design draft, the decision wins. Templates live in `plugin/skills/docs-conventions/assets/`.
 
 ## How to work
 
-Use the pack's own flow by hand, since the skills don't exist yet.
+Use the pack's own spec workflow. If the skills are not installed in the agent, follow their steps from `plugin/skills/` by hand. This repo's branch and PR naming rules override the skills' generic defaults.
 
-- **Branch:** work on `v0-1`, the spec's slug.
-- **Plan first:** write `plan.md` and `tasks.md` in the spec folder from the templates. Show them to Yousef and wait for an OK before writing any pack files. How to build it is your call; the spec says only what it must do.
-- **Order:** the first task is the baseline run in `ROADMAP.md`. Then the docs layer, the AGENTS.md block and resume, which test bet A. Grilling and the rest come after.
+- **Branch:** use `<type>/<purpose>`, with one of the types below and a short lowercase kebab-case purpose. Use the purpose to match the spec slug; strip the type prefix when a skill looks up the active spec. Name the work, not an agent or a version. Create branches from the repository's default branch. On the default branch or without a matching spec, start a spec for the requested change.
+- **Plan first:** plan a feature or a fix that needs several build steps. Write `plan.md` and `tasks.md` in the spec folder from the templates and wait for Yousef's OK before building a planned change. A small fix can use one task with a named check. How to build it is your call; the spec says what it must do.
 - **Task by task:** each task fits one session and names the claim IDs, or the check, that prove it done. Tick it in `tasks.md` only when that proof holds. Keep notes under a task to two lines.
 - **Every session:** read `tasks.md` first, add the session line, then continue from the next unticked task.
 - **Skills test-first:** before writing a SKILL.md, run its scenario on `scrubjay-example` without the skill and keep that scenario as the skill's baseline case. Write the smallest skill that fixes it, then turn each loophole the agent finds into a rule or a red flag.
 - **Skills instruct, they don't enforce:** a claim about what a command never touches or always does first is best-effort. The skill's behavior case covers it. Don't claim more.
-- **Changing course:** update the file the change belongs to (`spec.md`, `plan.md` or `reference/`), recheck every task (keep, redo, new or drop), and wait for an OK. A change to `spec.md` removes the `approved` line and needs Yousef's go again. Scope growth becomes a follow-up spec.
-- **Lasting choices:** record each one in `reference/decisions.md` (append, never edit an existing entry) the moment it is made.
-- **Shipping:** run the checks, have a fresh reviewer compare the diff with `spec.md`, create `docs/behavior/`, `docs/architecture/` and `docs/decisions/` from what proved true, set the status to shipped, and prepare a PR whose title starts with `v0-1`. Never merge.
+- **Changing course:** update the file the change belongs to (`spec.md`, `plan.md` or `reference/`), recheck every task (keep, redo, new or drop), and wait for an OK. A change to Why or What changes removes the `approved` line and needs Yousef's go again. Scope growth becomes a follow-up spec.
+- **Lasting choices:** record each one in the active spec's `reference/decisions.md` (append, never edit an existing entry) the moment it is made.
+- **Shipping:** run `sh checks/run.sh`, have a fresh reviewer compare the diff with the active spec and plan, update the relevant behavior, architecture and decisions from what proved true, and set the spec's status to shipped inside the PR. Title the PR `<type>(<purpose>): <description>`, for example `docs(clarify-readme): Explain the first-use steps`. Never merge.
+
+| Branch type | Use for | Example |
+| --- | --- | --- |
+| `feature` | Adding or changing product behavior | `feature/add-wishlist` |
+| `fix` | Fixing a bug | `fix/refund-rounding` |
+| `docs` | Documentation changes only | `docs/clarify-readme` |
+| `chore` | Repository settings, tooling and maintenance | `chore/public-repo-setup` |
+| `refactor` | Restructuring code without changing behavior | `refactor/split-validator` |
 
 ## Rules
 
-- **Build only what the spec asks for.** Put new ideas to Yousef, or under the backlog in `ROADMAP.md` once he agrees.
+- **Build only what the spec asks for.** Put new ideas to Yousef; agreed work gets its own spec. Do not create a separate roadmap or backlog document without a request.
 - **Stay agent-neutral.** Nothing in the pack or its tests may require one particular agent, except adapter files such as manifests. A skill that uses a feature only some agents have states its fallback.
 - **The product name goes only in the manifests and README files.** Skill names, templates and the `project-memory` markers carry no name.
 - **Keep the plugin separate.** Users must not receive this repo's `docs/`, `checks/` or CI. The eval cases ship inside the pack under `plugin/evals/` (D52).
 - **No client material, ever.** No code, names, docs or details from client projects. Examples use the fictional webshop (wishlist, returns).
-- **Write for the public.** The repo is private until v0.1 works, then goes public under MIT.
-- **Don't map this repo up front.** `docs/behavior/` and `docs/architecture/` are created at ship, not before.
+- **Write for the public.** This repository is public under MIT.
+- **Keep current docs current.** Update the relevant behavior and architecture at ship. Old specs and decisions record history; do not rewrite them to look like the latest version.

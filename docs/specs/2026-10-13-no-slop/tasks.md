@@ -1,7 +1,7 @@
 ---
 spec: 2026-10-13-no-slop
 ---
-Session 2026-10-13: started at T1; first message: "ok do it, once you make sure it works then sync private as well".
+Session 2026-10-13: started at T1; first message: "ok do it, once you make sure it works then sync the private copy as well".
 
 - [x] T1 Writing rules in docs-conventions, case first: a Why from a rambling request, graded on tells and length; stop-slop credited -> plain-writing
   - note: the case passed before the rule, with the plugin and without it; the rule is kept as the stated standard by the owner's call, and the case guards it.

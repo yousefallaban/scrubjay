@@ -1,0 +1,13 @@
+{
+  "commits": 61,
+  "blobs_scanned": 720,
+  "client_occurrences_removed": 6,
+  "client_occurrences_remaining": 0,
+  "refs": [
+    "refs/heads/master 73433f56045c41c0fac0ed559be5c0ab02c792fd",
+    "refs/heads/v0-1 4c876e98ff3921215790cd573ceecc982ee3ca61",
+    "refs/remotes/origin/HEAD 73433f56045c41c0fac0ed559be5c0ab02c792fd",
+    "refs/remotes/origin/master 73433f56045c41c0fac0ed559be5c0ab02c792fd",
+    "refs/remotes/origin/pr-example-colon f0b565bc1d5e363e955c3867b2ccba316a5b1dfb"
+  ]
+}

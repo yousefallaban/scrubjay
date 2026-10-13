@@ -11,7 +11,10 @@
         "displayName": "scrubjay",
         "shortDescription": "Spec workflow and project memory for coding agents",
         "developerName": "Yousef Allaban",
-        "category": "Productivity"
+        "category": "Productivity",
+        "brandColor": "#2C72B9",
+        "logo": "./assets/icon.svg",
+        "composerIcon": "./assets/icon.svg"
       }
     }
   }

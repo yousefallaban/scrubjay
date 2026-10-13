@@ -6,8 +6,6 @@
 
 Scrub-jays hide food and remember what they hid, where and when. This pack gives coding agents the same memory: what was decided, where it lives, and when it changed. It is eight markdown skills, no server, no runtime, no telemetry. Tested on Claude Code and Codex, installs on GitHub Copilot CLI, loads in any agent that supports [Agent Skills](https://agentskills.io).
 
-> **Status: pre-release.** v0.1 is built and shipping on [its own spec](docs/specs/2026-10-12-v0-1/spec.md). Install steps, commands and the quickstart are in the [pack README](plugin/README.md).
-
 ## The problem
 
 Every new agent session starts from zero, so you explain the project again. And an agent handed a one-line request builds something, just not always the thing you meant.
@@ -77,22 +75,35 @@ copilot plugin install scrubjay@yousefallaban
 
 Any other agent with Agent Skills: the one command above, or copy the eight folders under [`plugin/skills/`](plugin/skills) into its skills directory. Per-repo installs, private copies and how updates reach you are in the [pack README](plugin/README.md#install).
 
-## Quickstart, about five minutes
+## Quickstart
 
-1. `docs-init`, answer four questions: the product, the first domain and its owner, your issue tracker, the test command.
-2. Open a new session and ask "where does project memory live?". It answers from `docs/`. That is bet one.
-3. `spec-start` with one sentence about what you want. A feature gets grilled in rounds, each question with a recommended answer. Say go.
-4. `spec-plan`, OK the plan, then `spec-build`, one task per session if you like. A fresh session told "continue" picks up at the next task.
-5. `spec-ship`. Tests, a fresh review, the docs updated, a pull request title and description ready to paste.
+After installing the pack, open your project in your coding agent. The steps below use short skill names. For plugin installs, use `/scrubjay:docs-init` in Claude Code or `$scrubjay:docs-init` in Codex, and the same prefix for the other commands.
+
+1. **Set up project memory.** Run `docs-init`. Describe the product, name the first domain and its owner, add your issue tracker if you have one, and confirm the test command.
+
+2. **Check that memory carries over.** Open a new session and ask, "Where does project memory live?" The agent should point you to `docs/`.
+
+3. **Describe a small change.** Run `spec-start` with a request such as "Customers can save products to a wishlist." Answer the questions, review the resulting spec, and say go when the scope is right.
+
+4. **Approve the plan.** Run `spec-plan`. Review the approach and task list, then give your OK before building starts.
+
+5. **Build and resume.** Run `spec-build` to work through the tasks. To pick up later, open a new session and say "continue"; the agent resumes from `tasks.md`.
+
+6. **Prepare the pull request.** Run `spec-ship`. It runs the tests, gets a fresh review, updates the project docs, and prepares the PR. You decide when to merge.
 
 ## What makes it different
 
-- **The owner's go is on record.** A feature is not planned, and behavior is not shipped, without an `approved` line that says who and where. Enthusiasm is never read as a go.
-- **Claims, not prose.** Why and what settle into claims with IDs. The plan names the claims each task proves, the tests carry them, and `behavior/` holds them after ship.
-- **Resume is real.** A new session, person or agent reads `tasks.md` and names the next task unprompted. Checked by hand on both tested agents.
-- **A fresh reviewer.** Shipping asks a context that did not write the code to compare the diff with the spec, and puts the findings in the pull request.
-- **Changing your mind is handled.** Mid-build, the right file is updated, every task rechecked, the go renewed if the what changed. Scope growth becomes a follow-up spec.
-- **Nothing to run.** Markdown skills and templates. It stacks with the skills you already use for code quality, testing or a language; it only holds the workflow around them.
+- **Approval stays with the spec.** The owner's go records who approved the change and where. Features wait for that approval before planning; behavior changes need it before shipping.
+
+- **Requirements connect to tests.** Each requirement is a testable claim with an ID and an example. Tasks and tests refer to those claims, which become the project's behavior docs after shipping.
+
+- **Progress survives a new session.** `tasks.md` records what is done and what comes next. A new person or agent can pick up from that file without reconstructing the conversation.
+
+- **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec. Their findings go into the pull request.
+
+- **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks. Changed requirements need renewed approval; extra scope gets a separate spec.
+
+- **Use it with your existing skills.** The pack is markdown skills and templates, with no service to run. Keep your language, testing and code-quality skills alongside it.
 
 Every skill is written test-first against a small example webshop, with eval cases that run with and without the pack, and the pack is built with its own flow.
 
@@ -113,7 +124,6 @@ Every skill is written test-first against a small example webshop, with eval cas
 | [`docs/specs/`](docs/specs) | the spec this pack is built from, in its own format, with the decisions behind it |
 | [`plugin/`](plugin) | what users install: skills, templates, manifests, eval cases |
 | [`checks/`](checks) | the static checks CI runs, and the by-hand protocols with their transcripts |
-| [`ROADMAP.md`](ROADMAP.md) | what comes after v0.1, and the signals that would add it |
 
 Run `sh checks/run.sh` before a pull request; CI runs the same. Eval cases run with `claude plugin eval plugin --scaffold --allow-tools Write Edit --trust-plugin`, see [`plugin/evals/README.md`](plugin/evals/README.md).
 

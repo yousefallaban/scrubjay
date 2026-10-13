@@ -1,0 +1,17 @@
+[
+  {
+    "original_object": "57deef8293ceabadbe7690a252ae218fb521d8ec",
+    "kind": "blobs",
+    "anonymous_http_status": 404
+  },
+  {
+    "original_object": "39666fe47ea9d028d35d5bac4e6cf08e0b82bcf3",
+    "kind": "blobs",
+    "anonymous_http_status": 404
+  },
+  {
+    "original_object": "9fcb65affa0182f140574bfba86307ac1cf52faf",
+    "kind": "commits",
+    "anonymous_http_status": 404
+  }
+]
