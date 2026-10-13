@@ -26,7 +26,7 @@ v0.1 exists to test both on real work.
 
 There are also two practices the agent loads itself: `grilling` and `docs-conventions`.
 
-- It works with any agent that supports [Agent Skills](https://agentskills.io/), and is tested on Claude Code and Codex.
+- It works with any agent that supports [Agent Skills](https://agentskills.io/), is tested on Claude Code and Codex, and installs as a plugin on GitHub Copilot CLI too.
 - It needs git. `gh` is optional. There is no MCP server, runtime, npm package or telemetry.
 
 ## In this repo

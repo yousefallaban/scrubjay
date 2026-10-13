@@ -33,7 +33,16 @@ codex plugin add scrubjay@yousefallaban
 
 The commands appear as `$scrubjay:docs-init`, `$scrubjay:spec-start` and so on. Older Codex versions without `codex plugin add` install from the Plugins directory in the TUI or the desktop app after the marketplace is added.
 
-**Any other agent that supports [Agent Skills](https://agentskills.io)**: copy `skills/` from this folder into the agent's skills directory. Updates are re-copied by hand.
+**GitHub Copilot CLI**
+
+```
+copilot plugin marketplace add yousefallaban/scrubjay
+copilot plugin install scrubjay@yousefallaban
+```
+
+Copilot reads the same manifest as Codex, the [Agent Plugins](https://agent-plugins.org) `plugin.json`, and the same marketplace file as Claude Code. Verified once on Copilot CLI 1.0.96; it is not one of the agents the pack is tested on.
+
+**Any other agent that supports [Agent Skills](https://agentskills.io)**: copy the eight folders under `skills/` into the agent's skills directory and re-copy them by hand on an update. Copilot in VS Code reads `.github/skills/` in the repo or `~/.copilot/skills/`; Cursor reads `.cursor/skills/`; Codex and VS Code both read `.agents/skills/`.
 
 **From a private copy**
 
