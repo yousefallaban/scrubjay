@@ -124,7 +124,6 @@ Every skill is written test-first against a small example webshop, with eval cas
 | [`docs/specs/`](docs/specs) | the spec this pack is built from, in its own format, with the decisions behind it |
 | [`plugin/`](plugin) | what users install: skills, templates, manifests, eval cases |
 | [`checks/`](checks) | the static checks CI runs, and the by-hand protocols with their transcripts |
-| [`ROADMAP.md`](ROADMAP.md) | what comes after v0.1, and the signals that would add it |
 
 Run `sh checks/run.sh` before a pull request; CI runs the same. Eval cases run with `claude plugin eval plugin --scaffold --allow-tools Write Edit --trust-plugin`, see [`plugin/evals/README.md`](plugin/evals/README.md).
 
