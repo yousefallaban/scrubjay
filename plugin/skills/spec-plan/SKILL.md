@@ -34,6 +34,7 @@ How, and in what order, with nothing built until the user has seen it.
 | "I'll make one task: build it all." | A task fits one session and names its claims. |
 | "I'll start the first task since it's obvious." | The plan is shown, then OK'd, then built. |
 | "The data model sketch can live in plan.md." | Detail goes to `reference/`, with a Purpose line. |
+| "I'll add a last task for shipping, so nothing is forgotten." | Tasks end with the last claim or check. Shipping is spec-ship's, never a task, and the docs the flow writes are not in Files. |
 
 ## Fallbacks
 
