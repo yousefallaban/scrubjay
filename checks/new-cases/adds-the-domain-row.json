@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T00:52:47.899Z",
+  "durationSeconds": 181,
+  "costUsd": 0.7734335,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*adds-the-domain-row*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "adds-the-domain-row",
+      "dir": "evals/docs-map/adds-the-domain-row",
+      "source": "mixed",
+      "promptMarkdown": "Map the returns domain. I'm Sanne, the owner of returns, which covers sending items back and refunds. I confirm in advance every draft that matches the code and the tests, so write the files without waiting for me, then list what you wrote.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 30,
+      "graders": [
+        {
+          "name": "behavior-file-written",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/behavior/returns/*.md",
+            "exists": true
+          }
+        },
+        {
+          "name": "row-added",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/index.md"
+            },
+            "pattern": "^\\| returns \\|[^\\n]*Sanne",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-map\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 36,
+            "costUsd": 0.7734335,
+            "judgeCostUsd": 0,
+            "durationSeconds": 181,
+            "startedAt": "2026-10-13T00:52:47.990Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-zojHUj/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "behavior-file-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/returns/*.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "row-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^\\| returns \\|[^\\n]*Sanne",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}
