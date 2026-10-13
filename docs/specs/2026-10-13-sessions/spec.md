@@ -1,0 +1,27 @@
+---
+id: 2026-10-13-sessions
+kind: feature
+status: shipped
+summary: A build session runs the tests before its task and leaves a handoff when it stops early
+request: do items 1 to 3 from the research, sessions start green and end with a handoff, Codex reviews with its own command, the release check runs three times
+approved: {by: yousef, via: in session}
+---
+# Sessions: start on a test run, end with a handoff
+
+## Why
+A build session that runs out of context mid-task leaves half-written code and a red test, and the next session finds them halfway through its own work. It happened twice while shipping no-slop. Anthropic's notes on long-running agents name the same two failures: work abandoned mid-feature with nothing written down, and a session that starts on a broken state it did not check.
+
+## What changes
+
+### Add · spec/build
+- spec-build runs the project's test command before it touches the next task, and a red start is reported before any file the task touches changes {#starts-with-a-test-run}
+  e.g. a session that cannot run commands says "continue" -> "Run `bun test` and tell me the result" comes before any edit to `src/` or `test/`
+- When a session stops before its task is ticked, spec-build writes one handoff line under the task: what exists, what is red or unfinished, and the next step; the line goes when the task is ticked {#handoff}
+  e.g. `- handoff: done: failing test for no-duplicates; red: save not written; next: write save in src/wishlist.ts`
+
+## Not doing
+- A commit after each task. When to commit is the repo's rule; the handoff line is what the next session needs.
+- A recipe for running spec-build in a loop with nobody present. Terminal only; later, on a signal.
+- A bullet in the AGENTS.md block that sends the agent to docs-map. spec-start already offers docs-map when a domain has no behavior folder.
+- A target for context use per session. No agent-neutral way to read it.
+- A claim for a review session that spec-ship starts from the shell when it has no sub-agent. Both tested agents have sub-agents, Codex at 0.162, so no run reaches that path; spec-ship states it as a fallback, the way AGENTS.md asks for agent-specific features, and claims nothing.

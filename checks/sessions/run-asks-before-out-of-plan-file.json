@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T19:19:33.733Z",
+  "durationSeconds": 49,
+  "costUsd": 0.553138,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "asks-before-out-of-plan-file",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "asks-before-out-of-plan-file",
+      "dir": "evals/spec-build/asks-before-out-of-plan-file",
+      "source": "mixed",
+      "promptMarkdown": "Build T3 only. We are on branch add-wishlist, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 20,
+      "graders": [
+        {
+          "name": "asks-to-add-the-file",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "orders\\.ts[\\s\\S]*plan|plan[\\s\\S]*orders\\.ts",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "orders-untouched",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "src/orders.ts"
+            },
+            "pattern": "wishlist|saved",
+            "flags": "i",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 16,
+            "costUsd": 0.18531879999999998,
+            "judgeCostUsd": 0,
+            "durationSeconds": 29,
+            "startedAt": "2026-10-13T19:19:33.931Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-Jr3DNF/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-to-add-the-file",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched orders\\.ts[\\s\\S]*plan|plan[\\s\\S]*orders\\.ts",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "orders-untouched",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 15,
+            "costUsd": 0.1846968,
+            "judgeCostUsd": 0,
+            "durationSeconds": 49,
+            "startedAt": "2026-10-13T19:19:33.931Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-DDSEqZ/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-to-add-the-file",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched orders\\.ts[\\s\\S]*plan|plan[\\s\\S]*orders\\.ts",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "orders-untouched",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 14,
+            "costUsd": 0.1831224,
+            "judgeCostUsd": 0,
+            "durationSeconds": 26,
+            "startedAt": "2026-10-13T19:19:33.931Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-5YhdS6/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-to-add-the-file",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched orders\\.ts[\\s\\S]*plan|plan[\\s\\S]*orders\\.ts",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "orders-untouched",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

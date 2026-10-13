@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T20:35:26.699Z",
+  "durationSeconds": 41,
+  "costUsd": 0.6716587999999999,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "writes-a-handoff",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.2",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "writes-a-handoff",
+      "dir": "evals/spec-build/writes-a-handoff",
+      "source": "mixed",
+      "promptMarkdown": "Start T2, but stop before you write any code in src/: Sanne wants to see the data model first. We are on branch add-wishlist. `bun test` is green, I ran it a minute ago, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 25,
+      "graders": [
+        {
+          "name": "handoff-line-under-t2",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "no-code-in-src",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "src/wishlist.ts"
+            },
+            "pattern": "export function save",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "session-line-written",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "t2-not-ticked",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^- \\[x\\] T2",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 20,
+            "costUsd": 0.23065000000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 41,
+            "startedAt": "2026-10-13T20:35:26.805Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-t74fQH/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "handoff-line-under-t2",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-code-in-src",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-not-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 18,
+            "costUsd": 0.20677179999999998,
+            "judgeCostUsd": 0,
+            "durationSeconds": 33,
+            "startedAt": "2026-10-13T20:35:26.805Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-wdxZOr/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "handoff-line-under-t2",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-code-in-src",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-not-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 20,
+            "costUsd": 0.23423699999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 37,
+            "startedAt": "2026-10-13T20:35:26.805Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-YfJ7qq/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "handoff-line-under-t2",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-code-in-src",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-not-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

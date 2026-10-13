@@ -27,3 +27,7 @@ capability: spec/build
   e.g. the guest claim added -> `approved` is removed; Sanne's new go restores it, and the build continues
 - When a change contradicts Not doing or grows the scope, the agent proposes a follow-up spec instead {#follow-up-spec}
   e.g. "also share wishlists" while sharing is under Not doing -> "Start a separate spec for sharing?"
+- spec-build runs the project's test command before it touches the next task, and a red start is reported before any file the task touches changes {#starts-with-a-test-run}
+  e.g. a session that cannot run commands says "continue" -> "Run `bun test` and tell me the result" comes before any edit to `src/` or `test/`
+- When a session stops before its task is ticked, spec-build writes one handoff line under the task: what exists, what is red or unfinished, and the next step; the line goes when the task is ticked {#handoff}
+  e.g. `- handoff: done: failing test for no-duplicates; red: save not written; next: write save in src/wishlist.ts`

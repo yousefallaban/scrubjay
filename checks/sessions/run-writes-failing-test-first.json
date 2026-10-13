@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T19:23:15.220Z",
+  "durationSeconds": 48,
+  "costUsd": 0.772499,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "writes-failing-test-first",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "writes-failing-test-first",
+      "dir": "evals/spec-build/writes-failing-test-first",
+      "source": "mixed",
+      "promptMarkdown": "Build T2 only, then stop. We are on branch add-wishlist. `bun test` is green, I ran it a minute ago, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 40,
+      "graders": [
+        {
+          "name": "not-ticked-without-green-run",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^- \\[x\\] T2",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "test-before-code",
+          "type": "tool_order",
+          "weight": 1,
+          "config": {
+            "before": {
+              "tool": "Write",
+              "input_match": "test/wishlist"
+            },
+            "after": {
+              "tool": "Write",
+              "input_match": "src/wishlist\\.ts\"[\\s\\S]*export function save"
+            }
+          }
+        },
+        {
+          "name": "test-names-carry-claims",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "test/wishlist.test.ts"
+            },
+            "pattern": "no-duplicates",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 23,
+            "costUsd": 0.2590336,
+            "judgeCostUsd": 0,
+            "durationSeconds": 47,
+            "startedAt": "2026-10-13T19:23:15.329Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-5ndmoe/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "not-ticked-without-green-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-before-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write@16 precedes Write@17",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-names-carry-claims",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched no-duplicates",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.24768779999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 41,
+            "startedAt": "2026-10-13T19:23:15.329Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-VjXMBf/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "not-ticked-without-green-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-before-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write@13 precedes Write@15",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-names-carry-claims",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched no-duplicates",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.2657776,
+            "judgeCostUsd": 0,
+            "durationSeconds": 44,
+            "startedAt": "2026-10-13T19:23:15.329Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-6xQSC3/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "not-ticked-without-green-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-before-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write@14 precedes Write@15",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "test-names-carry-claims",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched no-duplicates",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}
