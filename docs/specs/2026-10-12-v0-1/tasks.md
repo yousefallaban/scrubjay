@@ -31,7 +31,8 @@ Session 2026-10-13: resumed at T6; first message: "commit but I did not merge, i
   - note: title must say the kind word, `feature`, not `feat`; the flow's own docs are never unrelated changes. Both learned from runs.
 - [ ] T14 Install from the private repo on Claude Code and on Codex, run each command once by hand on Codex, write the install sections -> claude-code, codex, private-repo, git-only, agent-skills
   - note: install from the private repo proven on both agents at v0-1; Codex names skills $scrubjay:<skill>; the by-hand run of each command on Codex is in the dogfood, steps 1 and 2 done.
-- [ ] T15 Pack docs: plugin README, quickstart, CREDITS -> readme, quickstart, credits
+- [x] T15 Pack docs: plugin README, quickstart, CREDITS -> readme, quickstart, credits
+  - note: README with install per agent and from a private copy, one line per command, the quickstart and how to test; the quickstart's install-to-first-spec path is the dogfood's steps 1 to 3, done on Claude Code.
 - [ ] T16 Dogfood: the wishlist feature end to end on scrubjay-example with the pack installed, on both agents -> check: a shipped spec on scrubjay-example whose PR description carries the review findings and the outcome line
   - note: Claude Code: steps 1 to 3 done, spec grilled to 10 claims with the go; stopped at spec-plan by the usage limit. Codex: step 1 done, step 2 in flight.
 - [ ] T17 Release check: every case passes on Claude Code, each command run once on Codex, the three block claims by hand on both agents with transcripts kept -> case-minimum, two-agents, block-cases
