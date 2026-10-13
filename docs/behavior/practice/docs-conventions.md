@@ -13,3 +13,5 @@ capability: practice/docs-conventions
   e.g. `- Saving the same product twice keeps one entry {#no-duplicates}` with an `e.g.` line under it, referenced as `wishlist/save-item#no-duplicates`
 - `index.md` records the docs-format version, and a template change applies to new files only {#docs-format}
   e.g. a template gains a section -> shipped specs are never rewritten
+- Every file the pack writes is in plain words: no opener that announces what follows, no hedge or intensifier, no jargon, no em dash, no rhetorical setup, active voice, one idea per sentence, specifics over adjectives {#plain-writing}
+  e.g. a Why that opens "In today's fast-paced world, it's worth noting that" -> rewritten as the problem, who has it and what it costs, in two to five lines

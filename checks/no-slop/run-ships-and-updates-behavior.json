@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:16:45.833Z",
+  "durationSeconds": 178,
+  "costUsd": 0.9915654999999999,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*ships-and-updates-behavior*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "ships-and-updates-behavior",
+      "dir": "evals/spec-ship/ships-and-updates-behavior",
+      "source": "mixed",
+      "promptMarkdown": "spec-ship the wishlist spec. I ran `bun test` a minute ago: 17 pass, 0 fail. The spec took 3 sessions and none needed re-explaining. Release impact MINOR is right. Show me the PR title and description to paste, do not create it. For the fresh review, use a sub-agent if you have one; otherwise say so in the PR text. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 40,
+      "graders": [
+        {
+          "name": "behavior-file-written",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/behavior/wishlist/save-item.md",
+            "exists": true
+          }
+        },
+        {
+          "name": "claim-copied-verbatim",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/behavior/wishlist/save-item.md"
+            },
+            "pattern": "^- Saving the same product twice keeps one entry \\{#no-duplicates\\}",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "data-model-updated",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/architecture/data-model.md"
+            },
+            "pattern": "wishlist",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "outcome-line",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "trace",
+            "pattern": "Sessions: 3",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "pr-title",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "trace",
+            "pattern": "feature\\(add-wishlist\\): Add wishlist",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "release-impact",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "trace",
+            "pattern": "\\\\\\*\\\\\\*Release impact:\\\\\\*\\\\\\* MINOR|\\*\\*Release impact:\\*\\* MINOR",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\""
+          }
+        },
+        {
+          "name": "status-shipped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^status: shipped",
+            "flags": "m",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 32,
+            "costUsd": 0.9915654999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 178,
+            "startedAt": "2026-10-13T13:16:45.952Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-d2TMej/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "behavior-file-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/save-item.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "claim-copied-verbatim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- Saving the same product twice keeps one entry \\{#no-duplicates\\}",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "data-model-updated",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched wishlist",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "outcome-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched Sessions: 3",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "pr-title",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched feature\\(add-wishlist\\): Add wishlist",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "release-impact",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\\\\\*\\\\\\*Release impact:\\\\\\*\\\\\\* MINOR|\\*\\*Release impact:\\*\\* MINOR",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

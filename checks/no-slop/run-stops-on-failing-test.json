@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:27:47.356Z",
+  "durationSeconds": 73,
+  "costUsd": 0.38376449999999995,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*stops-on-failing-test*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "stops-on-failing-test",
+      "dir": "evals/spec-ship/stops-on-failing-test",
+      "source": "mixed",
+      "promptMarkdown": "spec-ship the wishlist spec. I ran `bun test` a minute ago: 16 pass, 1 fail, `keeps one entry [wishlist/save-item#no-duplicates]`. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "no-behavior-written",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/behavior/wishlist/**",
+            "exists": false
+          }
+        },
+        {
+          "name": "not-shipped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^status: shipped",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "reports-the-failure",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "fail",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 18,
+            "costUsd": 0.38376449999999995,
+            "judgeCostUsd": 0,
+            "durationSeconds": 73,
+            "startedAt": "2026-10-13T13:27:47.463Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-SHPBBI/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-behavior-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/** absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "not-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "reports-the-failure",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched fail",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

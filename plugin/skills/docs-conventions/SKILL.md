@@ -44,6 +44,10 @@ One testable sentence per claim, then one concrete example. IDs are kebab-case a
 
 `index.md` carries `docs-format`. A template change applies to new files only. Shipped specs and existing files are never rewritten to a newer format.
 
+## Writing
+
+Every file the pack writes is in plain words. No opener that announces what follows, no hedge or intensifier, no jargon, no em dash, no rhetorical setup. Active voice, one idea per sentence, a specific over an adjective: a number, a name, an example. The templates' limits are the length; a file that needs more words than its template allows needs a shorter idea.
+
 ## Verification
 
 - The file has the template's frontmatter keys and headings, in the template's order, and no `<!-- -->` comment anywhere.

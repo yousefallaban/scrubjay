@@ -1,7 +1,7 @@
 ---
 id: 2026-10-13-no-slop
 kind: feature
-status: draft
+status: shipped
 summary: Shipping removes code no claim covers, and every file the pack writes is in plain words
 request: apply what the talk on code slop and the stop-slop skill get right, without an anti-slop section in every skill
 approved: {by: yousef, via: in session}
