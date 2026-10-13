@@ -1,6 +1,6 @@
 # Credits
 
-The mechanics below were learned from other packs and rewritten in our own words. None of their text is in this pack.
+The mechanics below were learned from other packs and write-ups and rewritten in our own words. None of their text is in this pack.
 
 | From | What it gave us |
 | --- | --- |
@@ -9,5 +9,6 @@ The mechanics below were learned from other packs and rewritten in our own words
 | [Superpowers](https://github.com/obra/superpowers) | Project instructions outrank a pack's skills; skills written test-first, by watching the agent fail without them |
 | [OpenSpec](https://openspec.dev) | A truth folder that each change updates when it ships |
 | [Spec Kit](https://github.com/github/spec-kit) and [Kiro](https://kiro.dev) | Spec, then plan, then tasks, in a folder per change |
+| [Anthropic, effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) | A session checks the state it inherited before new work, and leaves a handoff the next session can read |
 | [stop-slop](https://github.com/hardikpandya/stop-slop) | The tells of machine writing to keep out of a document: announcing openers, hedges and intensifiers, jargon, rhetorical setups, em dashes |
 | [Agent Skills](https://agentskills.io), [Agent Plugins](https://agent-plugins.org) and [AGENTS.md](https://agents.md) | The open formats this pack is built on |

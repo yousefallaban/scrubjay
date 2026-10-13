@@ -14,5 +14,7 @@ Rechecked {{YYYY-MM-DD}} after: {{the change}}. {{T2 redo, T4 new, T5 dropped}}.
 - Under a task, at most two lines:
     - note: blocked, tried, why
     - redo: what changed (the task is unticked again)
+- While a task is open, one more line may sit under it, written when a session stops before the tick and removed at the tick:
+    - handoff: done: <what exists>; red: <what fails or is unfinished>; next: <the first step>
 - A dropped task is removed and named in the recheck line.
 - Anything lasting in a note moves into plan.md or a decision record. -->
