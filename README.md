@@ -48,7 +48,13 @@ A claim is one testable sentence with an ID and an example. Tests carry the clai
 
 ## Install
 
-Claude Code:
+Any agent, one command, through the open [skills CLI](https://skills.sh):
+
+```
+npx skills add yousefallaban/scrubjay
+```
+
+Or as a plugin, which keeps the skills namespaced and versioned. Claude Code:
 
 ```
 /plugin marketplace add yousefallaban/scrubjay
@@ -69,7 +75,7 @@ copilot plugin marketplace add yousefallaban/scrubjay
 copilot plugin install scrubjay@yousefallaban
 ```
 
-Any other agent with Agent Skills: copy the eight folders under [`plugin/skills/`](plugin/skills) into its skills directory. Per-repo installs, private copies and how updates reach you are in the [pack README](plugin/README.md#install).
+Any other agent with Agent Skills: the one command above, or copy the eight folders under [`plugin/skills/`](plugin/skills) into its skills directory. Per-repo installs, private copies and how updates reach you are in the [pack README](plugin/README.md#install).
 
 ## Quickstart, about five minutes
 
