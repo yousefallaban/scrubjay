@@ -348,6 +348,7 @@ A small webshop where customers buy outdoor gear and send items back when they d
 | Domain | Covers | Owner |
 | --- | --- | --- |
 | returns | sending items back, refunds | Sanne |
+| wishlist | saving products to come back to | Sanne |
 
 ## Behavior
 See [behavior/](behavior/): one folder per domain, one file per capability, each a short list of claims with IDs.

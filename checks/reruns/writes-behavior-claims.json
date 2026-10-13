@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T01:05:41.088Z",
+  "durationSeconds": 44,
+  "costUsd": 0.25655300000000003,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*writes-behavior-claims*",
+    "threshold": 1,
+    "concurrency": 1,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "writes-behavior-claims",
+      "dir": "evals/docs-conventions/writes-behavior-claims",
+      "source": "mixed",
+      "promptMarkdown": "Document what the returns capability \"submit a return\" does today, in our docs, as docs/behavior/returns/submit-return.md. The facts: a customer can return some items of a delivered order, within 30 days of delivery, and never more than were ordered. The refund is the price paid for the returned items with the order's discount applied. A return starts as requested, support approves it, then it is refunded.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "claims-with-ids-and-examples",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/behavior/returns/submit-return.md"
+            },
+            "pattern": "^capability: \"?returns/[\\s\\S]*(\\{#[a-z0-9-]+\\}\\s*\\n\\s*e\\.g\\. [\\s\\S]*){3}",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "file-in-behavior",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/behavior/returns/*.md",
+            "exists": true
+          }
+        },
+        {
+          "name": "no-guidance-left",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/behavior/returns/submit-return.md"
+            },
+            "pattern": "<!--|\\bTBD\\b",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-conventions\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.25655300000000003,
+            "judgeCostUsd": 0,
+            "durationSeconds": 44,
+            "startedAt": "2026-10-13T01:05:41.207Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-8qtDac/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "claims-with-ids-and-examples",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^capability: \"?returns/[\\s\\S]*(\\{#[a-z0-9-]+\\}\\s*\\n\\s*e\\.g\\. [\\s\\S]*){3}",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "file-in-behavior",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/returns/*.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-guidance-left",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}
