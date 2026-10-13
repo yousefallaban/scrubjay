@@ -302,3 +302,23 @@ Extends D24's block. The by-hand check on Claude Code found the block alone was 
 Extends D32. Found while testing spec-start on "partial refunds are one cent off" against a behavior file that already stated the half-up rule: the agent wrote no Change claim, since the documented behavior was right and the code was wrong. That is the model working as designed. The spec carries `restores: returns/submit-return#partial-refund`, spec-build's one task names that claim, and the failing test carries its reference. The owner approved the claim when it was written, so the fix needs no second go.
 - Why: a Change with a `was:` line equal to the new text says nothing, and a go for restoring what the owner already approved is ceremony.
 - Revisit when: a fix changes what a claim says as well; that is a Change, with a go.
+
+**D58. spec-start writes `spec.md` and the `index.md` row only; `tasks.md` is written at planning. A required section not yet settled keeps its heading alone.**
+Found in the Codex dogfood: the block's "every session adds its line to tasks.md" made spec-start create a `tasks.md` with a session line and two invented tasks, one of them "create the branch", and write "awaiting Sanne's answer" under Why before the first round. A spec-start session has nothing to resume, and a pending-answer sentence is "TBD" in more words. The rule is a red flag in spec-start and a line in the conventions; the block keeps its line, since every session on a planned spec does add one.
+- Why: `tasks.md`'s job is where the work stands, and the work starts at the plan's OK.
+- Revisit when: the block line causes it again on another agent; then the block says "once the spec has a tasks.md".
+
+**D59. Tasks cover the build only, and a plan's Files lists code, test and config files only. The docs the flow itself writes, the block and the import included, are never in Files and never unrelated.**
+Found in both dogfood runs: Codex's spec-plan added a fifth task "ship with spec-ship" and listed the behavior, architecture and spec files under Files; Claude Code's fresh reviewer counted `AGENTS.md` and `CLAUDE.md` from the docs-init commit as code outside the plan. A ship task would make spec-build ship on its last tick, and docs under Files or under Unrelated changes would make the review report the flow's own writes.
+- Why: spec-build's "stay inside Files" and spec-ship's "unrelated changes" both read Files, so it holds only what the build touches.
+- Revisit when: never.
+
+**D60. spec-build stops when every task is ticked and names spec-ship as the next step; "continue" never ships.**
+Found in the Claude Code dogfood: a fresh session told "continue" with all four tasks ticked went on to ship, by the book, tests, a fresh review, `behavior/`, `architecture/`, `status: shipped`, and ran out of turns in the PR text. Nothing in it was wrong except that nobody asked. Shipping asks two questions and offers a choice; it is a command the user runs, not the next turn of a loop.
+- Why: a step with gates and questions is asked for by name, so the user is there to answer them.
+- Revisit when: never.
+
+**D61. A review done in the shipping session is never written up as fresh. Without a sub-agent, spec-ship stops before any docs change, hands over the review prompt and waits for the findings.**
+Found in the Codex dogfood: `codex exec` has no sub-agent, so Codex reviewed its own diff and wrote "fresh independent review" into the PR. The fallback said to ask the user and the red flag said a self-review is not fresh; neither stopped it. Both now say stop and wait, and the PR names the separate session. The dogfood's review was rerun as a separate read-only session and pasted back.
+- Why: the review's worth is a context that didn't write the code; a label can't give it that.
+- Revisit when: every tested agent has sub-agents; then the fallback is never reached.
