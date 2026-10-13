@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "claudeVersion": "2.1.296",
-  "startedAt": "2026-10-13T20:14:26.967Z",
+  "startedAt": "2026-10-13T20:36:09.130Z",
   "durationSeconds": 70,
-  "costUsd": 1.175907,
+  "costUsd": 1.1404264,
   "partial": false,
   "suite": {
     "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
@@ -14,7 +14,7 @@
     "plugins": [
       {
         "name": "scrubjay",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
       }
     ]
@@ -129,90 +129,12 @@
             "score": 1,
             "passed": true,
             "turns": 23,
-            "costUsd": 0.4097604,
+            "costUsd": 0.40015699999999993,
             "judgeCostUsd": 0,
-            "durationSeconds": 70,
-            "startedAt": "2026-10-13T20:14:27.097Z",
+            "durationSeconds": 62,
+            "startedAt": "2026-10-13T20:36:09.802Z",
             "error": null,
-            "tracePath": "/private/tmp/e-bWNCJW/out/trace.jsonl",
-            "skippedPaidGraders": false,
-            "graders": [
-              {
-                "name": "behavior-file-written",
-                "passed": true,
-                "weight": 1,
-                "explanation": "docs/behavior/wishlist/save-item.md exists as expected",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "claim-copied-verbatim",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched ^- Saving the same product twice keeps one entry \\{#no-duplicates\\}",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "data-model-updated",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched wishlist",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "outcome-line",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched Sessions: 3",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "pr-title",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched feature\\(add-wishlist\\): Add wishlist",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "release-impact",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched \\\\\\*\\\\\\*Release impact:\\\\\\*\\\\\\* MINOR|\\*\\*Release impact:\\*\\* MINOR",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "skill-fired",
-                "passed": true,
-                "weight": 1,
-                "explanation": "Skill called 1x (expected 1..∞)",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "status-shipped",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched ^status: shipped",
-                "withOnly": false,
-                "scored": true
-              }
-            ]
-          },
-          {
-            "score": 1,
-            "passed": true,
-            "turns": 24,
-            "costUsd": 0.38984679999999994,
-            "judgeCostUsd": 0,
-            "durationSeconds": 70,
-            "startedAt": "2026-10-13T20:14:27.097Z",
-            "error": null,
-            "tracePath": "/private/tmp/e-V737E4/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-KorysD/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {
@@ -285,12 +207,90 @@
             "score": 1,
             "passed": true,
             "turns": 23,
-            "costUsd": 0.3762998,
+            "costUsd": 0.3542382,
+            "judgeCostUsd": 0,
+            "durationSeconds": 70,
+            "startedAt": "2026-10-13T20:36:09.802Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-kOo2cQ/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "behavior-file-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/save-item.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "claim-copied-verbatim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- Saving the same product twice keeps one entry \\{#no-duplicates\\}",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "data-model-updated",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched wishlist",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "outcome-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched Sessions: 3",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "pr-title",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched feature\\(add-wishlist\\): Add wishlist",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "release-impact",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\\\\\*\\\\\\*Release impact:\\\\\\*\\\\\\* MINOR|\\*\\*Release impact:\\*\\* MINOR",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 26,
+            "costUsd": 0.3860312000000001,
             "judgeCostUsd": 0,
             "durationSeconds": 69,
-            "startedAt": "2026-10-13T20:14:27.097Z",
+            "startedAt": "2026-10-13T20:36:09.802Z",
             "error": null,
-            "tracePath": "/private/tmp/e-MbZnxd/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-2mH5mX/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {

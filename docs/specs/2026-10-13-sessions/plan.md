@@ -17,6 +17,7 @@ plugin/evals/spec-build/writes-a-handoff/              new: a session told to st
 plugin/evals/README.md                                 changed: reruns at three runs with --threshold 1
 plugin/CREDITS.md                                      changed: Anthropic's harness notes
 checks/by-hand/fresh-review-on-codex.md                new: the Codex 0.162 ship run, a spawned reviewer with a fresh context, transcript kept
+checks/by-hand/red-start-and-handoff.md                new: a red start outside and inside the task, and the handoff line read and removed, on Claude Code
 plugin/plugin.json, plugin/.claude-plugin/plugin.json  changed: version 0.1.2
 ```
 

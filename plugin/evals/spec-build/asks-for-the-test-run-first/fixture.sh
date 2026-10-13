@@ -399,10 +399,10 @@ cat > docs/specs/2026-10-13-add-wishlist/plan.md <<'FILE'
 spec: 2026-10-13-add-wishlist
 ---
 ## Approach
-A wishlist module keyed by customer id, in memory like the other modules, with save, remove and list. Saving twice is a no-op. The order summary later shows how many items a customer has saved.
+A wishlist module keyed by customer id, in memory like the other modules, with save and list. Saving twice is a no-op. The order summary later shows how many items a customer has saved.
 
 ## Files
-src/wishlist.ts            new: save, remove, list per customer; rejects unknown products
+src/wishlist.ts            new: save and list per customer
 test/wishlist.test.ts      new: one test per claim, named with the claim reference
 src/index.ts               changed: export the wishlist module
 

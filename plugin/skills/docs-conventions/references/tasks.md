@@ -6,6 +6,6 @@ Above the tasks, one line per session, newest last, facts only and never a verdi
 
 Tasks: `- [ ] T<n> <imperative task> -> <claim IDs, or "check: <command or observable result>">`. Each task fits in one session. Tasks cover the build only; shipping is spec-ship's and is never a task. Numbers are never reused. A claim is written as `capability#id` when its bare ID is not unique in the spec. A task is ticked only when the claims it names are proven.
 
-Under a task, at most two lines: `- note: <blocked, tried, why>` or `- redo: <what changed>`, the task unticked again. While a task is open, one more line may sit under it, `- handoff: done: <what exists>; red: <what fails or is unfinished>; next: <the first step>`, written when a session stops before the tick and removed at the tick. A dropped task is removed and named in the recheck line. Anything lasting in a note moves to plan.md or a decision record.
+Under a task, at most two lines of `- note: <blocked, tried, why>` or `- redo: <what changed>`, the task unticked again, and one `- handoff: done: <what exists>; red: <what fails or is unfinished>; next: <the first step>` line while the task is open, written when a session stops before the tick and removed at the tick. A dropped task is removed and named in the recheck line. Anything lasting in a note moves to plan.md or a decision record.
 
 Nothing else: no design discussion, no why.

@@ -1,9 +1,10 @@
 ---
 id: 2026-10-13-sessions
 kind: feature
-status: building
+status: shipped
 summary: A build session runs the tests before its task and leaves a handoff when it stops early
 request: do items 1 to 3 from the research, sessions start green and end with a handoff, Codex reviews with its own command, the release check runs three times
+approved: {by: yousef, via: in session}
 ---
 # Sessions: start on a test run, end with a handoff
 
@@ -23,4 +24,4 @@ A build session that runs out of context mid-task leaves half-written code and a
 - A recipe for running spec-build in a loop with nobody present. Terminal only; later, on a signal.
 - A bullet in the AGENTS.md block that sends the agent to docs-map. spec-start already offers docs-map when a domain has no behavior folder.
 - A target for context use per session. No agent-neutral way to read it.
-- A claim for a review session that spec-ship starts from the shell when it has no sub-agent. Both tested agents have sub-agents, Codex since 0.162, so no run reaches that path; spec-ship states it as a fallback, the way AGENTS.md asks for agent-specific features, and claims nothing.
+- A claim for a review session that spec-ship starts from the shell when it has no sub-agent. Both tested agents have sub-agents, Codex at 0.162, so no run reaches that path; spec-ship states it as a fallback, the way AGENTS.md asks for agent-specific features, and claims nothing.

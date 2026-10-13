@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "claudeVersion": "2.1.296",
-  "startedAt": "2026-10-13T19:14:57.346Z",
-  "durationSeconds": 25,
-  "costUsd": 0.5034453999999999,
+  "startedAt": "2026-10-13T20:35:02.850Z",
+  "durationSeconds": 23,
+  "costUsd": 0.4626932,
   "partial": false,
   "suite": {
     "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
     "ablation": "none",
-    "caseFilter": "*asks-for-the-test-run-first*",
+    "caseFilter": "asks-for-the-test-run-first",
     "threshold": 1,
     "concurrency": 3,
     "plugins": [
       {
         "name": "scrubjay",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
       }
     ]
@@ -46,7 +46,7 @@
           "weight": 1,
           "config": {
             "tool": "Edit",
-            "input_match": "src/wishlist|test/wishlist",
+            "input_match": "/src/|/test/",
             "min": 0,
             "max": 0
           }
@@ -57,7 +57,7 @@
           "weight": 1,
           "config": {
             "tool": "Write",
-            "input_match": "src/wishlist|test/wishlist",
+            "input_match": "/src/|/test/",
             "min": 0,
             "max": 0
           }
@@ -91,13 +91,13 @@
           {
             "score": 1,
             "passed": true,
-            "turns": 14,
-            "costUsd": 0.1687648,
+            "turns": 13,
+            "costUsd": 0.1442628,
             "judgeCostUsd": 0,
-            "durationSeconds": 25,
-            "startedAt": "2026-10-13T19:14:57.467Z",
+            "durationSeconds": 18,
+            "startedAt": "2026-10-13T20:35:03.013Z",
             "error": null,
-            "tracePath": "/private/tmp/e-d6phOR/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-8kYTrW/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {
@@ -145,13 +145,13 @@
           {
             "score": 1,
             "passed": true,
-            "turns": 14,
-            "costUsd": 0.1664442,
+            "turns": 13,
+            "costUsd": 0.1474232,
             "judgeCostUsd": 0,
-            "durationSeconds": 24,
-            "startedAt": "2026-10-13T19:14:57.467Z",
+            "durationSeconds": 18,
+            "startedAt": "2026-10-13T20:35:03.013Z",
             "error": null,
-            "tracePath": "/private/tmp/e-OCWLc0/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-Bv7z71/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {
@@ -200,12 +200,12 @@
             "score": 1,
             "passed": true,
             "turns": 16,
-            "costUsd": 0.1682364,
+            "costUsd": 0.1710072,
             "judgeCostUsd": 0,
-            "durationSeconds": 25,
-            "startedAt": "2026-10-13T19:14:57.467Z",
+            "durationSeconds": 23,
+            "startedAt": "2026-10-13T20:35:03.013Z",
             "error": null,
-            "tracePath": "/private/tmp/e-rFPL7g/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-EVHOJH/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {

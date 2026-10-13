@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "claudeVersion": "2.1.296",
-  "startedAt": "2026-10-13T19:14:59.962Z",
-  "durationSeconds": 46,
-  "costUsd": 0.6625774,
+  "startedAt": "2026-10-13T20:35:26.699Z",
+  "durationSeconds": 41,
+  "costUsd": 0.6716587999999999,
   "partial": false,
   "suite": {
     "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
     "ablation": "none",
-    "caseFilter": "*writes-a-handoff*",
+    "caseFilter": "writes-a-handoff",
     "threshold": 1,
     "concurrency": 3,
     "plugins": [
       {
         "name": "scrubjay",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
       }
     ]
@@ -38,7 +38,7 @@
               "source": "file",
               "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
             },
-            "pattern": "T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff:",
+            "pattern": "T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
             "flags": "",
             "match": "contains"
           }
@@ -100,74 +100,20 @@
           {
             "score": 1,
             "passed": true,
-            "turns": 21,
-            "costUsd": 0.2570788,
+            "turns": 20,
+            "costUsd": 0.23065000000000002,
             "judgeCostUsd": 0,
-            "durationSeconds": 46,
-            "startedAt": "2026-10-13T19:15:00.056Z",
+            "durationSeconds": 41,
+            "startedAt": "2026-10-13T20:35:26.805Z",
             "error": null,
-            "tracePath": "/private/tmp/e-zNVE2l/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-t74fQH/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {
                 "name": "handoff-line-under-t2",
                 "passed": true,
                 "weight": 1,
-                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff:",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "no-code-in-src",
-                "passed": true,
-                "weight": 1,
-                "explanation": "pattern absent as expected",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "session-line-written",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "skill-fired",
-                "passed": true,
-                "weight": 1,
-                "explanation": "Skill called 1x (expected 1..∞)",
-                "withOnly": false,
-                "scored": true
-              },
-              {
-                "name": "t2-not-ticked",
-                "passed": true,
-                "weight": 1,
-                "explanation": "pattern absent as expected",
-                "withOnly": false,
-                "scored": true
-              }
-            ]
-          },
-          {
-            "score": 1,
-            "passed": true,
-            "turns": 17,
-            "costUsd": 0.19910860000000002,
-            "judgeCostUsd": 0,
-            "durationSeconds": 35,
-            "startedAt": "2026-10-13T19:15:00.056Z",
-            "error": null,
-            "tracePath": "/private/tmp/e-JvKFTj/out/trace.jsonl",
-            "skippedPaidGraders": false,
-            "graders": [
-              {
-                "name": "handoff-line-under-t2",
-                "passed": true,
-                "weight": 1,
-                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff:",
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
                 "withOnly": false,
                 "scored": true
               },
@@ -209,19 +155,73 @@
             "score": 1,
             "passed": true,
             "turns": 18,
-            "costUsd": 0.20639000000000002,
+            "costUsd": 0.20677179999999998,
             "judgeCostUsd": 0,
-            "durationSeconds": 36,
-            "startedAt": "2026-10-13T19:15:00.056Z",
+            "durationSeconds": 33,
+            "startedAt": "2026-10-13T20:35:26.805Z",
             "error": null,
-            "tracePath": "/private/tmp/e-QwLptc/out/trace.jsonl",
+            "tracePath": "/private/tmp/e-wdxZOr/out/trace.jsonl",
             "skippedPaidGraders": false,
             "graders": [
               {
                 "name": "handoff-line-under-t2",
                 "passed": true,
                 "weight": 1,
-                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff:",
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-code-in-src",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-not-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 20,
+            "costUsd": 0.23423699999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 37,
+            "startedAt": "2026-10-13T20:35:26.805Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-YfJ7qq/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "handoff-line-under-t2",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched T2[^\\n]*\\n(?:\\s*- (?:note|redo):[^\\n]*\\n){0,2}\\s*- handoff: done: [^\\n;]+; red: [^\\n;]+; next: [^\\n]+",
                 "withOnly": false,
                 "scored": true
               },

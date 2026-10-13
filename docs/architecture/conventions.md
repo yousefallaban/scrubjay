@@ -14,3 +14,4 @@ area: conventions
 - Commit messages are `type: description` with type among feat, fix, refactor, docs, test, chore, perf, ci.
 - Decisions are appended to `reference/decisions.md` the moment they are made, never edited; a later one supersedes.
 - Every released change to `plugin/` raises `version` in both manifests, since Claude Code updates by version (D62); the Writing section of docs-conventions applies to the pack's own files as much as to a user's docs.
+- A regression rerun after a skill change runs each case three times, and the eval runner's default threshold of 1 fails the run when any case scores below it, so a case passes only when every run passes; a case's fixture holds only claimed behavior, so a case tests one rule.

@@ -7,7 +7,7 @@ date: 2026-10-13
 # A regression rerun uses three runs per case and passes only when every run passes
 
 ## Context
-The release check already ran three times per case, and the eval runner's default threshold fails the run when any case scores below 1. The reruns after a skill change ran once, and a case that passed once was taken as passing. Anthropic's notes on evals separate pass@k, one success in k, from pass^k, every run succeeds, and put regression suites on the second. The first rerun at three runs caught two things one run had hidden: the no-slop removal step meeting the no-shell fallback in three ship cases, which stopped the ship before the docs, and a test-first case that needed the test run the new rule asks for.
+The release check already ran three times per case, and the eval runner's default threshold fails the run when any case scores below 1. The reruns after a skill change ran once, and a case that passed once was taken as passing. Anthropic's notes on evals separate pass@k, one success in k, from pass^k, every run succeeds, and put regression suites on the second. The first reruns at three runs caught three things one run had hidden: the no-slop removal step meeting the no-shell fallback in three ship cases, which stopped the ship before the docs; a test-first case that needed the test run the new rule asks for; and the dated spec id read as the slug in a pull request title, once in three.
 
 ## Options
 - One run per case, as before: lost, it passes a case by luck and hides an interplay between rules.

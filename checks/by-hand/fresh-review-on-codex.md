@@ -12,7 +12,7 @@ Passes when the review comes from a context that did not write the code, a spawn
 
 | Date | Agent | How the review ran | Outcome | Transcript |
 | --- | --- | --- | --- | --- |
-| 2026-10-13 | Codex 0.162.1, multi-agent on, the default | `spawn_agent` with `fork_turns: none` and task `ship_review`, three `wait_agent` calls, one `send_message`; the child thread read the code, tests and spec on its own | findings taken, claims copied, four architecture files updated, `status: shipped`; stopped at the outcome question, as a non-interactive run does | `transcripts/sessions-codex-ship-multiagent-on.jsonl` |
+| 2026-10-13 | Codex 0.162.1, multi-agent on, the default | `spawn_agent` with `fork_turns: none` and task `ship_review`, three `wait_agent` calls, one `send_message`, read from Codex's own session rollout under `~/.codex/sessions`, whose child thread read the code, tests and spec; the saved transcript shows the three waits and the messages, since the JSON stream does not carry the spawn | findings taken, claims copied, four architecture files updated, `status: shipped`; stopped at the outcome question, as a non-interactive run does | `transcripts/sessions-codex-ship-multiagent-on.jsonl` |
 | 2026-10-13 | Codex 0.162.1 with `-c features.multi_agent=false` | the override did not take: `spawn_agent` again, and a probe shows the collaboration tools still listed with `--disable multi_agent` as well | same as above | not kept, a repeat |
 
 ## What a shipping session can start

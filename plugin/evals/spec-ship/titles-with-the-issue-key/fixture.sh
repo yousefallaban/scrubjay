@@ -420,7 +420,7 @@ cat > docs/specs/2026-10-13-add-wishlist/plan.md <<'FILE'
 spec: 2026-10-13-add-wishlist
 ---
 ## Approach
-A wishlist module keyed by customer id, in memory like the other modules, with save, remove and list. Saving twice is a no-op.
+A wishlist module keyed by customer id, in memory like the other modules, with save and list. Saving twice is a no-op.
 
 ## Files
 src/wishlist.ts            new: save and list per customer
