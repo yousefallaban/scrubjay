@@ -22,8 +22,8 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
 ### Add · setup/install
 - A developer installs the pack in Claude Code from the GitHub repo with two commands {#claude-code}
   e.g. `/plugin marketplace add yousefallaban/scrubjay` then `/plugin install scrubjay@yousefallaban` -> `/scrubjay:spec-start` is available
-- A developer installs the pack in Codex by adding the repo as a plugin marketplace and installing it from the plugins directory {#codex}
-  e.g. `codex plugin marketplace add yousefallaban/scrubjay`, then install from `/plugins` -> `$spec-start` is available
+- A developer installs the pack in Codex with two commands, adding the repo as a plugin marketplace and installing the plugin from it {#codex}
+  e.g. `codex plugin marketplace add yousefallaban/scrubjay` then `codex plugin add scrubjay@yousefallaban` -> `$scrubjay:spec-start` is available
 - Installing from a private copy works with the developer's existing git credentials, and the README gives the steps and known catches for each tested agent {#private-repo}
   e.g. after `gh auth login && gh auth setup-git`, the same two Claude Code commands install it from a private repo
 - The pack needs only git on the user's machine. `gh` is optional and used only to open pull requests {#git-only}
@@ -61,11 +61,11 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
 - spec-start creates `specs/<date>-<slug>/spec.md` and a branch named after the slug, starting from a sentence, a ticket, or commits already made, and records that start as `request:`, plus `issue:` with the ticket key when there is one {#creates-spec}
   e.g. `spec-start HUB-123 customers can save items to a wishlist` -> `specs/2026-10-12-add-wishlist/spec.md` on branch `add-wishlist`, with `request: customers can save items to a wishlist` and `issue: HUB-123`
 - spec-start sets the kind, feature or fix. A feature is grilled and planned and needs the owner's go before planning. A fix takes the fast path and needs the owner's go before ship only when it changes behavior {#sets-kind}
-  e.g. a dependency bump -> a fix with "No behavior change", no plan.md and no go; a wrong rounding -> a fix with one claim under Change, and the owner's go before ship
+  e.g. a dependency bump -> a fix with "No behavior change", no plan.md and no go; a wrong rounding that breaks a documented claim -> "No behavior change" with `restores:` naming that claim, and no new go; a new rounding rule -> one claim under Change, and the owner's go before ship
 - spec-start settles why and what by grilling, and grilling ends when nothing is left that only the owner can answer {#grills}
   e.g. the wishlist -> rounds on who saves, duplicates and devices before any claim is written; the remaining questions are answerable from the code -> grilling stops and the agent looks them up
 - For a fix, spec-start writes the spec in one pass and grills only on what is ambiguous {#fast-path}
-  e.g. `spec-start partial refunds are one cent off` -> a fix spec in a few minutes, with one claim under Change
+  e.g. `spec-start partial refunds are one cent off` -> a fix spec in a few minutes, with "No behavior change" and `restores: returns/submit-return#partial-refund`
 - spec-start writes What changes as claims under `Add`, `Change` and `Remove` headings. A Change has a `was:` line and a Remove has a `reason:` line {#what-changes-format}
   e.g. the refund fix -> `### Change · returns/submit-return` with the old text under `was:`
 - When the spec touches a domain that has no behavior docs, spec-start offers to map that domain first {#offers-map}
