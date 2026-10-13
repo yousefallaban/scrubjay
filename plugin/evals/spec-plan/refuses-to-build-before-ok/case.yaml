@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: refuses-to-build-before-ok
+context:
+  scaffold_script: fixture.sh

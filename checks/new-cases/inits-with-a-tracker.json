@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T00:54:11.954Z",
+  "durationSeconds": 43,
+  "costUsd": 0.332159,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*inits-with-a-tracker*",
+    "threshold": 1,
+    "concurrency": 1,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "inits-with-a-tracker",
+      "dir": "evals/docs-init/inits-with-a-tracker",
+      "source": "mixed",
+      "promptMarkdown": "Run docs-init on this repo. Facts you would otherwise ask me for: the product is a small webshop where customers buy outdoor gear and send items back when they do not fit; the first domain is returns, owned by Sanne; our issue tracker is Jira, tickets live at https://example.atlassian.net/browse/; the test command is `bun test`. Do not ask, just do it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 25,
+      "graders": [
+        {
+          "name": "index-has-domain",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/index.md"
+            },
+            "pattern": "^\\| returns \\|[^\\n]*Sanne",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "index-has-tracker",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/index.md"
+            },
+            "pattern": "^issue-tracker: \"?https://example\\.atlassian\\.net/browse/\"?",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-init\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.332159,
+            "judgeCostUsd": 0,
+            "durationSeconds": 43,
+            "startedAt": "2026-10-13T00:54:12.047Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-WdnxUH/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "index-has-domain",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^\\| returns \\|[^\\n]*Sanne",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "index-has-tracker",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^issue-tracker: \"?https://example\\.atlassian\\.net/browse/\"?",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

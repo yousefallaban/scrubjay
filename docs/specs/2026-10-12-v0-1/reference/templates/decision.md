@@ -1,8 +1,8 @@
 ---
-id: {{YYYY-MM-DD-slug}}
+id: "{{YYYY-MM-DD-slug}}"
 status: accepted
-spec: {{spec id}}
-date: {{YYYY-MM-DD}}
+spec: "{{spec id}}"
+date: "{{YYYY-MM-DD}}"
 ---
 # {{The decision as a short statement}}
 

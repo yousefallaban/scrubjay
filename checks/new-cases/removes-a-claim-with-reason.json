@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T00:57:08.564Z",
+  "durationSeconds": 67,
+  "costUsd": 0.36840649999999997,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*removes-a-claim-with-reason*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "removes-a-claim-with-reason",
+      "dir": "evals/spec-start/removes-a-claim-with-reason",
+      "source": "mixed",
+      "promptMarkdown": "spec-start drop the return labels: customers now bring returns to any store and no label is emailed. Kind: fix. Use the id 2026-10-13-drop-return-labels. I'm Sanne, the owner of returns; the reason is that the warehouse label printer is gone and every store takes returns now. Write the spec in one pass from the request and the docs. This session cannot run commands, so tell me which branch to create instead of creating it. Ask me for the go explicitly when the spec is written; I will answer in my next message.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 30,
+      "graders": [
+        {
+          "name": "no-inferred-go",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-drop-return-labels/spec.md"
+            },
+            "pattern": "^approved:",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "remove-with-reason",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-drop-return-labels/spec.md"
+            },
+            "pattern": "### Remove . returns/submit-return[\\s\\S]*return-label[\\s\\S]*reason:",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-start\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 20,
+            "costUsd": 0.36840649999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 67,
+            "startedAt": "2026-10-13T00:57:08.658Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-4V4kzq/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-inferred-go",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "remove-with-reason",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ### Remove . returns/submit-return[\\s\\S]*return-label[\\s\\S]*reason:",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

@@ -1,6 +1,7 @@
 ---
-product: {{product name}}
+product: "{{product name}}"
 docs-format: 1
+issue-tracker: "{{address a ticket key is appended to, such as https://example.atlassian.net/browse/}}"
 ---
 # {{Product name}}
 
@@ -13,6 +14,9 @@ The owner is who says go for that domain; on a solo project, that is you. A doma
 | Domain | Covers | Owner |
 | --- | --- | --- |
 | {{domain}} | {{what it covers}} | {{person or team}} |
+
+## Behavior
+See [behavior/](behavior/): one folder per domain, one file per capability, each a short list of claims with IDs.
 
 ## Architecture
 See [architecture/](architecture/): one file per area, `stack.md` first.

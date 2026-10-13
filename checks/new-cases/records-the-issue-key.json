@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T01:02:24.588Z",
+  "durationSeconds": 83,
+  "costUsd": 0.48787250000000015,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*records-the-issue-key*",
+    "threshold": 1,
+    "concurrency": 1,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "records-the-issue-key",
+      "dir": "evals/spec-start/records-the-issue-key",
+      "source": "mixed",
+      "promptMarkdown": "spec-start HUB-123 customers can save items to a wishlist. Use the id 2026-10-13-add-wishlist. I'm Sanne and I own every domain here. Facts, so you need not ask: signed-in customers only; saving twice keeps one entry; the list is per customer and follows them across devices; not doing: sharing and price alerts. When nothing is left open, ask me for the go explicitly; I will answer in my next message. This session cannot run commands, so tell me which branch to create instead of creating it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 30,
+      "graders": [
+        {
+          "name": "issue-recorded",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^issue: HUB-123",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "request-recorded",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^request: .*customers can save items to a wishlist",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-start\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 26,
+            "costUsd": 0.48787250000000015,
+            "judgeCostUsd": 0,
+            "durationSeconds": 83,
+            "startedAt": "2026-10-13T01:02:24.701Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-zjXk3L/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "issue-recorded",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^issue: HUB-123",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "request-recorded",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^request: .*customers can save items to a wishlist",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

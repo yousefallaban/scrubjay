@@ -6,7 +6,7 @@ Approach: required. The shape of the solution in 3 to 8 lines. Don't restate the
 
 Trade-offs: optional, when there was a real choice. The options considered and why this one won. A choice that outlives the spec links to its decision record. Not every idea mentioned in passing.
 
-Files: required. The annotated file tree: path, new or changed or deleted, one-line reason. This is the scope the review checks the diff against, and the list spec-build asks before leaving. Not line-level edits.
+Files: required. The annotated file tree: path, new or changed or deleted, one-line reason. Code, test and config files only: the docs the flow itself writes, the spec folder, `behavior/`, `architecture/` and `decisions/`, are never listed. This is the scope the review checks the diff against, and the list spec-build asks before leaving. Not line-level edits.
 
 Architecture to update at ship: optional, when an architecture area changes. Each area file and the reference file it comes from. spec-ship updates exactly these. Not the content itself.
 

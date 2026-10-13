@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T00:52:00.003Z",
+  "durationSeconds": 47,
+  "costUsd": 0.3226875,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*names-nested-agents-md*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "names-nested-agents-md",
+      "dir": "evals/docs-init/names-nested-agents-md",
+      "source": "mixed",
+      "promptMarkdown": "Run docs-init on this repo. Facts you would otherwise ask me for: the product is a small webshop where customers buy outdoor gear and send items back when they do not fit; the first domain is returns, owned by Sanne; we have no issue tracker; the test command is `bun test`. Do not ask, just do it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 25,
+      "graders": [
+        {
+          "name": "names-the-nested-file",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "packages/api/AGENTS\\.md",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "nested-file-untouched",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "packages/api/AGENTS.md"
+            },
+            "pattern": "project-memory",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "root-block-added-once",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "AGENTS.md"
+            },
+            "pattern": "project-memory:start",
+            "flags": "",
+            "match": "count:1"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-init\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.3226875,
+            "judgeCostUsd": 0,
+            "durationSeconds": 47,
+            "startedAt": "2026-10-13T00:52:00.119Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ggmlvt/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "names-the-nested-file",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched packages/api/AGENTS\\.md",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "nested-file-untouched",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "root-block-added-once",
+                "passed": true,
+                "weight": 1,
+                "explanation": "found 1 matches (expected 1)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

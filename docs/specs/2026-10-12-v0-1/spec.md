@@ -1,7 +1,7 @@
 ---
 id: 2026-10-12-v0-1
 kind: feature
-status: draft
+status: shipped
 summary: First release of scrubjay, six commands and two practices that give coding agents a spec workflow and project memory in docs/.
 request: the Stage 1 design in reference/design.md
 approved: {by: yousef, via: in session}
@@ -22,16 +22,16 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
 ### Add · setup/install
 - A developer installs the pack in Claude Code from the GitHub repo with two commands {#claude-code}
   e.g. `/plugin marketplace add yousefallaban/scrubjay` then `/plugin install scrubjay@yousefallaban` -> `/scrubjay:spec-start` is available
-- A developer installs the pack in Codex by adding the repo as a plugin marketplace and installing it from the plugins directory {#codex}
-  e.g. `codex plugin marketplace add yousefallaban/scrubjay`, then install from `/plugins` -> `$spec-start` is available
+- A developer installs the pack in Codex with two commands, adding the repo as a plugin marketplace and installing the plugin from it {#codex}
+  e.g. `codex plugin marketplace add yousefallaban/scrubjay` then `codex plugin add scrubjay@yousefallaban` -> `$scrubjay:spec-start` is available
 - Installing from a private copy works with the developer's existing git credentials, and the README gives the steps and known catches for each tested agent {#private-repo}
   e.g. after `gh auth login && gh auth setup-git`, the same two Claude Code commands install it from a private repo
 - The pack needs only git on the user's machine. `gh` is optional and used only to open pull requests {#git-only}
   e.g. on a machine without `gh`, every command works, and spec-ship shows the PR text to paste
 
 ### Add · docs/init
-- docs-init creates `index.md`, with what the product is and at least one domain with its owner, and `architecture/stack.md` with the project's commands. The other files and folders are created on first write {#creates-skeleton}
-  e.g. a repo with no `docs/` -> `index.md` says what the product is in the user's words and lists `returns · Sanne`, and `stack.md` holds the install and test commands
+- docs-init creates `index.md`, with what the product is, at least one domain with its owner, and the issue tracker's address when the team has one, and `architecture/stack.md` with the project's commands. The other files and folders are created on first write {#creates-skeleton}
+  e.g. a repo with no `docs/` -> `index.md` says what the product is in the user's words, lists `returns · Sanne` and `issue-tracker: https://example.atlassian.net/browse/`, and `stack.md` holds the install and test commands
 - docs-init writes the project-memory block into the root AGENTS.md between its markers, leaves everything outside the markers untouched, and names any nested AGENTS.md it finds, since the block is root-only {#writes-block}
   e.g. an AGENTS.md holding a client's own rules -> those rules stay exactly as they were, the block is added, and `packages/api/AGENTS.md` is listed as not covered
 - With the block in place, a new session answers a question about a documented capability from `behavior/` and cites the claim reference, without reading the code {#answers-from-docs}
@@ -58,14 +58,14 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
   e.g. `openspec/specs/returns/` exists -> its rules show up as draft claims for the owner to confirm
 
 ### Add · spec/start
-- spec-start creates `specs/<date>-<slug>/spec.md` and a branch named after the slug, starting from a sentence, an issue, or commits already made, and records that start as `request:` {#creates-spec}
-  e.g. `spec-start customers can save items to a wishlist` -> `specs/2026-10-12-add-wishlist/spec.md` on branch `add-wishlist`, with `request: customers can save items to a wishlist`
+- spec-start creates `specs/<date>-<slug>/spec.md` and a branch named after the slug, starting from a sentence, a ticket, or commits already made, and records that start as `request:`, plus `issue:` with the ticket key when there is one {#creates-spec}
+  e.g. `spec-start HUB-123 customers can save items to a wishlist` -> `specs/2026-10-12-add-wishlist/spec.md` on branch `add-wishlist`, with `request: customers can save items to a wishlist` and `issue: HUB-123`
 - spec-start sets the kind, feature or fix. A feature is grilled and planned and needs the owner's go before planning. A fix takes the fast path and needs the owner's go before ship only when it changes behavior {#sets-kind}
-  e.g. a dependency bump -> a fix with "No behavior change", no plan.md and no go; a wrong rounding -> a fix with one claim under Change, and the owner's go before ship
+  e.g. a dependency bump -> a fix with "No behavior change", no plan.md and no go; a wrong rounding that breaks a documented claim -> "No behavior change" with `restores:` naming that claim, and no new go; a new rounding rule -> one claim under Change, and the owner's go before ship
 - spec-start settles why and what by grilling, and grilling ends when nothing is left that only the owner can answer {#grills}
   e.g. the wishlist -> rounds on who saves, duplicates and devices before any claim is written; the remaining questions are answerable from the code -> grilling stops and the agent looks them up
 - For a fix, spec-start writes the spec in one pass and grills only on what is ambiguous {#fast-path}
-  e.g. `spec-start partial refunds are one cent off` -> a fix spec in a few minutes, with one claim under Change
+  e.g. `spec-start partial refunds are one cent off` -> a fix spec in a few minutes, with "No behavior change" and `restores: returns/submit-return#partial-refund`
 - spec-start writes What changes as claims under `Add`, `Change` and `Remove` headings. A Change has a `was:` line and a Remove has a `reason:` line {#what-changes-format}
   e.g. the refund fix -> `### Change · returns/submit-return` with the old text under `was:`
 - When the spec touches a domain that has no behavior docs, spec-start offers to map that domain first {#offers-map}
@@ -126,8 +126,10 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
   e.g. plan.md lists `data-model.md, from reference/data-model.md` -> `architecture/data-model.md` holds the wishlist table, and the reference file is unchanged
 - spec-ship sets the status to shipped inside the same pull request {#sets-shipped}
   e.g. the PR merges -> code, docs and `status: shipped` land on main together
-- spec-ship asks whether to create the PR or show its title and description to paste. Without `gh` it shows them. The PR title starts with the slug, and spec-ship never merges {#pr-choice}
-  e.g. "show" chosen -> `add-wishlist: Add wishlist` and the description, ready to paste
+- spec-ship asks whether to create the PR or show its title and description to paste. Without `gh` it shows them. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges {#pr-choice}
+  e.g. "show" chosen -> `feature(HUB-123): Add wishlist`, or `feature(add-wishlist): Add wishlist` without a ticket, and the description, ready to paste
+- The PR description fills the repo's own pull request template when it has one, and otherwise spec-ship's: Links, the ticket and the spec; Description, the why and the claims added, changed or removed; Unrelated changes, the files changed outside plan.md or `None.`; Release impact, derived from the kind and the claims and confirmed by the user; Review, the fresh reviewer's findings; Outcome {#pr-template}
+  e.g. a feature with `issue: HUB-123` -> `- **Jira:** [HUB-123 — Add wishlist](https://example.atlassian.net/browse/HUB-123)`, `**Release impact:** MINOR`, and `None.` under Unrelated changes
 - The PR description states how many sessions the spec took, how many the user says needed re-explaining, and what changed between the request and the shipped claims {#reports-outcome}
   e.g. spec-ship asks "Which of the 4 sessions needed re-explaining?" -> `Sessions: 4, re-explained: 0. Grilling added guest saving and kept sharing out.`
 
@@ -192,5 +194,6 @@ v0.1 exists to test two bets on real work: knowledge kept in `docs/` survives se
 - The script that exports a private client copy. The name-neutral rule keeps that possible later.
 - An MCP server, a runtime, an npm package, telemetry.
 - Merging pull requests.
+- Commit message conventions. The branch names the spec; a company or project convention can sit alongside.
 - Copilot, Cursor and Gemini CLI as tested targets. They should work through the standard, but v0.1 tests only Claude Code and Codex.
 - Pre-writing `behavior/` or `architecture/` for this repo. They are created at ship from what proved true.

@@ -1,10 +1,10 @@
 ---
-id: {{YYYY-MM-DD-slug}}
-kind: {{feature | fix}}
+id: "{{YYYY-MM-DD-slug}}"
+kind: "{{feature | fix}}"
 status: draft
-summary: {{one user-facing line; reused in release notes}}
-request: {{the sentence, issue or commits it started from}}
-issue: {{tracker key}}
+summary: "{{one user-facing line; reused in release notes}}"
+request: "{{the sentence, issue or commits it started from}}"
+issue: "{{tracker key}}"
 ---
 # {{Title as a verb phrase}}
 

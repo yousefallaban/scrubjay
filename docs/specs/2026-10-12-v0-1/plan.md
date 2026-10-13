@@ -30,6 +30,10 @@ plugin/skills/spec-ship/SKILL.md                       new
 plugin/.claude-plugin/plugin.json                      new: Claude Code manifest; name, version, description, author, kept equal to plugin.json by the check
 plugin/evals/<skill>/<case>/                           new: prompt, graders, a scaffold script where the case needs a repo state; the baseline scenario per skill
 checks/by-hand/<claim>.md                              new: the protocol and transcripts for answers-from-docs, resumes and session-line
+checks/by-hand/dogfood.md                              new: the end-to-end run of the wishlist feature on both agents, with its findings
+checks/by-hand/transcripts/*.jsonl                     new: the kept transcripts, scrubbed of this machine's other projects and paths
+checks/fixture-webshop.sh                              new: the base fixture the cases copy, the example webshop with its docs initialized
+plugin/evals/README.md                                 new: how the cases are laid out and run
 checks/check.py                                        new: the static checks, Python 3 standard library only
 checks/run.sh                                          new: runs check.py, then claude plugin validate --strict when the CLI exists
 .github/workflows/checks.yml                           new: runs checks/run.sh on every pull request
@@ -44,6 +48,6 @@ scrubjay-example                                       new, separate repo: a sma
 
 ## Risks
 - Agents skip steps under pressure. Covered by test-first skills and the behavior case per skill, case-minimum.
-- Two facts in research.md are still marked verify: how skills inside a Codex plugin are named, and `user-invocable` under a strict validator. Each is settled in the task that first needs it and recorded as a decision. The eval directory question is settled (D52).
+- Every fact in research.md marked verify is now settled: Codex names plugin skills `$<plugin>:<skill>` (T14). `user-invocable: false` passes Claude Code's strict validator (T4), and the eval directory question is settled (D52).
 - docs-conventions is resident in every command. Its size is measured in T2 and T4, and references/ absorb what the charter doesn't need.
 - The block fails to load in Claude Code through a parent CLAUDE.md. Covered by links-claude-md and its by-hand check.

@@ -33,7 +33,7 @@ Use the pack's own flow by hand, since the skills don't exist yet.
 - **Build only what the spec asks for.** Put new ideas to Yousef, or under the backlog in `ROADMAP.md` once he agrees.
 - **Stay agent-neutral.** Nothing in the pack or its tests may require one particular agent, except adapter files such as manifests. A skill that uses a feature only some agents have states its fallback.
 - **The product name goes only in the manifests and README files.** Skill names, templates and the `project-memory` markers carry no name.
-- **Keep the plugin separate.** Users must not receive this repo's `docs/`, tests or CI.
+- **Keep the plugin separate.** Users must not receive this repo's `docs/`, `checks/` or CI. The eval cases ship inside the pack under `plugin/evals/` (D52).
 - **No client material, ever.** No code, names, docs or details from client projects. Examples use the fictional webshop (wishlist, returns).
 - **Write for the public.** The repo is private until v0.1 works, then goes public under MIT.
 - **Don't map this repo up front.** `docs/behavior/` and `docs/architecture/` are created at ship, not before.

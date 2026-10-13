@@ -1,6 +1,6 @@
 Purpose: what `scrubjay-example` holds at tag `baseline`, and the latent bug the refund-fix scenario relies on, so a later session doesn't have to rediscover either.
 
-Location: `/Users/yousefallaban/MyProjects/scrubjay-example`, a separate git repo on branch `main`, tagged `baseline` at its first commit. Not on GitHub yet.
+Location: `~/MyProjects/scrubjay-example`, a separate git repo on branch `main`, tagged `baseline` at its first commit. Not on GitHub yet.
 
 Stack: TypeScript on Bun, no dependencies. `bun test` runs 14 tests across 3 files.
 

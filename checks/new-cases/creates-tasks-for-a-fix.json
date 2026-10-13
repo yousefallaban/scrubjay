@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T00:58:16.635Z",
+  "durationSeconds": 74,
+  "costUsd": 0.5152659999999999,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*creates-tasks-for-a-fix*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "creates-tasks-for-a-fix",
+      "dir": "evals/spec-build/creates-tasks-for-a-fix",
+      "source": "mixed",
+      "promptMarkdown": "Build this fix. We are on branch fix-refund-rounding. This session cannot run commands, so write the failing test and the fix, and tell me what to run; do not wait for me.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 25,
+      "graders": [
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "status-building",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-fix-refund-rounding/spec.md"
+            },
+            "pattern": "^status: building",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "task-names-the-claim",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-fix-refund-rounding/tasks.md"
+            },
+            "pattern": "partial-refund",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "tasks-created",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/specs/2026-10-13-fix-refund-rounding/tasks.md",
+            "exists": true
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 25,
+            "costUsd": 0.5152659999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 74,
+            "startedAt": "2026-10-13T00:58:16.731Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-gBYqnM/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-building",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: building",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "task-names-the-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched partial-refund",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "tasks-created",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/specs/2026-10-13-fix-refund-rounding/tasks.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

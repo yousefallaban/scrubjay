@@ -1,5 +1,5 @@
 ---
-spec: {{spec id}}
+spec: "{{spec id}}"
 ---
 ## Approach
 <!-- required: the shape of the solution, in 3 to 8 lines. Don't restate the why. -->

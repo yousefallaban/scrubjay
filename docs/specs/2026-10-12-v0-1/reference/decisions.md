@@ -277,3 +277,53 @@ Supersedes the "no Claude Code manifest" half of D45. Loading does not need `plu
 Settles the trade-off left open in plan.md. `claude plugin eval` refuses an `--eval-dir` outside the plugin root, tested on 2.1.272: "must stay inside the plugin root (no ..)". Cases are plain prompt and grader files, so shipping them costs users nothing but a folder. The by-hand protocols for the block-driven claims are not eval cases and stay in the repo next to the checks.
 - Why: the runner decides where cases go. The `plugin-folder` claim now names eval cases as part of what users receive.
 - Revisit when: the runner accepts a cases directory outside the plugin.
+
+**D53. The PR title is `type(scope): objective`, and the description fills the repo's own template when it has one, else spec-ship's with Links, Description, Unrelated changes, Release impact, Review and Outcome.**
+Supersedes the title half of D7; the branch stays the link to the spec while work is open. Type is the kind, feature or fix, with `refactor` for a fix that changes no behavior. Scope is the ticket key from the spec's `issue:` line, else the slug. Objective is the spec's title. The ticket link joins the `issue-tracker` address in `index.md` to the key. Unrelated changes are the files the fresh review found outside plan.md. Release impact is proposed from the kind and the claims, MINOR for a feature, PATCH for a fix with claims, no release impact for a fix without, MAJOR when a claim is removed, and confirmed by the user in one question. Nothing is asked that the spec folder already holds.
+- Why: this is the shape teams already use for pull requests, so a shipped spec lands in a review queue looking like every other PR, and the ticket key reaches the main branch history. A repo with its own template keeps it.
+- Revisit when: a team needs commit message conventions from the pack as well; for now a company skill can add them.
+
+**D54. A slot in template frontmatter is quoted, so every template is valid YAML before it is filled.**
+Extends D17 and D50. GitHub renders a markdown file's frontmatter and shows "Error in user YAML" when `{{slot}}` opens a flow mapping. `key: "{{slot}}"` parses, and the filled value is valid with or without the quotes. The static check fails an unquoted slot.
+- Why: a template that errors in the repo browser looks broken, and a parser-valid template is what a later checker needs anyway.
+- Revisit when: never.
+
+**D55. `index.md` carries a one-line Behavior section pointing at `behavior/`.**
+Extends D44. The by-hand check on Codex showed the gap: with the Behavior column gone and the path rule living in a template comment that is removed on write, the written `index.md` pointed at nothing under `behavior/`, and an agent following the block's "load only what they link to" answered from the code without ever opening the behavior file. One real line fixes it without bringing back a per-row column that drifts.
+- Why: the block only works if the first file it names leads to the claims.
+- Revisit when: never.
+
+**D56. The block tells agents to answer what the product does from `behavior/` and to open the code only to change it.**
+Extends D24's block. The by-hand check on Claude Code found the block alone was not enough: the agent read the behavior file first, cited the claim, then opened the code to compare, three runs out of three. One bullet added to the block, and the next run answered from the docs and said so, with no code read. Codex had already done so after D55.
+- Why: bet A is only worth something if a documented answer stops the agent from re-deriving it. The bullet states the rule the block implied.
+- Revisit when: a release check shows agents still opening the code for documented behavior.
+
+**D57. A fix for code that breaks a claim `behavior/` already states changes no claim. It writes "No behavior change.", names the claim it restores, and needs no new go.**
+Extends D32. Found while testing spec-start on "partial refunds are one cent off" against a behavior file that already stated the half-up rule: the agent wrote no Change claim, since the documented behavior was right and the code was wrong. That is the model working as designed. The spec carries `restores: returns/submit-return#partial-refund`, spec-build's one task names that claim, and the failing test carries its reference. The owner approved the claim when it was written, so the fix needs no second go.
+- Why: a Change with a `was:` line equal to the new text says nothing, and a go for restoring what the owner already approved is ceremony.
+- Revisit when: a fix changes what a claim says as well; that is a Change, with a go.
+
+**D58. spec-start writes `spec.md` and the `index.md` row only; `tasks.md` is written at planning. A required section not yet settled keeps its heading alone.**
+Found in the Codex dogfood: the block's "every session adds its line to tasks.md" made spec-start create a `tasks.md` with a session line and two invented tasks, one of them "create the branch", and write "awaiting Sanne's answer" under Why before the first round. A spec-start session has nothing to resume, and a pending-answer sentence is "TBD" in more words. The rule is a red flag in spec-start and a line in the conventions; the block keeps its line, since every session on a planned spec does add one.
+- Why: `tasks.md`'s job is where the work stands, and the work starts at the plan's OK.
+- Revisit when: the block line causes it again on another agent; then the block says "once the spec has a tasks.md".
+
+**D59. Tasks cover the build only, and a plan's Files lists code, test and config files only. The docs the flow itself writes, the block and the import included, are never in Files and never unrelated.**
+Found in both dogfood runs: Codex's spec-plan added a fifth task "ship with spec-ship" and listed the behavior, architecture and spec files under Files; Claude Code's fresh reviewer counted `AGENTS.md` and `CLAUDE.md` from the docs-init commit as code outside the plan. A ship task would make spec-build ship on its last tick, and docs under Files or under Unrelated changes would make the review report the flow's own writes.
+- Why: spec-build's "stay inside Files" and spec-ship's "unrelated changes" both read Files, so it holds only what the build touches.
+- Revisit when: never.
+
+**D60. spec-build stops when every task is ticked and names spec-ship as the next step; "continue" never ships.**
+Found in the Claude Code dogfood: a fresh session told "continue" with all four tasks ticked went on to ship, by the book, tests, a fresh review, `behavior/`, `architecture/`, `status: shipped`, and ran out of turns in the PR text. Nothing in it was wrong except that nobody asked. Shipping asks two questions and offers a choice; it is a command the user runs, not the next turn of a loop.
+- Why: a step with gates and questions is asked for by name, so the user is there to answer them.
+- Revisit when: never.
+
+**D61. A review done in the shipping session is never written up as fresh. Without a sub-agent, spec-ship stops before any docs change, hands over the review prompt and waits for the findings.**
+Found in the Codex dogfood: `codex exec` has no sub-agent, so Codex reviewed its own diff and wrote "fresh independent review" into the PR. The fallback said to ask the user and the red flag said a self-review is not fresh; neither stopped it. Both now say stop and wait, and the PR names the separate session. The dogfood's review was rerun as a separate read-only session and pasted back.
+- Why: the review's worth is a context that didn't write the code; a label can't give it that.
+- Revisit when: every tested agent has sub-agents; then the fallback is never reached.
+
+**D62. Every released change to `plugin/` bumps `version` in both manifests, because Claude Code updates by version, not by commit.**
+Verified with a scratch marketplace: a pushed change at the same version left `claude plugin update` reporting "already at the latest version" and the installed copy behind; the same change at 0.1.1 was fetched. Codex refetches on `marketplace upgrade` regardless. The static check already keeps the two manifests' versions equal; a guard that fails CI when `plugin/` changed and the version did not is a backlog idea, not built.
+- Why: a fix that users on Claude Code never receive is not a fix.
+- Revisit when: Claude Code updates by commit, or the pack moves to tagged releases.
