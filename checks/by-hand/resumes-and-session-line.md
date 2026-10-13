@@ -2,7 +2,7 @@ Purpose: the by-hand check for `resumes` and `session-line`, the two other claim
 
 ## Setup
 
-The dogfood run of the wishlist feature on `scrubjay-example`, on branch `add-wishlist`, with the pack installed in both agents. After spec-plan has written `tasks.md` and at least one task is ticked, close the session.
+The dogfood run of the wishlist feature on `scrubjay-example`, on the branch spec-start creates, named after the slug, with the pack installed in both agents. After spec-plan has written `tasks.md` and at least one task is ticked, close the session.
 
 ## The check
 
@@ -17,3 +17,4 @@ Passes when the reply names the next unticked task and any note under the previo
 
 | Date | Agent | Named the next task and the note | Session line written | Transcript |
 | --- | --- | --- | --- | --- |
+| 2026-10-13 | Claude Code 2.1.272 | yes: T1 named, "no note or redo under it", before the first test was written | yes: `Session 2026-10-13: resumed at T1; first message: "continue".` | `transcripts/dogfood-claude-5a-spec-build.jsonl` |

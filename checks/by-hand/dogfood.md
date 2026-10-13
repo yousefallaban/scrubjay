@@ -27,5 +27,17 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 
 | Date | Agent | Reached the PR text | Resume named the next task | Session lines | Transcripts |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-13 | Claude Code 2.1.272 | steps 1 to 3 done: docs-init, docs-map (15 claims), spec-start grilled in 2 rounds to 10 claims with the go recorded; step 4 stopped by the usage limit | pending, step 5 | pending | `transcripts/dogfood-claude-*.jsonl` |
+| 2026-10-13 | Claude Code 2.1.272 | yes: six steps, title `feature(save-items-to-wishlist): Save items to a wishlist`, every section filled, `status: shipped`, 10 claims word for word under `behavior/wishlist/` | yes: "continue" named T1 and said no note or redo was under it, before the first test | one per session, three in all | `transcripts/dogfood-claude-*.jsonl` |
 | 2026-10-13 | Codex 0.154.0 | step 1 done in a worktree `.wt-codex`; step 2 done, behavior files written from the code and tests | pending | pending | `transcripts/dogfood-codex-*.jsonl` |
+
+## Findings
+
+Loopholes the run found, each turned into a rule in the pack the same day.
+
+- Claude Code, step 5, second session: with every task ticked, a bare "continue" went on to ship the spec unasked, by the book but without being asked: tests, a fresh review, `behavior/`, `architecture/`, `status: shipped`, then out of turns in the PR text. Fix: spec-build stops when every task is ticked and names spec-ship as the next step. The unasked ship was reverted and step 6 rerun on the fixed pack. Transcript `dogfood-claude-5b-spec-build.jsonl`.
+- Claude Code, step 6: the fresh reviewer counted `AGENTS.md` and `CLAUDE.md` from the docs-init commit as code outside the plan. Fix: the files the flow itself writes, the block and the import included, are never unrelated.
+- Claude Code, step 5: the machine's own session-start hook injected a summary of the previous session, a confound for the resume check. The agent still read `tasks.md` first and reported from it; the hook is not part of the pack.
+- Codex, step 3: created `tasks.md` at spec-start because the block says every session adds its line, and wrote "awaiting Sanne's answer" under Why before the first round. Fixes: a spec-start red flag, and a conventions rule that an unsettled section keeps its heading alone.
+- Codex, step 3: two questions were answerable from the code, stock and persistence, and the sandbox could not create the branch inside a worktree; Codex said so and the branch was created by hand. The grilling ended with the go recorded and 12 claims over three capabilities.
+- Codex, step 4: a fifth task "ship with spec-ship" and docs files under Files. Fix: tasks cover the build only and Files lists code and tests; the correction went in through the OK and Codex recorded it as a Rechecked line.
+
