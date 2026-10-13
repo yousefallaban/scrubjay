@@ -12,7 +12,7 @@ Project memory lives under the docs path the project-memory block in AGENTS.md n
 
 1. Find the file's row in the charter. Read its reference under `references/` for the sections and their rules, and start from its template under `assets/`.
 2. Write only what the file's job covers. Move anything else to the file the row names.
-3. Remove every `<!-- -->` guidance comment. Delete an optional section that would be empty. Never write "None" or "TBD". Keep heading names and their order exactly as the template has them.
+3. Remove every `<!-- -->` guidance comment. Delete an optional section that would be empty. Never write "None", "TBD" or a line saying the content is still to come: a required section that is not settled yet keeps its heading and nothing under it. Keep heading names and their order exactly as the template has them.
 4. Keep the frontmatter keys the template has, with no comments in the frontmatter. A quoted slot such as `id: "{{slug}}"` is filled without the quotes, unless the value needs them to stay valid YAML.
 5. Write claims in the claim format below, 3 to 7 per capability.
 
