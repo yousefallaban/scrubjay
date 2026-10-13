@@ -23,7 +23,7 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 
 ```
 ## Links
-- **<Tracker>:** <KEY> — <spec title>, linked as <issue-tracker><KEY>   or   None.
+- **<Tracker>:** <KEY>: <spec title>, linked as <issue-tracker><KEY>   or   None.
 - **Spec:** docs/specs/<id>/spec.md
 
 ## Description
