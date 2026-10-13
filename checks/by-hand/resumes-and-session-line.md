@@ -8,8 +8,8 @@ The dogfood run of the wishlist feature on `scrubjay-example`, on the branch spe
 
 Start a fresh non-interactive session in the repo and say only "continue":
 
-- Claude Code: `claude -p "continue" --max-turns 6 --output-format stream-json --verbose < /dev/null`
-- Codex: `codex exec --json --sandbox read-only "continue" < /dev/null`
+- Claude Code: `claude -p "continue" --output-format stream-json --verbose < /dev/null`, with a turn budget large enough to build, since the same session is the first build session
+- Codex: `codex exec --json --sandbox workspace-write "continue" < /dev/null`
 
 Passes when the reply names the next unticked task and any note under the previous one before doing anything else, and when `tasks.md` afterwards carries a new `Session <date>: resumed at T<n>; first message: "continue".` line. Fails when the agent asks what to work on, starts somewhere else, or writes no session line.
 
@@ -18,3 +18,4 @@ Passes when the reply names the next unticked task and any note under the previo
 | Date | Agent | Named the next task and the note | Session line written | Transcript |
 | --- | --- | --- | --- | --- |
 | 2026-10-13 | Claude Code 2.1.272 | yes: T1 named, "no note or redo under it", before the first test was written | yes: `Session 2026-10-13: resumed at T1; first message: "continue".` | `transcripts/dogfood-claude-5a-spec-build.jsonl` |
+| 2026-10-13 | Codex 0.154.0 | yes: "T1 is next: add the private store and save operation, with tests for product-only entries and unknown products" before any file changed | yes: `Session 2026-10-13: resumed at T1; first message: "continue".` | `transcripts/dogfood-codex-5a-spec-build.jsonl` |

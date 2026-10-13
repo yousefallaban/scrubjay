@@ -29,12 +29,12 @@ Session 2026-10-13: resumed at T6; first message: "commit but I did not merge, i
   - note: 6 cases at 1.00. A fixture with a ticked-but-undone task was refused by the fresh review, which is the gate working.
 - [x] T13 spec-ship, PR half: the fresh reviewer and its fallback, the PR title and template with links, unrelated changes and release impact, the outcome line -> fresh-review, pr-choice, pr-template, reports-outcome, fallbacks
   - note: title must say the kind word, `feature`, not `feat`; the flow's own docs are never unrelated changes. Both learned from runs.
-- [ ] T14 Install from the private repo on Claude Code and on Codex, run each command once by hand on Codex, write the install sections -> claude-code, codex, private-repo, git-only, agent-skills
-  - note: install from the private repo proven on both agents at v0-1; Codex names skills $scrubjay:<skill>; the by-hand run of each command on Codex is in the dogfood, steps 1 and 2 done.
+- [x] T14 Install from the private repo on Claude Code and on Codex, run each command once by hand on Codex, write the install sections -> claude-code, codex, private-repo, git-only, agent-skills
+  - note: install from the private repo proven on both agents at v0-1; Codex names skills $scrubjay:<skill>; all six commands ran once on Codex in the dogfood, transcripts under checks/by-hand.
 - [x] T15 Pack docs: plugin README, quickstart, CREDITS -> readme, quickstart, credits
   - note: README with install per agent and from a private copy, one line per command, the quickstart and how to test; the quickstart's install-to-first-spec path is the dogfood's steps 1 to 3, done on Claude Code.
-- [ ] T16 Dogfood: the wishlist feature end to end on scrubjay-example with the pack installed, on both agents -> check: a shipped spec on scrubjay-example whose PR description carries the review findings and the outcome line
-  - note: Claude Code: steps 1 to 3 done, spec grilled to 10 claims with the go; stopped at spec-plan by the usage limit. Codex: step 1 done, step 2 in flight.
+- [x] T16 Dogfood: the wishlist feature end to end on scrubjay-example with the pack installed, on both agents -> check: a shipped spec on scrubjay-example whose PR description carries the review findings and the outcome line
+  - note: both agents reached the PR text with the review findings and "Sessions: 3, re-explained: 0". Four loopholes found and fixed the same day (D58 to D61); records and findings in checks/by-hand/dogfood.md.
 - [ ] T17 Release check: every case passes on Claude Code, each command run once on Codex, the three block claims by hand on both agents with transcripts kept -> case-minimum, two-agents, block-cases
   - note: started with-without over every case; cut off by the usage limit before results. Rerun with: claude plugin eval plugin --runs 1 --ablation with-without --scaffold --allow-tools Write Edit --trust-plugin -j 2
 - [ ] T18 Ship v0.1: the checks, a fresh review of the diff against spec.md, docs/behavior, docs/architecture and docs/decisions from what proved true, status shipped, a PR titled v0-1 -> check: the PR is open with status shipped and the review findings in its description

@@ -28,7 +28,7 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 | Date | Agent | Reached the PR text | Resume named the next task | Session lines | Transcripts |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-13 | Claude Code 2.1.272 | yes: six steps, title `feature(save-items-to-wishlist): Save items to a wishlist`, every section filled, `status: shipped`, 10 claims word for word under `behavior/wishlist/` | yes: "continue" named T1 and said no note or redo was under it, before the first test | one per session, three in all | `transcripts/dogfood-claude-*.jsonl` |
-| 2026-10-13 | Codex 0.154.0 | step 1 done in a worktree `.wt-codex`; step 2 done, behavior files written from the code and tests | pending | pending | `transcripts/dogfood-codex-*.jsonl` |
+| 2026-10-13 | Codex 0.154.0 | yes: six steps, title `feature(customer-wishlist): Save items to a wishlist`, every section filled, `status: shipped`, 12 claims word for word under `behavior/wishlist/`; the review ran as a separate read-only session after Codex first wrote up its own review as fresh | yes: "T1 is next: add the private store and save operation" before any file changed | one per session, three in all, plus a Rechecked line for the plan correction | `transcripts/dogfood-codex-*.jsonl` |
 
 ## Findings
 
@@ -40,4 +40,4 @@ Loopholes the run found, each turned into a rule in the pack the same day.
 - Codex, step 3: created `tasks.md` at spec-start because the block says every session adds its line, and wrote "awaiting Sanne's answer" under Why before the first round. Fixes: a spec-start red flag, and a conventions rule that an unsettled section keeps its heading alone.
 - Codex, step 3: two questions were answerable from the code, stock and persistence, and the sandbox could not create the branch inside a worktree; Codex said so and the branch was created by hand. The grilling ended with the go recorded and 12 claims over three capabilities.
 - Codex, step 4: a fifth task "ship with spec-ship" and docs files under Files. Fix: tasks cover the build only and Files lists code and tests; the correction went in through the OK and Codex recorded it as a Rechecked line.
-
+- Codex, step 6: with no sub-agent, Codex reviewed its own diff and wrote "fresh independent review" into the PR. Fix: a same-session review is never written up as fresh; without a sub-agent, spec-ship stops and hands over the review prompt (D61). The review was rerun as a separate read-only session, `dogfood-codex-6b-fresh-review.jsonl`, and the findings pasted back; the corrected PR text is in `dogfood-codex-6c-spec-ship.jsonl`.
