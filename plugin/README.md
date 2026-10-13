@@ -15,6 +15,15 @@ v0.1 exists to test both on real work.
 
 The pack needs `git` on your machine and nothing else. `gh` is optional and only used to open pull requests.
 
+**Fastest path, any agent, one command**
+
+```
+npx skills add yousefallaban/scrubjay
+```
+
+The open [skills CLI](https://skills.sh) finds the eight skills in this repo and installs them for every agent it detects, Claude Code, Codex, Copilot, Cursor, Cline and some seventy more, into the project by default or your user profile with `-g`. It writes a `skills-lock.json`, and `npx skills update` refreshes them by content, no version bump needed. What you give up against the plugin routes below: the skills arrive unnamespaced, `spec-start` rather than `scrubjay:spec-start`, so a skill of yours with the same name shadows them, and there is no manifest to carry the version.
+
+
 **Claude Code**
 
 ```
@@ -42,7 +51,7 @@ copilot plugin install scrubjay@yousefallaban
 
 Copilot reads the same manifest as Codex, the [Agent Plugins](https://agent-plugins.org) `plugin.json`, and the same marketplace file as Claude Code. Verified once on Copilot CLI 1.0.96; it is not one of the agents the pack is tested on.
 
-**Any other agent that supports [Agent Skills](https://agentskills.io)**: copy the eight folders under `skills/` into the agent's skills directory and re-copy them by hand on an update. Copilot in VS Code reads `.github/skills/` in the repo or `~/.copilot/skills/`; Cursor reads `.cursor/skills/`; Codex and VS Code both read `.agents/skills/`.
+**Any other agent that supports [Agent Skills](https://agentskills.io)**: the skills CLI above, or copy the eight folders under `skills/` into the agent's skills directory and re-copy them by hand on an update. Copilot in VS Code reads `.github/skills/` in the repo or `~/.copilot/skills/`; Cursor reads `.cursor/skills/`; Codex and VS Code both read `.agents/skills/`.
 
 **Per repo instead of per machine**
 
