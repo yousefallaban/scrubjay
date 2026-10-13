@@ -1,101 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1000" viewBox="0 0 2000 1000" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
-    </marker>
-    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b45309"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1400" height="780" fill="#ffffff"/>
+  <rect x="0" y="0" width="2000" height="1000" fill="#ffffff"/>
 
-  <!-- AGENTS.md band -->
-  <rect x="40" y="30" width="1320" height="48" rx="24" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="700" y="60" text-anchor="middle" font-size="17" fill="#0f172a"><tspan font-weight="700">AGENTS.md</tspan>  ·  every session starts at docs/  ·  every code change belongs to a spec</text>
+  <!-- header -->
+  <g stroke="#111827" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="78" y="66" width="80" height="60" rx="16"/>
+    <line x1="118" y1="66" x2="118" y2="46"/>
+    <circle cx="118" cy="40" r="7" fill="#111827"/>
+    <line x1="70" y1="88" x2="70" y2="106"/>
+    <line x1="166" y1="88" x2="166" y2="106"/>
+    <path d="M 108 108 Q 118 114 128 108"/>
+  </g>
+  <circle cx="101" cy="90" r="5" fill="#111827"/>
+  <circle cx="135" cy="90" r="5" fill="#111827"/>
+  <text x="200" y="116" font-size="70" font-weight="800" fill="#111827" letter-spacing="-1">AGENTS.md</text>
+  <text x="204" y="158" font-size="19" fill="#64748b" letter-spacing="3.5">EVERY SESSION STARTS AT DOCS/   ·   EVERY CODE CHANGE BELONGS TO A SPEC</text>
+  <text x="1935" y="78" text-anchor="end" font-size="19" fill="#64748b" letter-spacing="3.5">SPECS WITH A GO.</text>
+  <text x="1935" y="108" text-anchor="end" font-size="19" fill="#64748b" letter-spacing="3.5">MEMORY IN DOCS/.</text>
 
-  <!-- section label -->
-  <text x="40" y="128" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1.5">ONE SPEC, FROM INTENT TO PULL REQUEST</text>
+  <!-- spec -->
+  <rect x="65" y="220" width="410" height="300" rx="24" fill="#eef4ff"/>
+  <text x="115" y="360" font-size="56" font-weight="800" fill="#111827">spec</text>
+  <rect x="115" y="396" width="320" height="56" rx="10" fill="#dbe7ff"/>
+  <text x="275" y="434" text-anchor="middle" font-size="26" fill="#1e40af" font-family="Menlo, Consolas, monospace">spec-start</text>
+  <text x="115" y="492" font-size="22" fill="#64748b">spec.md · the owner's go</text>
 
-  <!-- spec-start -->
-  <rect x="40" y="146" width="290" height="124" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-  <text x="185" y="184" text-anchor="middle" font-size="22" font-weight="700" fill="#1e3a8a">why + what</text>
-  <text x="185" y="210" text-anchor="middle" font-size="16" fill="#1e40af" font-family="Menlo, Consolas, monospace">spec-start</text>
-  <text x="185" y="244" text-anchor="middle" font-size="15" fill="#1e3a8a">grill it into claims · the owner says go</text>
+  <!-- plan -->
+  <rect x="553" y="220" width="410" height="300" rx="24" fill="#f3eefe"/>
+  <text x="603" y="360" font-size="56" font-weight="800" fill="#111827">plan</text>
+  <rect x="603" y="396" width="320" height="56" rx="10" fill="#e6dcfb"/>
+  <text x="763" y="434" text-anchor="middle" font-size="26" fill="#5b21b6" font-family="Menlo, Consolas, monospace">spec-plan</text>
+  <text x="603" y="492" font-size="22" fill="#64748b">plan.md · tasks.md</text>
 
-  <!-- spec-plan -->
-  <rect x="385" y="146" width="290" height="124" rx="14" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" stroke-dasharray="9 6"/>
-  <text x="530" y="184" text-anchor="middle" font-size="22" font-weight="700" fill="#4c1d95">how</text>
-  <text x="530" y="210" text-anchor="middle" font-size="16" fill="#5b21b6" font-family="Menlo, Consolas, monospace">spec-plan</text>
-  <text x="530" y="244" text-anchor="middle" font-size="15" fill="#4c1d95">tasks that fit one session · your OK</text>
+  <!-- build -->
+  <rect x="1041" y="220" width="410" height="300" rx="24" fill="#ecfbf3"/>
+  <text x="1091" y="360" font-size="56" font-weight="800" fill="#111827">build</text>
+  <rect x="1091" y="396" width="320" height="56" rx="10" fill="#d4f3e2"/>
+  <text x="1251" y="434" text-anchor="middle" font-size="26" fill="#166534" font-family="Menlo, Consolas, monospace">spec-build</text>
+  <text x="1091" y="492" font-size="22" fill="#64748b">code · tests, test first</text>
 
-  <!-- spec-build -->
-  <rect x="730" y="146" width="290" height="124" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-  <text x="875" y="184" text-anchor="middle" font-size="22" font-weight="700" fill="#14532d">build</text>
-  <text x="875" y="210" text-anchor="middle" font-size="16" fill="#166534" font-family="Menlo, Consolas, monospace">spec-build</text>
-  <text x="875" y="244" text-anchor="middle" font-size="15" fill="#14532d">one task at a time · failing test first</text>
+  <!-- ship -->
+  <rect x="1529" y="220" width="406" height="300" rx="24" fill="#fff3e8"/>
+  <text x="1579" y="360" font-size="56" font-weight="800" fill="#111827">ship</text>
+  <rect x="1579" y="396" width="320" height="56" rx="10" fill="#fde4cf"/>
+  <text x="1739" y="434" text-anchor="middle" font-size="26" fill="#9a3412" font-family="Menlo, Consolas, monospace">spec-ship</text>
+  <text x="1579" y="492" font-size="22" fill="#64748b">docs updated · PR</text>
 
-  <!-- spec-ship -->
-  <rect x="1075" y="146" width="285" height="124" rx="14" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
-  <text x="1217" y="184" text-anchor="middle" font-size="22" font-weight="700" fill="#7c2d12">ship</text>
-  <text x="1217" y="210" text-anchor="middle" font-size="16" fill="#9a3412" font-family="Menlo, Consolas, monospace">spec-ship</text>
-  <text x="1217" y="244" text-anchor="middle" font-size="15" fill="#7c2d12">tests · fresh review · pull request</text>
+  <!-- arrows between cards -->
+  <line x1="488" y1="370" x2="538" y2="370" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="976" y1="370" x2="1026" y2="370" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1464" y1="370" x2="1514" y2="370" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
 
-  <!-- arrows -->
-  <line x1="332" y1="208" x2="381" y2="208" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <line x1="677" y1="208" x2="726" y2="208" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <line x1="1022" y1="208" x2="1071" y2="208" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- change of mind: from build back to spec -->
+  <path d="M 1246 522 L 1246 590 L 270 590 L 270 532" fill="none" stroke="#475569" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arrow)"/>
+  <text x="758" y="636" text-anchor="middle" font-size="23" fill="#475569">Changed your mind mid-build? Update the spec or the plan, recheck the tasks, go again.</text>
 
-  <!-- outputs -->
-  <text x="185" y="296" text-anchor="middle" font-size="14" fill="#64748b">spec.md</text>
-  <text x="530" y="296" text-anchor="middle" font-size="14" fill="#64748b">plan.md · tasks.md</text>
-  <text x="875" y="296" text-anchor="middle" font-size="14" fill="#64748b">code · tests named by claim</text>
-  <text x="1217" y="296" text-anchor="middle" font-size="14" fill="#64748b">behavior/ · architecture/ · the PR</text>
+  <line x1="65" y1="686" x2="1935" y2="686" stroke="#e5e7eb" stroke-width="2"/>
 
-  <!-- resume loop -->
-  <path d="M 935 146 L 935 118 L 995 118 L 995 146" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="965" y="110" text-anchor="middle" font-size="13" fill="#166534">any new session: "continue"</text>
+  <!-- docs/ row -->
+  <text x="65" y="772" font-size="40" font-weight="800" fill="#111827">docs/</text>
 
-  <!-- change of mind loop -->
-  <path d="M 1020 250 L 1046 250 L 1046 330 L 300 330 L 300 272" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="8 6" marker-end="url(#arrow-amber)"/>
-  <text x="673" y="352" text-anchor="middle" font-size="14" fill="#92400e">changed your mind? update the spec or the plan, recheck the tasks, go again</text>
-  <text x="530" y="124" text-anchor="middle" font-size="13" fill="#6d28d9">dashed: a fix skips it</text>
+  <rect x="220" y="716" width="258" height="84" rx="16" fill="#eef4ff"/>
+  <text x="256" y="770" font-size="28" fill="#2563eb" font-family="Menlo, Consolas, monospace" font-weight="700">&gt;_</text>
+  <text x="312" y="769" font-size="26" font-weight="600" fill="#111827">docs-init</text>
 
-  <!-- practices -->
-  <text x="40" y="408" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1.5">TWO PRACTICES THE AGENT LOADS ON ITS OWN</text>
-  <rect x="40" y="422" width="645" height="54" rx="27" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
-  <text x="362" y="455" text-anchor="middle" font-size="16" fill="#334155"><tspan font-weight="700" font-family="Menlo, Consolas, monospace">grilling</tspan>  ·  asks only what you alone can answer, with a recommended answer</text>
-  <rect x="715" y="422" width="645" height="54" rx="27" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
-  <text x="1037" y="455" text-anchor="middle" font-size="16" fill="#334155"><tspan font-weight="700" font-family="Menlo, Consolas, monospace">docs-conventions</tspan>  ·  one job per file, the templates, the claim format</text>
+  <rect x="502" y="716" width="258" height="84" rx="16" fill="#f3eefe"/>
+  <text x="538" y="770" font-size="28" fill="#7c3aed" font-family="Menlo, Consolas, monospace" font-weight="700">&gt;_</text>
+  <text x="594" y="769" font-size="26" font-weight="600" fill="#111827">docs-map</text>
 
-  <!-- docs/ band -->
-  <text x="40" y="528" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1.5">PROJECT MEMORY, IN YOUR REPO, READ FIRST</text>
-  <rect x="40" y="542" width="1320" height="118" rx="14" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
-  <text x="64" y="576" font-size="20" font-weight="700" fill="#713f12" font-family="Menlo, Consolas, monospace">docs/</text>
+    <rect x="784" y="716" width="258" height="84" rx="16" fill="#ecfbf3"/>
+  <text x="876" y="769" font-size="26" font-weight="600" fill="#111827">behavior</text>
+  <rect x="1066" y="716" width="258" height="84" rx="16" fill="#fff3e8"/>
+  <text x="1158" y="769" font-size="26" font-weight="600" fill="#111827">architecture</text>
+  <rect x="1348" y="716" width="258" height="84" rx="16" fill="#f3f4f6"/>
+  <text x="1440" y="769" font-size="26" font-weight="600" fill="#111827">decisions</text>
+  <rect x="1630" y="716" width="258" height="84" rx="16" fill="#f3f4f6"/>
+  <text x="1722" y="769" font-size="26" font-weight="600" fill="#111827">specs</text>
+  <g fill="none" stroke-width="3" stroke-linejoin="round">
+    <path d="M 820 745 h 14 l 6 6 h 18 a 3 3 0 0 1 3 3 v 20 a 3 3 0 0 1 -3 3 h -38 a 3 3 0 0 1 -3 -3 v -26 a 3 3 0 0 1 3 -3 z" stroke="#16a34a"/>
+    <path d="M 1102 745 h 14 l 6 6 h 18 a 3 3 0 0 1 3 3 v 20 a 3 3 0 0 1 -3 3 h -38 a 3 3 0 0 1 -3 -3 v -26 a 3 3 0 0 1 3 -3 z" stroke="#ea580c"/>
+    <path d="M 1384 745 h 14 l 6 6 h 18 a 3 3 0 0 1 3 3 v 20 a 3 3 0 0 1 -3 3 h -38 a 3 3 0 0 1 -3 -3 v -26 a 3 3 0 0 1 3 -3 z" stroke="#475569"/>
+    <path d="M 1666 745 h 14 l 6 6 h 18 a 3 3 0 0 1 3 3 v 20 a 3 3 0 0 1 -3 3 h -38 a 3 3 0 0 1 -3 -3 v -26 a 3 3 0 0 1 3 -3 z" stroke="#475569"/>
+  </g>
 
-  <rect x="150" y="560" width="200" height="82" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
-  <text x="250" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#134e4a" font-family="Menlo, Consolas, monospace">docs-init</text>
-  <text x="250" y="616" text-anchor="middle" font-size="14" fill="#134e4a">set it up, once</text>
-  <rect x="365" y="560" width="200" height="82" rx="12" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
-  <text x="465" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#134e4a" font-family="Menlo, Consolas, monospace">docs-map</text>
-  <text x="465" y="616" text-anchor="middle" font-size="14" fill="#134e4a">one domain at a time</text>
+  <line x1="65" y1="836" x2="1935" y2="836" stroke="#e5e7eb" stroke-width="2"/>
 
-  <rect x="600" y="560" width="235" height="82" rx="12" fill="#ffffff" stroke="#ca8a04" stroke-width="1.5"/>
-  <text x="717" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#713f12" font-family="Menlo, Consolas, monospace">behavior/</text>
-  <text x="717" y="616" text-anchor="middle" font-size="14" fill="#78350f">what it does, as claims</text>
-  <rect x="850" y="560" width="235" height="82" rx="12" fill="#ffffff" stroke="#ca8a04" stroke-width="1.5"/>
-  <text x="967" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#713f12" font-family="Menlo, Consolas, monospace">architecture/</text>
-  <text x="967" y="616" text-anchor="middle" font-size="14" fill="#78350f">how it is built</text>
-  <rect x="1100" y="560" width="235" height="82" rx="12" fill="#ffffff" stroke="#ca8a04" stroke-width="1.5"/>
-  <text x="1217" y="590" text-anchor="middle" font-size="16" font-weight="700" fill="#713f12" font-family="Menlo, Consolas, monospace">decisions/ · specs/</text>
-  <text x="1217" y="616" text-anchor="middle" font-size="14" fill="#78350f">why, and one folder per change</text>
-
-  <!-- fits around -->
-  <text x="40" y="712" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1.5">FITS AROUND WHAT YOU ALREADY USE</text>
-  <rect x="40" y="726" width="420" height="38" rx="19" fill="#fdf2f8" stroke="#db2777" stroke-width="1.5"/>
-  <text x="250" y="751" text-anchor="middle" font-size="15" fill="#9d174d">stacks with your TDD, review and language skills</text>
-  <rect x="490" y="726" width="420" height="38" rx="19" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="700" y="751" text-anchor="middle" font-size="15" fill="#1e40af">Claude Code · Codex · Copilot · any Agent Skills agent</text>
-  <rect x="940" y="726" width="420" height="38" rx="19" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
-  <text x="1150" y="751" text-anchor="middle" font-size="15" fill="#166534">markdown only · git only · your AGENTS.md wins</text>
+  <!-- practices band -->
+  <rect x="65" y="864" width="1870" height="112" rx="20" fill="#f8fafc"/>
+  <path d="M 108 896 h 44 a 10 10 0 0 1 10 10 v 24 a 10 10 0 0 1 -10 10 h -24 l -14 12 v -12 h -6 a 10 10 0 0 1 -10 -10 v -24 a 10 10 0 0 1 10 -10 z" fill="none" stroke="#111827" stroke-width="3.5" stroke-linejoin="round"/>
+  <text x="200" y="912" font-size="28" font-weight="700" fill="#111827">grilling</text>
+  <text x="200" y="950" font-size="22" fill="#64748b">Asks only what you alone can answer, with a recommended answer.</text>
+  <line x1="1000" y1="884" x2="1000" y2="956" stroke="#e5e7eb" stroke-width="2"/>
+  <g fill="none" stroke="#111827" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 1182 894 h 30 l 16 16 v 40 a 6 6 0 0 1 -6 6 h -40 a 6 6 0 0 1 -6 -6 v -50 a 6 6 0 0 1 6 -6 z"/>
+    <path d="M 1212 894 v 16 h 16"/>
+    <line x1="1192" y1="926" x2="1218" y2="926"/>
+    <line x1="1192" y1="940" x2="1218" y2="940"/>
+  </g>
+  <text x="1270" y="912" font-size="28" font-weight="700" fill="#111827">docs-conventions</text>
+  <text x="1270" y="950" font-size="22" fill="#64748b">One job per file, the templates, the claim format.</text>
 </svg>
