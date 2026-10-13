@@ -1,0 +1,29 @@
+{
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": [
+        "~DEFAULT_BRANCH"
+      ],
+      "exclude": []
+    }
+  },
+  "name": "Required static checks",
+  "bypass_actors": [],
+  "rules": [
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "required_status_checks": [
+          {
+            "context": "static",
+            "integration_id": 15368
+          }
+        ],
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false
+      }
+    }
+  ]
+}
