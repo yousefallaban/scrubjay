@@ -11,4 +11,5 @@ Rechecked after fresh review: T1 keep, T2 keep with explicit icon-path verificat
   - note: static checks and both strict validators pass; both versions remain 0.1.2, both icon paths resolve, SVG embeds the original JPEG unchanged. Display on master waits for the owner's PR merge.
 - [x] T3 Publish after the client-material decision, apply public-only settings and upload the preview -> public-repository, fork-approval, protected-history, social-preview
   - note: clean public history has zero client-name matches; original remains private. Three active rulesets, protected master, fork approval, secret protection, private reporting and uploaded preview verified.
-- [ ] T4 Verify settings and prepare the reviewed PR -> check: fresh review recorded, PR open, no merge performed
+- [x] T4 Verify settings and prepare the reviewed PR -> check: fresh review recorded, PR open, no merge performed
+  - note: PR #1 open with passing static CI and the fresh review in its description. The owner merges; installed Codex icon rendering remains untested.

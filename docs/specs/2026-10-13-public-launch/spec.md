@@ -1,7 +1,7 @@
 ---
 id: 2026-10-13-public-launch
 kind: feature
-status: building
+status: shipped
 summary: Publish the repository with contribution protections and the existing bird artwork in GitHub and Codex.
 request: Make the private GitHub repository public, protect contributions, and use the Downloads preview image; retain version 0.1.2.
 approved: {by: yousef, via: in session}

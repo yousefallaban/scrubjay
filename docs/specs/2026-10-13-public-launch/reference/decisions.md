@@ -24,3 +24,8 @@ The owner requested removal of the client name after the history audit. The orig
 The clean repository is configured while private with Actions disabled. After publication, fork approval and branch rules are enabled and verified before Actions are restored. All repository settings are applied to the new repository again.
 - Why: settings follow the private original's rename, and public fork approval is unavailable while private.
 - Revisit when: GitHub supports applying the public policy before publication.
+
+**D6. Protect release tags and published assets while keeping community contributions open.**
+The owner's request to check other settings added update/deletion protection for v-prefixed tags, immutable releases, dependency security alerts/updates and trusted-user review limits. Issues, PR creation and comment reviews remain open.
+- Why: installed releases should not silently change, and an untrusted review should not block maintenance.
+- Revisit when: a release workflow needs an explicit exception.
