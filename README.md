@@ -19,26 +19,7 @@ Two bets, tested on real work:
 
 ## How it works
 
-```mermaid
-flowchart LR
-    subgraph memory["docs/  ·  project memory, read first in every session"]
-        direction LR
-        B["behavior/<br/>what it does now,<br/>as claims with IDs"]
-        A["architecture/<br/>how it is built"]
-        D["decisions/<br/>why a lasting choice"]
-    end
-
-    init["docs-init<br/>set up the memory"] --> map["docs-map<br/>document one domain"]
-    map --> start["spec-start<br/>grill why and what,<br/>record the owner's go"]
-    start --> plan["spec-plan<br/>decide how, split into<br/>tasks that fit one session"]
-    plan --> build["spec-build<br/>one task at a time,<br/>failing test first"]
-    build --> ship["spec-ship<br/>tests, fresh review,<br/>pull request"]
-    ship -- "claims copied word for word" --> B
-    ship --> A
-    start -. "a settled choice" .-> D
-    memory -. "looked up before asking" .-> start
-    build -- "resumes from tasks.md" --> build
-```
+<img src="assets/flow.svg" alt="How the pack works end to end: the four spec commands from intent to pull request, the two practices, the project memory in docs/, and how it fits around the skills and agents you already use" width="100%">
 
 Six commands you run, two practices the agent loads on its own: `grilling`, the question rounds, and `docs-conventions`, the file charter and templates.
 
