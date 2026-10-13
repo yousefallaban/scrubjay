@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:31:29.115Z",
+  "durationSeconds": 143,
+  "costUsd": 0.6105105000000001,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*drops-empty-sections*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "drops-empty-sections",
+      "dir": "evals/docs-conventions/drops-empty-sections",
+      "source": "mixed",
+      "promptMarkdown": "Write the plan for the wishlist spec in docs/specs/2026-10-12-add-wishlist. Approach: one wishlist table keyed by customer and product with a unique pair, a small module in src/wishlist.ts with save, remove and list, and a Save button on the product page. Files: src/wishlist.ts new, src/components/SaveButton.tsx new, db/migrations/0042_wishlist.sql new. The data model goes to architecture at ship. There are no rollout concerns and no risks worth noting.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "optional-sections-dropped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-12-add-wishlist/plan.md"
+            },
+            "pattern": "^## Rollout|^## Risks|<!--|\\bTBD\\b|^\\s*None\\s*$",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "plan-exists",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/specs/2026-10-12-add-wishlist/plan.md",
+            "exists": true
+          }
+        },
+        {
+          "name": "required-sections",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-12-add-wishlist/plan.md"
+            },
+            "pattern": "^spec: \"?2026-10-12-add-wishlist[\\s\\S]*^## Approach[\\s\\S]*^## Files[\\s\\S]*^## Architecture to update at ship",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-conventions\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 25,
+            "costUsd": 0.6105105000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 143,
+            "startedAt": "2026-10-13T13:31:29.209Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-b2ihu1/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "optional-sections-dropped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "plan-exists",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/specs/2026-10-12-add-wishlist/plan.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "required-sections",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^spec: \"?2026-10-12-add-wishlist[\\s\\S]*^## Approach[\\s\\S]*^## Files[\\s\\S]*^## Architecture to update at ship",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

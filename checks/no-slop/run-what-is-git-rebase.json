@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:43:56.469Z",
+  "durationSeconds": 5,
+  "costUsd": 0.23266900000000001,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*what-is-git-rebase*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "what-is-git-rebase",
+      "dir": "evals/spec-plan/what-is-git-rebase",
+      "source": "mixed",
+      "promptMarkdown": "What does git rebase do? Three sentences.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 3,
+      "graders": [
+        {
+          "name": "skill-not-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-plan\"",
+            "min": 0,
+            "max": 0,
+            "arm": "both"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.077528,
+            "judgeCostUsd": 0,
+            "durationSeconds": 5,
+            "startedAt": "2026-10-13T13:43:56.562Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-f6z0Cn/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-not-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "what-is-git-rebase",
+      "dir": "evals/spec-ship/what-is-git-rebase",
+      "source": "mixed",
+      "promptMarkdown": "What does git rebase do? Three sentences.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 3,
+      "graders": [
+        {
+          "name": "skill-not-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\"",
+            "min": 0,
+            "max": 0,
+            "arm": "both"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.07749299999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 5,
+            "startedAt": "2026-10-13T13:43:56.562Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-hQifSy/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-not-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "what-is-git-rebase",
+      "dir": "evals/spec-start/what-is-git-rebase",
+      "source": "mixed",
+      "promptMarkdown": "What does git rebase do? Three sentences.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 3,
+      "graders": [
+        {
+          "name": "skill-not-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-start\"",
+            "min": 0,
+            "max": 0,
+            "arm": "both"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 1,
+            "costUsd": 0.07764800000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 5,
+            "startedAt": "2026-10-13T13:43:56.562Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-5zmNn8/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-not-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 3,
+    "casesPassed": 3,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

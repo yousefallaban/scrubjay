@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T12:51:53.453Z",
+  "durationSeconds": 301,
+  "costUsd": 0.45104625,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*removes-uncovered-code*",
+    "threshold": 1,
+    "concurrency": 1,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "removes-uncovered-code",
+      "dir": "evals/spec-ship/removes-uncovered-code",
+      "source": "mixed",
+      "promptMarkdown": "spec-ship the wishlist spec. I ran `bun test` a minute ago: 18 pass, 0 fail. The spec took 3 sessions and none needed re-explaining. Release impact MINOR is right. Show me the PR title and description to paste, do not create it. For the fresh review, use a sub-agent if you have one; otherwise say so in the PR text. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 40,
+      "graders": [
+        {
+          "name": "helper-removed-from-code",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "src/wishlist.ts"
+            },
+            "pattern": "clearWishlist",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "helper-removed-from-tests",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "test/wishlist.test.ts"
+            },
+            "pattern": "clearWishlist",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "pr-names-the-removal",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "[Rr]emov[\\s\\S]*clearWishlist|clearWishlist[\\s\\S]*[Rr]emov",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\""
+          }
+        },
+        {
+          "name": "status-shipped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^status: shipped",
+            "flags": "m",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0.4,
+            "passed": false,
+            "turns": 16,
+            "costUsd": 0.45104625,
+            "judgeCostUsd": 0,
+            "durationSeconds": 300,
+            "startedAt": "2026-10-13T12:51:53.569Z",
+            "error": "timed out after 300s",
+            "tracePath": "/private/tmp/e-wy7F5i/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "helper-removed-from-code",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern found (expected absent)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "helper-removed-from-tests",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern found (expected absent)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "pr-names-the-removal",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern not found in last_message",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0.4,
+        "passRate": 0
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 0,
+    "overallScore": 0.4,
+    "overallPassRate": 0
+  }
+}

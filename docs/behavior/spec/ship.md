@@ -21,3 +21,5 @@ capability: spec/ship
   e.g. a feature with `issue: HUB-123` -> `- **Jira:** [HUB-123 — Add wishlist](https://example.atlassian.net/browse/HUB-123)`, `**Release impact:** MINOR`, and `None.` under Unrelated changes
 - The PR description states how many sessions the spec took, how many the user says needed re-explaining, and what changed between the request and the shipped claims {#reports-outcome}
   e.g. spec-ship asks "Which of the 4 sessions needed re-explaining?" -> `Sessions: 4, re-explained: 0. Grilling added guest saving and kept sharing out.`
+- spec-ship removes code the diff has that no claim covers, unless the owner adds a claim for it and says go, and the pull request names what was removed or claimed {#no-uncovered-code}
+  e.g. an exported `clearWishlist` with a test that carries no claim reference -> deleted before any docs change, and listed under Review as removed

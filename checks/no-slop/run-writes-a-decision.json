@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:33:57.064Z",
+  "durationSeconds": 31,
+  "costUsd": 0.21349249999999997,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*writes-a-decision*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "writes-a-decision",
+      "dir": "evals/docs-conventions/writes-a-decision",
+      "source": "mixed",
+      "promptMarkdown": "Record this decision in our docs, as docs/decisions/2026-10-12-wishlist-stored-server-side.md: wishlists are stored on the server, one list per signed-in customer. Context: customers switch between phone and laptop, and a list kept in one browser is lost on the other. We considered browser storage only, which needs no backend but doesn't follow the customer. Consequence: one new table to migrate and back up; guests are not covered yet.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "file-in-decisions",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/decisions/*.md",
+            "exists": true
+          }
+        },
+        {
+          "name": "no-guidance-left",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/decisions/2026-10-12-wishlist-stored-server-side.md"
+            },
+            "pattern": "<!--|\\bTBD\\b|^\\s*None\\s*$",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "sections-in-order",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/decisions/2026-10-12-wishlist-stored-server-side.md"
+            },
+            "pattern": "^id: [\\s\\S]*?^status: accepted[\\s\\S]*?^## Context[\\s\\S]*?^## Options[\\s\\S]*?^## Decision[\\s\\S]*?^## Consequences",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-conventions\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 10,
+            "costUsd": 0.21349249999999997,
+            "judgeCostUsd": 0,
+            "durationSeconds": 31,
+            "startedAt": "2026-10-13T13:33:57.153Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-IReOkJ/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "file-in-decisions",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/decisions/*.md exists as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-guidance-left",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "sections-in-order",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^id: [\\s\\S]*?^status: accepted[\\s\\S]*?^## Context[\\s\\S]*?^## Options[\\s\\S]*?^## Decision[\\s\\S]*?^## Consequences",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

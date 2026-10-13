@@ -13,3 +13,4 @@ area: conventions
 - A case's `case.yaml` carries `schema_version: "1.1"`, and a case that needs a project copies `checks/fixture-webshop.sh` as its `fixture.sh`.
 - Commit messages are `type: description` with type among feat, fix, refactor, docs, test, chore, perf, ci.
 - Decisions are appended to `reference/decisions.md` the moment they are made, never edited; a later one supersedes.
+- Every released change to `plugin/` raises `version` in both manifests, since Claude Code updates by version (D62); the Writing section of docs-conventions applies to the pack's own files as much as to a user's docs.

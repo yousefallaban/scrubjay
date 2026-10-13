@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.272",
+  "startedAt": "2026-10-13T13:30:16.674Z",
+  "durationSeconds": 30,
+  "costUsd": 0.1943305,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*writes-plain*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "writes-plain",
+      "dir": "evals/docs-conventions/writes-plain",
+      "source": "mixed",
+      "promptMarkdown": "Rewrite the Why section of docs/specs/2026-10-12-add-wishlist/spec.md from what I am about to tell you, and change nothing else in the file. Here is my thinking, in my words: in today's fast-paced e-commerce landscape, it's worth noting that our customers really, truly want to leverage a robust and seamless way to save items for later. This isn't just a feature, it's a game changer that will empower them to delve into our catalogue on their own terms. Additionally, our support team keeps hearing it. Furthermore, we lose sales when a customer finds something, leaves, and can't find it again. At the end of the day, that's the cost.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "no-tells",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-12-add-wishlist/spec.md"
+            },
+            "pattern": "—|[Ii]n today|worth noting|game.?changer|leverage|robust|seamless|not just|isn.t just|delve|[Aa]dditionally|[Ff]urthermore|\\bvery\\b|\\breally\\b|\\btruly\\b|empower|fast-paced|landscape|[Aa]t the end of the day",
+            "flags": "",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "rest-untouched",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-12-add-wishlist/spec.md"
+            },
+            "pattern": "### Add . wishlist/save-item[\\s\\S]*\\{#lists-saved\\}[\\s\\S]*## Not doing\\nSharing wishlists; price-drop alerts\\.",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?docs-conventions\""
+          }
+        },
+        {
+          "name": "why-is-short",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-12-add-wishlist/spec.md"
+            },
+            "pattern": "^## Why\\n(?:[^\\n]+\\n){1,5}\\n## What changes",
+            "flags": "m",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.1943305,
+            "judgeCostUsd": 0,
+            "durationSeconds": 29,
+            "startedAt": "2026-10-13T13:30:16.775Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-xVL2pH/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-tells",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "rest-untouched",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ### Add . wishlist/save-item[\\s\\S]*\\{#lists-saved\\}[\\s\\S]*## Not doing\\nSharing wishlists; price-drop alerts\\.",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "why-is-short",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^## Why\\n(?:[^\\n]+\\n){1,5}\\n## What changes",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}
