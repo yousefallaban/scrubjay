@@ -421,7 +421,7 @@ spec: 2026-10-13-add-wishlist
 A wishlist module keyed by customer id, in memory like the other modules, with save, remove and list. Saving twice is a no-op.
 
 ## Files
-src/wishlist.ts            new: save, remove, list per customer; rejects unknown products
+src/wishlist.ts            new: save and list per customer
 test/wishlist.test.ts      new: one test per claim, named with the claim reference
 src/index.ts               changed: export the wishlist module
 
@@ -442,17 +442,13 @@ Session 2026-10-13: resumed at T3; first message: "finish it".
 FILE
 printf 'Purpose: draft data model for the wishlist.\n\nwishlist_items: customer_id, product_id, added_at; unique (customer_id, product_id)\n' > docs/specs/2026-10-13-add-wishlist/reference/data-model.md
 cat > src/wishlist.ts <<'FILE'
-import { getProduct } from "./products";
-export type WishlistItem = { productId: string; addedAt: Date };
-const lists = new Map<string, WishlistItem[]>();
-export function save(customerId: string, productId: string, now: Date = new Date()): WishlistItem[] {
-  getProduct(productId);
+const lists = new Map<string, string[]>();
+export function save(customerId: string, productId: string): void {
   const list = lists.get(customerId) ?? [];
-  if (!list.some((i) => i.productId === productId)) list.push({ productId, addedAt: now });
+  if (!list.includes(productId)) list.push(productId);
   lists.set(customerId, list);
-  return list.map((i) => ({ ...i }));
 }
-export function list(customerId: string): WishlistItem[] { return (lists.get(customerId) ?? []).map((i) => ({ ...i })); }
+export function list(customerId: string): string[] { return [...(lists.get(customerId) ?? [])]; }
 export function _reset(): void { lists.clear(); }
 FILE
 cat > test/wishlist.test.ts <<'FILE'
@@ -460,9 +456,9 @@ import { beforeEach, describe, expect, test } from "bun:test";
 import { _reset, list, save } from "../src/wishlist";
 describe("wishlist", () => {
   beforeEach(() => _reset());
-  test("saves a product [wishlist/save-item#saves-item]", () => { save("sanne", "rain-jacket"); expect(list("sanne").map((i) => i.productId)).toEqual(["rain-jacket"]); });
+  test("saves a product [wishlist/save-item#saves-item]", () => { save("sanne", "rain-jacket"); expect(list("sanne")).toEqual(["rain-jacket"]); });
   test("keeps one entry [wishlist/save-item#no-duplicates]", () => { save("sanne", "rain-jacket"); save("sanne", "rain-jacket"); expect(list("sanne")).toHaveLength(1); });
-  test("lists in save order [wishlist/save-item#lists-saved]", () => { save("sanne", "rain-jacket"); save("sanne", "trail-map"); expect(list("sanne").map((i) => i.productId)).toEqual(["rain-jacket", "trail-map"]); });
+  test("lists in save order [wishlist/save-item#lists-saved]", () => { save("sanne", "rain-jacket"); save("sanne", "trail-map"); expect(list("sanne")).toEqual(["rain-jacket", "trail-map"]); });
 });
 FILE
 git add -A && git -c user.name=fixture -c user.email=fixture@example.com commit -q -m 'wishlist built'

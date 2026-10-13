@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T20:11:17.798Z",
+  "durationSeconds": 36,
+  "costUsd": 0.7808676,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "stops-without-go",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "stops-without-go",
+      "dir": "evals/spec-plan/stops-without-go",
+      "source": "mixed",
+      "promptMarkdown": "spec-plan the wishlist spec. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 12,
+      "graders": [
+        {
+          "name": "no-plan-written",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/specs/2026-10-13-add-wishlist/plan.md",
+            "exists": false
+          }
+        },
+        {
+          "name": "says-go-is-missing",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "go is missing|hasn.t said go|no go|without the go|needs the owner",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-plan\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 7,
+            "costUsd": 0.103871,
+            "judgeCostUsd": 0,
+            "durationSeconds": 10,
+            "startedAt": "2026-10-13T20:11:17.916Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-MRqDwh/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-plan-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/specs/2026-10-13-add-wishlist/plan.md absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-go-is-missing",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched go is missing|hasn.t said go|no go|without the go|needs the owner",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.11203559999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 15,
+            "startedAt": "2026-10-13T20:11:17.916Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-OHcC9y/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-plan-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/specs/2026-10-13-add-wishlist/plan.md absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-go-is-missing",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched go is missing|hasn.t said go|no go|without the go|needs the owner",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 9,
+            "costUsd": 0.1196496,
+            "judgeCostUsd": 0,
+            "durationSeconds": 15,
+            "startedAt": "2026-10-13T20:11:17.916Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-jvn1Nx/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-plan-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/specs/2026-10-13-add-wishlist/plan.md absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-go-is-missing",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched go is missing|hasn.t said go|no go|without the go|needs the owner",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    },
+    {
+      "name": "stops-without-go",
+      "dir": "evals/spec-ship/stops-without-go",
+      "source": "mixed",
+      "promptMarkdown": "spec-ship the wishlist spec. I ran `bun test` a minute ago: 17 pass, 0 fail. The spec took 3 sessions and none needed re-explaining. Release impact MINOR is right. Show me the PR title and description to paste, do not create it. For the fresh review, use a sub-agent if you have one; otherwise say so in the PR text. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 15,
+      "graders": [
+        {
+          "name": "no-behavior-written",
+          "type": "file_exists",
+          "weight": 1,
+          "config": {
+            "path": "docs/behavior/wishlist/**",
+            "exists": false
+          }
+        },
+        {
+          "name": "not-shipped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^status: shipped",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "says-no-go",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "\\bgo\\b|approv",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 12,
+            "costUsd": 0.15226440000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 22,
+            "startedAt": "2026-10-13T20:11:28.172Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ctWZWv/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-behavior-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/** absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "not-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-no-go",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bgo\\b|approv",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 13,
+            "costUsd": 0.1478786,
+            "judgeCostUsd": 0,
+            "durationSeconds": 19,
+            "startedAt": "2026-10-13T20:11:32.926Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-4bk445/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-behavior-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/** absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "not-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-no-go",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bgo\\b|approv",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 11,
+            "costUsd": 0.1451684,
+            "judgeCostUsd": 0,
+            "durationSeconds": 21,
+            "startedAt": "2026-10-13T20:11:33.223Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-xvGEez/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "no-behavior-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "docs/behavior/wishlist/** absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "not-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "says-no-go",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bgo\\b|approv",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 2,
+    "casesPassed": 2,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

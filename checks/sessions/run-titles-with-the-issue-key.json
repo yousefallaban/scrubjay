@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T20:16:49.471Z",
+  "durationSeconds": 79,
+  "costUsd": 1.2372028000000002,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "titles-with-the-issue-key",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "titles-with-the-issue-key",
+      "dir": "evals/spec-ship/titles-with-the-issue-key",
+      "source": "mixed",
+      "promptMarkdown": "spec-ship the wishlist spec. I ran `bun test` a minute ago: 17 pass, 0 fail. The spec took 3 sessions and none needed re-explaining. Release impact MINOR is right. Show me the PR title and description to paste, do not create it. For the fresh review, use a sub-agent if you have one; otherwise say so in the PR text. We are on branch add-wishlist. This session cannot run commands, so say what you would run instead. If the review removes anything, I run the suite right after and I confirm in advance that it is green, so carry on.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 40,
+      "graders": [
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-ship\""
+          }
+        },
+        {
+          "name": "status-shipped",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^status: shipped",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "title-has-the-key",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "feature\\(HUB-123\\): ",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "tracker-link",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "https://example\\.atlassian\\.net/browse/HUB-123",
+            "flags": "",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 28,
+            "costUsd": 0.4262224,
+            "judgeCostUsd": 0,
+            "durationSeconds": 78,
+            "startedAt": "2026-10-13T20:16:49.593Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0M8LJf/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "title-has-the-key",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched feature\\(HUB-123\\): ",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "tracker-link",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched https://example\\.atlassian\\.net/browse/HUB-123",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 26,
+            "costUsd": 0.3947656,
+            "judgeCostUsd": 0,
+            "durationSeconds": 79,
+            "startedAt": "2026-10-13T20:16:49.593Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-oi0ewz/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "title-has-the-key",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched feature\\(HUB-123\\): ",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "tracker-link",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched https://example\\.atlassian\\.net/browse/HUB-123",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 28,
+            "costUsd": 0.41621480000000005,
+            "judgeCostUsd": 0,
+            "durationSeconds": 74,
+            "startedAt": "2026-10-13T20:16:49.593Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-ICfUb9/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "status-shipped",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^status: shipped",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "title-has-the-key",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched feature\\(HUB-123\\): ",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "tracker-link",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched https://example\\.atlassian\\.net/browse/HUB-123",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

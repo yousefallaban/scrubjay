@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T19:14:57.346Z",
+  "durationSeconds": 25,
+  "costUsd": 0.5034453999999999,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "*asks-for-the-test-run-first*",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "asks-for-the-test-run-first",
+      "dir": "evals/spec-build/asks-for-the-test-run-first",
+      "source": "mixed",
+      "promptMarkdown": "continue. We are on branch add-wishlist, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 20,
+      "graders": [
+        {
+          "name": "asks-for-the-test-run",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "bun test",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "no-edit-to-code",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Edit",
+            "input_match": "src/wishlist|test/wishlist",
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "name": "no-write-to-code",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Write",
+            "input_match": "src/wishlist|test/wishlist",
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "name": "session-line-written",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 14,
+            "costUsd": 0.1687648,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-10-13T19:14:57.467Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-d6phOR/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-for-the-test-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched bun test",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-edit-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Edit called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-write-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 14,
+            "costUsd": 0.1664442,
+            "judgeCostUsd": 0,
+            "durationSeconds": 24,
+            "startedAt": "2026-10-13T19:14:57.467Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-OCWLc0/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-for-the-test-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched bun test",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-edit-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Edit called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-write-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 16,
+            "costUsd": 0.1682364,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-10-13T19:14:57.467Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-rFPL7g/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "asks-for-the-test-run",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched bun test",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-edit-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Edit called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-write-to-code",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Write called 0x (expected 0..0)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "session-line-written",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Session \\d{4}-\\d{2}-\\d{2}: resumed at T2",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}

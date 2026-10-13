@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-13T19:19:59.455Z",
+  "durationSeconds": 70,
+  "costUsd": 0.9139030000000001,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "none",
+    "caseFilter": "rechecks-after-change",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.1.1",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "rechecks-after-change",
+      "dir": "evals/spec-build/rechecks-after-change",
+      "source": "mixed",
+      "promptMarkdown": "Change of course: guests should be able to save too, in the browser, up to 100 items. Update what needs updating and recheck the tasks; I will OK the list after that. We are on branch add-wishlist, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 20,
+      "graders": [
+        {
+          "name": "approved-removed",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^approved:",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "guest-claim-added",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "guest",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "recheck-line",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^Rechecked \\d{4}-\\d{2}-\\d{2} after:",
+            "flags": "m",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "waits-for-ok",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "\\bOK\\b|okay|confirm|go ahead",
+            "flags": "i",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.29284180000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 69,
+            "startedAt": "2026-10-13T19:19:59.569Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-qspLN5/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Rechecked \\d{4}-\\d{2}-\\d{2} after:",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 22,
+            "costUsd": 0.3041322,
+            "judgeCostUsd": 0,
+            "durationSeconds": 60,
+            "startedAt": "2026-10-13T19:19:59.569Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-PiZbY1/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Rechecked \\d{4}-\\d{2}-\\d{2} after:",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.316929,
+            "judgeCostUsd": 0,
+            "durationSeconds": 67,
+            "startedAt": "2026-10-13T19:19:59.569Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-nGh1Mo/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^Rechecked \\d{4}-\\d{2}-\\d{2} after:",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1
+  }
+}
