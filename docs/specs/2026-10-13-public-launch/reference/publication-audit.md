@@ -20,3 +20,13 @@ Applied while private:
 - Repository has zero Actions secrets and zero self-hosted runners.
 - Required check verified from the latest master commit: name `static`, GitHub Actions app ID 15368. The pinned checkout proposal resolves v4 to commit 11d5960a326750d5838078e36cf38b85af677262.
 - Baseline: `sh checks/run.sh` passes static checks and both strict Claude Code validators.
+
+Publication completed:
+- Original repository ID 1415641199 remains private at scrubjay-private-history, with its old PR records. Clean repository ID 1418067620 is public at the original address; anonymous requests return 200 for the public repository and 404 for the private original.
+- Sanitization removed six occurrences across the two historical blobs. Scanned 61 imported commits and 720 blobs with zero remaining client-name matches. Only sanitized master and v0-1 branches were uploaded; no original PR refs were imported.
+- Reapplied merge, publisher, token and topic settings to the replacement. Actions remained disabled during publication, and were restored after both branch rulesets and all-external-contributor fork approval were set. GitHub briefly locked rule changes while visibility transitioned; the retry succeeded.
+- master reports protected: true. Ruleset 25033497 requires a PR, one review, resolved threads, dismissed stale reviews and squash merging, and blocks deletion and force pushes. The administrator may bypass through a PR. Ruleset 25033501 independently requires the GitHub Actions static check with no bypass and an up-to-date base.
+- Ruleset 25034063 blocks updates and deletion of v-prefixed release tags. Immutable releases, Dependabot alerts and security updates, secret scanning, push protection and private vulnerability reporting are enabled.
+- Code review limits saved in GitHub: only users explicitly granted read or higher access can approve or request changes. Everyone may still comment, open issues and propose PRs.
+- The owner uploaded the existing JPEG. The bird is visibly present under Social preview; screenshot saved at /private/tmp/scrubjay-public-launch/social-preview-verified.jpg. The original in-app tab could not open its file chooser; a fresh tab supported the upload flow.
+- Plugin assets and contributor files are on v0-1 and need the owner's PR merge before they appear on master. Actual installed Codex icon display has not been tested; square dimensions, embedded image identity, relative paths and manifest versions have been verified.

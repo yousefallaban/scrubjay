@@ -11,6 +11,7 @@ area: boundaries
 | templates | `plugin/skills/docs-conventions/assets/` | practice | nothing; reached only through docs-conventions |
 | eval cases | `plugin/evals/` | pack quality | the skills they test, `checks/fixture-webshop.sh` copied in |
 | manifests | `plugin/plugin.json`, `plugin/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json` | setup | nothing |
+| presentation assets | `plugin/assets/` | setup | nothing outside the plugin; the icon embeds its image |
 | static checks | `checks/` | pack quality | the pack's files, read-only |
 | by-hand protocols | `checks/by-hand/` | pack quality | `scrubjay-example`, a separate repo |
 | this repo's memory | `docs/` | the pack's own specs | nothing in `plugin/` |

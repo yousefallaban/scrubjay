@@ -17,6 +17,10 @@ plugin/assets/icon.svg            new: square framing of the unchanged bird artw
 plugin/plugin.json                changed: logo and composerIcon paths, version stays 0.1.2
 ```
 
+## Architecture to update at ship
+- repository.md, from reference/github-settings-verified.json
+- boundaries.md: add plugin/assets as self-contained presentation files
+
 ## Rollout
 Yousef approved the plan and requested client-name removal in this session. Preserve the original repository privately under scrubjay-private-history, including its old PR records. Import sanitized branch history into a new private repository at the original address. Disable Actions before publication; then configure public fork approval, both rulesets, private vulnerability reporting and secret scanning before restoring Actions. Upload the existing preview. Source changes are proposed in a PR and need the owner's merge before the icon and CODEOWNERS apply on master.
 

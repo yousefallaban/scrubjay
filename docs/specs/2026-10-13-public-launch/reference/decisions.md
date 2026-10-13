@@ -14,3 +14,13 @@ GitHub gets the owner's Downloads JPEG. Codex gets a square SVG frame embedding 
 The owner's explicit version request overrides the usual version-bump rule for this change.
 - Why: this launch presents the current 0.1.2 release.
 - Revisit when: the next release changes the plugin.
+
+**D4. Preserve the original privately and publish sanitized history at the original address.**
+The owner requested removal of the client name after the history audit. The original repository remains private as scrubjay-private-history, retaining the old PR records. A new repository at the original address receives sanitized master and v0-1 branches, without the original PR refs.
+- Why: deleting the current text leaves old commits readable; rewriting normal branches does not remove GitHub's retained old PR material.
+- Revisit when: the owner needs the private development record.
+
+**D5. Disable Actions while configuring public-only protections.**
+The clean repository is configured while private with Actions disabled. After publication, fork approval and branch rules are enabled and verified before Actions are restored. All repository settings are applied to the new repository again.
+- Why: settings follow the private original's rename, and public fork approval is unavailable while private.
+- Revisit when: GitHub supports applying the public policy before publication.

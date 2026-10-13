@@ -1,0 +1,94 @@
+{
+  "repository": {
+    "id": 1418067620,
+    "full_name": "yousefallaban/scrubjay",
+    "private": false,
+    "visibility": "public",
+    "default_branch": "master",
+    "topics": [
+      "agent-skills",
+      "ai-agents",
+      "claude-code",
+      "codex",
+      "developer-tools",
+      "github-copilot",
+      "project-memory",
+      "spec-driven-development"
+    ],
+    "allow_squash_merge": true,
+    "allow_merge_commit": false,
+    "allow_rebase_merge": false,
+    "allow_auto_merge": false,
+    "delete_branch_on_merge": true,
+    "security_and_analysis": {
+      "secret_scanning": {
+        "status": "enabled"
+      },
+      "secret_scanning_push_protection": {
+        "status": "enabled"
+      },
+      "dependabot_security_updates": {
+        "status": "enabled"
+      },
+      "secret_scanning_non_provider_patterns": {
+        "status": "disabled"
+      },
+      "secret_scanning_validity_checks": {
+        "status": "disabled"
+      }
+    }
+  },
+  "rulesets": [
+    {
+      "id": 25033497,
+      "name": "Owner review and protected history",
+      "target": "branch",
+      "enforcement": "active"
+    },
+    {
+      "id": 25034063,
+      "name": "Protect release tags",
+      "target": "tag",
+      "enforcement": "active"
+    },
+    {
+      "id": 25033501,
+      "name": "Required static checks",
+      "target": "branch",
+      "enforcement": "active"
+    }
+  ],
+  "master": {
+    "name": "master",
+    "protected": true
+  },
+  "workflow": {
+    "default_workflow_permissions": "read",
+    "can_approve_pull_request_reviews": false
+  },
+  "actions": {
+    "enabled": true,
+    "allowed_actions": "selected",
+    "selected_actions_url": "https://api.github.com/repositories/1418067620/actions/permissions/selected-actions",
+    "sha_pinning_required": false
+  },
+  "selected_actions": {
+    "github_owned_allowed": true,
+    "patterns_allowed": [],
+    "verified_allowed": false
+  },
+  "fork_approval": {
+    "approval_policy": "all_external_contributors"
+  },
+  "private_reporting": {
+    "enabled": true
+  },
+  "immutable_releases": {
+    "enabled": true,
+    "enforced_by_owner": false
+  },
+  "automated_security_fixes": {
+    "enabled": true,
+    "paused": false
+  }
+}
