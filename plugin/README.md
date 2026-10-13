@@ -44,6 +44,10 @@ Copilot reads the same manifest as Codex, the [Agent Plugins](https://agent-plug
 
 **Any other agent that supports [Agent Skills](https://agentskills.io)**: copy the eight folders under `skills/` into the agent's skills directory and re-copy them by hand on an update. Copilot in VS Code reads `.github/skills/` in the repo or `~/.copilot/skills/`; Cursor reads `.cursor/skills/`; Codex and VS Code both read `.agents/skills/`.
 
+**Per repo instead of per machine**
+
+Claude Code: add `--scope project` to both commands. They write `extraKnownMarketplaces` and `enabledPlugins` into `.claude/settings.json`; commit it and everyone who opens the repo is offered the plugin. `--scope local` does the same in `.claude/settings.local.json`, for you alone. Codex and Copilot CLI install plugins per machine only; for a repo-level setup there, commit the eight folders from `skills/` into `.agents/skills/` (Codex and VS Code) or `.github/skills/` (Copilot), which drops the `scrubjay:` prefix and makes updates a re-copy.
+
 **From a private copy**
 
 Both agents use the git credentials already on your machine and never prompt. On GitHub, run `gh auth login` and then `gh auth setup-git` once, or load an SSH key in `ssh-agent`. A `GITHUB_TOKEN` variable alone is not enough; it has to go through a credential helper. To install a branch rather than the default, append `#<branch>` in Claude Code and `--ref <branch>` in Codex.
