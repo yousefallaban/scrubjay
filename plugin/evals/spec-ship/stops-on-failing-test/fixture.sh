@@ -329,7 +329,7 @@ cat > AGENTS.md <<'FILE'
   or plan.md, then recheck every task.
 - Write specs, plans, tasks, glossary terms and decisions into docs/,
   never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/.
-- Before opening a pull request, ship the spec (spec-ship); the PR title starts with the slug.
+- Before opening a pull request, ship the spec (spec-ship), which writes the PR title and description.
 <!-- project-memory:end -->
 FILE
 cat > CLAUDE.md <<'FILE'

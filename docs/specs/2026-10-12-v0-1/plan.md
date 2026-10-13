@@ -30,6 +30,10 @@ plugin/skills/spec-ship/SKILL.md                       new
 plugin/.claude-plugin/plugin.json                      new: Claude Code manifest; name, version, description, author, kept equal to plugin.json by the check
 plugin/evals/<skill>/<case>/                           new: prompt, graders, a scaffold script where the case needs a repo state; the baseline scenario per skill
 checks/by-hand/<claim>.md                              new: the protocol and transcripts for answers-from-docs, resumes and session-line
+checks/by-hand/dogfood.md                              new: the end-to-end run of the wishlist feature on both agents, with its findings
+checks/by-hand/transcripts/*.jsonl                     new: the kept transcripts, scrubbed of this machine's other projects and paths
+checks/fixture-webshop.sh                              new: the base fixture the cases copy, the example webshop with its docs initialized
+plugin/evals/README.md                                 new: how the cases are laid out and run
 checks/check.py                                        new: the static checks, Python 3 standard library only
 checks/run.sh                                          new: runs check.py, then claude plugin validate --strict when the CLI exists
 .github/workflows/checks.yml                           new: runs checks/run.sh on every pull request
