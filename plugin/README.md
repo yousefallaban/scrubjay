@@ -52,7 +52,11 @@ Claude Code: add `--scope project` to both commands. They write `extraKnownMarke
 
 Both agents use the git credentials already on your machine and never prompt. On GitHub, run `gh auth login` and then `gh auth setup-git` once, or load an SSH key in `ssh-agent`. A `GITHUB_TOKEN` variable alone is not enough; it has to go through a credential helper. To install a branch rather than the default, append `#<branch>` in Claude Code and `--ref <branch>` in Codex.
 
-Catches: in Claude Code, auto-update is off per marketplace until you turn it on under Marketplaces in `/plugin`; without it, `/plugin marketplace update yousefallaban` fetches changes. Claude Code reads a `CLAUDE.md` anywhere above your repo in place of `AGENTS.md`, which is why docs-init writes a one-line `CLAUDE.md` import.
+Catches: Claude Code reads a `CLAUDE.md` anywhere above your repo in place of `AGENTS.md`, which is why docs-init writes a one-line `CLAUDE.md` import.
+
+**Getting updates**
+
+A change to the pack reaches Claude Code only when the `version` in its manifests goes up: `claude plugin update scrubjay@yousefallaban` compares versions, not commits, and reports "already at the latest version" otherwise. So every released change bumps the version, and a user runs `claude plugin marketplace update yousefallaban` then `claude plugin update scrubjay@yousefallaban` and restarts, or turns auto-update on for the marketplace under Marketplaces in `/plugin`. Codex refetches on `codex plugin marketplace upgrade` with no version check. Copilot CLI uses `copilot plugin update scrubjay`. A copied `skills/` folder is re-copied by hand.
 
 ## The commands
 
@@ -95,7 +99,7 @@ Every file has one job. A claim is one testable sentence with an ID and an examp
 
 ## Testing a change to the pack
 
-Static checks: `sh checks/run.sh` from the repo root, no agent needed; CI runs the same on every pull request. Eval cases: `claude plugin eval . --scaffold --allow-tools Write Edit --trust-plugin` from this folder, see `evals/README.md`. Before a release, every case passes on Claude Code and each command is run once by hand on Codex.
+Bump `version` in `plugin.json` and `.claude-plugin/plugin.json` together, or Claude Code users never see the change. Static checks: `sh checks/run.sh` from the repo root, no agent needed; CI runs the same on every pull request. Eval cases: `claude plugin eval . --scaffold --allow-tools Write Edit --trust-plugin` from this folder, see `evals/README.md`. Before a release, every case passes on Claude Code and each command is run once by hand on Codex.
 
 ## Credits and license
 
