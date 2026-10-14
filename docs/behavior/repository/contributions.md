@@ -9,3 +9,5 @@ capability: repository/contributions
   e.g. a fork pull request -> its workflow waits for approval
 - The default branch rejects force pushes and deletion {#protected-history}
   e.g. a force push to master -> GitHub rejects it
+- The repository schedules weekly GitHub Actions version checks through Dependabot, with updates proposed as pull requests {#action-version-updates}
+  e.g. the configuration is on the default branch and an action is outdated -> Dependabot can open an update PR for review
