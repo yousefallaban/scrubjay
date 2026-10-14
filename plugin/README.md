@@ -110,6 +110,8 @@ Every file has one job. A claim is one testable sentence with an ID and an examp
 
 Bump `version` in `plugin.json` and `.claude-plugin/plugin.json` together, or Claude Code users never see the change. Static checks: `sh checks/run.sh` from the repo root, no agent needed; CI runs the same on every pull request. Eval cases: `claude plugin eval . --scaffold --allow-tools Write Edit --trust-plugin` from this folder, see `evals/README.md`. Before a release, every case passes on Claude Code and each command is run once by hand on Codex.
 
+Use Claude Code 2.1.281 or newer for strict validation of the directory icon and documentation/support fields. Older validators warn about those fields; Claude Code ignores them at runtime. See the [manifest reference](https://code.claude.com/docs/en/plugins-reference#directory-listing-fields).
+
 ## Credits and license
 
 The mechanics we learned from other packs are in [CREDITS.md](CREDITS.md). MIT, see [LICENSE](LICENSE).

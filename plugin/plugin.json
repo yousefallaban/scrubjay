@@ -3,19 +3,34 @@
   "name": "scrubjay",
   "version": "0.1.2",
   "description": "A spec workflow and project memory for coding agents, kept in your repo's docs/",
+  "author": {
+    "name": "Yousef Allaban",
+    "url": "https://github.com/yousefallaban"
+  },
+  "homepage": "https://github.com/yousefallaban/scrubjay",
   "repository": "https://github.com/yousefallaban/scrubjay",
   "license": "MIT",
+  "keywords": ["agent-skills", "spec-driven-development", "project-memory"],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "scrubjay",
-        "shortDescription": "Spec workflow and project memory for coding agents",
+        "shortDescription": "Specs and project memory",
+        "longDescription": "A spec workflow and project memory for coding agents, stored in your repository's docs/ folder. Set up project memory, turn a feature request into a spec, approve a plan, build task by task, and prepare a reviewed pull request. Resume work from recorded tasks and decisions. The skills guide the agent; they do not enforce approvals, replace tests, or guarantee safe changes.",
         "developerName": "Yousef Allaban",
         "category": "Productivity",
+        "websiteURL": "https://github.com/yousefallaban/scrubjay",
+        "supportURL": "https://github.com/yousefallaban/scrubjay/issues",
+        "defaultPrompt": [
+          "Set up project memory in this repository.",
+          "Help me turn a feature request into a spec and plan.",
+          "Resume the active spec from its next unfinished task."
+        ],
         "brandColor": "#2C72B9",
         "logo": "./assets/icon.svg",
         "composerIcon": "./assets/icon.svg"
-      }
+      },
+      "onboardingSkill": "./skills/docs-init/SKILL.md"
     }
   }
 }

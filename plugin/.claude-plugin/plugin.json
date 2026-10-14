@@ -3,8 +3,14 @@
   "version": "0.1.2",
   "description": "A spec workflow and project memory for coding agents, kept in your repo's docs/",
   "author": {
-    "name": "Yousef Allaban"
+    "name": "Yousef Allaban",
+    "url": "https://github.com/yousefallaban"
   },
+  "homepage": "https://github.com/yousefallaban/scrubjay",
   "repository": "https://github.com/yousefallaban/scrubjay",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["agent-skills", "spec-driven-development", "project-memory"],
+  "icon": "./assets/icon.svg",
+  "documentationUrl": "https://github.com/yousefallaban/scrubjay/blob/master/plugin/README.md",
+  "supportUrl": "https://github.com/yousefallaban/scrubjay/issues"
 }
