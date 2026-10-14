@@ -7,7 +7,7 @@ capability: repository/presentation
   e.g. an unauthenticated visitor -> the repository is readable
 - Shared GitHub links use the owner's existing preview image {#social-preview}
   e.g. the repository link is shared -> the blue bird image appears
-- Codex loads the bird artwork from the plugin's own assets, and both manifests retain version 0.1.2 {#plugin-artwork}
+- Codex loads the bird artwork from the plugin's own assets {#plugin-artwork}
   e.g. the plugin is loaded -> its interface has a logo and composer icon
 - The plugin metadata provides a concise subtitle, a detailed description, and project and support links {#plugin-listing}
   e.g. a listing consumer reads the package -> the subtitle fits 30 characters and the description explains the workflow and its limits
