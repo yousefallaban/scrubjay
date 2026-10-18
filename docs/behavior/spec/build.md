@@ -19,15 +19,19 @@ capability: spec/build
   e.g. a fix needs a shared helper changed -> "This file isn't in the plan. Add it?"
 - When the user changes course mid-spec, the agent updates the file the change belongs to: `spec.md` for why or what, `plan.md` for how, `reference/` for details {#updates-owner-file}
   e.g. "guests should be able to save too" -> a new claim in `spec.md`
-- The agent rechecks every task, marks each keep, redo, new or drop with a one-line reason, and records one recheck line in `tasks.md` {#rechecks-tasks}
-  e.g. `Rechecked 2026-10-14 after: guests can save. T2 redo, T4 new.`
+- After a change to `spec.md` or to plan.md's Files, the agent rechecks every task, shows each as keep, redo, new or drop with a one-line reason, and records one recheck line in `tasks.md` that names only the tasks whose status changed {#rechecks-tasks}
+  e.g. `Rechecked 2026-10-14 after: guests can save. T2 redo, T4 new.`, with T1 and T3 kept, said in the session and not written
 - No affected task is built until the user OKs the recheck {#waits-for-recheck-ok}
   e.g. the user drops T4 -> the list is updated, then the build continues
 - When Why or What changes changes, the agent removes the `approved` line, and affected tasks wait until the owner's new go writes it back {#renews-go}
   e.g. the guest claim added -> `approved` is removed; Sanne's new go restores it, and the build continues
-- When a change contradicts Not doing or grows the scope, the agent proposes a follow-up spec instead {#follow-up-spec}
-  e.g. "also share wishlists" while sharing is under Not doing -> "Start a separate spec for sharing?"
+- When a change contradicts Not doing or grows the scope, the agent proposes a follow-up spec instead, and a change the user defers becomes one line in `reference/follow-ups.md` {#follow-up-spec}
+  e.g. "also share wishlists" while sharing is under Not doing -> "Start a separate spec for sharing?"; "later" -> `- Share a wishlist by link, raised while building T2`
 - spec-build runs the project's test command before it touches the next task, and a red start is reported before any file the task touches changes {#starts-with-a-test-run}
   e.g. a session that cannot run commands says "continue" -> "Run `bun test` and tell me the result" comes before any edit to `src/` or `test/`
 - When a session stops before its task is ticked, spec-build writes one handoff line under the task: what exists, what is red or unfinished, and the next step; the line goes when the task is ticked {#handoff}
   e.g. `- handoff: done: failing test for no-duplicates; red: save not written; next: write save in src/wishlist.ts`
+- A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line and no recheck line, and a size or value it brings goes to `reference/`, never into plan.md's Approach {#polish}
+  e.g. "footer padding 12px" with T2 ticked -> T2 is unticked under `- redo: footer padding 12px, in reference/layout.md`, and nothing is added above the tasks or to Approach
+- A change of course that adds to what a claim says writes a new claim or replaces the claim, so each claim stays one testable sentence with one example {#one-sentence-claims}
+  e.g. "also show how many items are saved" arrives while `lists-saved` exists -> a new claim with its own ID, not a longer `lists-saved`

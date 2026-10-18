@@ -4,4 +4,4 @@ Report suspected vulnerabilities privately from the repository's Security tab us
 
 Do not include credentials, client material or real customer data. Ordinary bugs and feature requests belong in Issues.
 
-The current maintained version is 0.1.3.
+The current maintained version is 0.2.0.

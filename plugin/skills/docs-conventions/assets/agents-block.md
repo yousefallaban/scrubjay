@@ -6,8 +6,9 @@
 - Answer what the product does from {{docs-path}}/behavior/; open the code only to change it.
 - Every code change belongs to a spec in {{docs-path}}/specs/. None yet: start one (spec-start).
 - One branch per spec, named after its slug. The active spec is the one matching the current branch.
-- Every session adds its line to tasks.md. If something changes mid-way, update spec.md
-  or plan.md, then recheck every task.
+- Every session adds its line to tasks.md. If spec.md or the plan's Files change mid-way, update
+  them, then recheck every task; a change that touches no claim and no file in the plan reopens
+  one task with a redo line instead.
 - Write specs, plans, tasks, glossary terms and decisions into {{docs-path}}/,
   never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/{{extra-never-write}}.
 - Before opening a pull request, ship the spec (spec-ship), which writes the PR title and description.

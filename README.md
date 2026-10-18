@@ -101,7 +101,7 @@ After installing the pack, open your project in your coding agent. The steps bel
 
 - **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec. Their findings go into the pull request.
 
-- **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks. Changed requirements need renewed approval; extra scope gets a separate spec.
+- **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks; a small polish reopens one task instead. Changed requirements need renewed approval; extra scope gets a separate spec, and anything deferred is settled when the spec ships.
 
 - **Use it with your existing skills.** The pack is markdown skills and templates, with no service to run. Keep your language, testing and code-quality skills alongside it.
 

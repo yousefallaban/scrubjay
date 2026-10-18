@@ -15,3 +15,5 @@ capability: practice/docs-conventions
   e.g. a template gains a section -> shipped specs are never rewritten
 - Every file the pack writes is in plain words: no opener that announces what follows, no hedge or intensifier, no jargon, no em dash, no rhetorical setup, active voice, one idea per sentence, specifics over adjectives {#plain-writing}
   e.g. a Why that opens "In today's fast-paced world, it's worth noting that" -> rewritten as the problem, who has it and what it costs, in two to five lines
+- A reference file describes the current state of its subject: a new run, draft or measurement replaces the paragraph it supersedes, and only `reference/decisions.md` is appended {#reference-is-state}
+  e.g. a second browser-check run -> the results paragraph is rewritten, and the file holds one set of results and its limits
