@@ -1,7 +1,7 @@
 ---
 id: 2026-10-19-claim-evidence
 kind: feature
-status: building
+status: shipped
 summary: "The ship review checks that each claim's test proves it, a supporting test needs no claim label, and a session says so when the code disagrees with a claim"
 request: "A second reviewer's findings, relayed by Yousef on 2026-10-19: a claim ID in a test name is not evidence unless the assertions exercise the claim; tests of internal helpers should not need a forced label; doubt, contradictions and questions about runtime behavior need an explicit path instead of a confident answer from the docs"
 approved: {by: yousef, via: in session}
