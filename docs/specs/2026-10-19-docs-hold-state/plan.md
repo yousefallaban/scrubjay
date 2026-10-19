@@ -2,7 +2,7 @@
 spec: 2026-10-19-docs-hold-state
 ---
 ## Approach
-Seven claims, each proven by an eval case or the by-hand block check written before its rule. spec-build loses the session-line step and the recheck line, gains a tick step that removes the task's working lines and commits the task's files with the task line as the message, and says a redo line goes at the tick. The tasks template and reference drop the session and recheck lines and describe the tick. The block loses "Every session adds its line to tasks.md" and says the recheck rewrites the tasks in place. spec-ship's Outcome drops the two counts and the question about re-explained sessions. docs-conventions states the current-state rule for the spec folder. This repo's AGENTS.md, both READMEs and the by-hand protocol follow. The version goes to 0.3.0 (D4), and this spec's own tasks.md is written in the new shape (D5).
+Seven claims, each proven by an eval case or the by-hand block check written before its rule. spec-build loses the session-line step and the recheck line, gains a tick step that removes the task's working lines and commits the task's files with the task line as the message, and says a redo line goes at the tick. The tasks template and reference drop the session and recheck lines and describe the tick. The block loses "Every session adds its line to tasks.md" and says the recheck rewrites the tasks in place. spec-ship's Outcome drops the two counts and the question about re-explained sessions. docs-conventions states the current-state rule for the spec folder. This repo's AGENTS.md and the by-hand protocol follow; the READMEs never named the session line, so they stand. The version goes to 0.3.0 (D4), and this spec's own tasks.md is written in the new shape (D5).
 
 ## Files
 ```
@@ -23,7 +23,6 @@ plugin/evals/spec-ship/ships-and-updates-behavior/       changed: the Outcome gr
 checks/by-hand/resumes-and-session-line.md               changed: becomes the resumes check; reruns on both agents under the new block
 checks/by-hand/transcripts/                              changed: the transcripts of those runs
 AGENTS.md                                                changed: the session and changing-course lines of How to work
-README.md, plugin/README.md                              changed: the lines on resuming and on plans changing mid-build
 plugin/plugin.json, plugin/.claude-plugin/plugin.json    changed: version 0.3.0
 ```
 

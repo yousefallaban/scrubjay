@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-19T14:10:38.670Z",
+  "durationSeconds": 63,
+  "costUsd": 0.806425,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "with-without",
+    "caseFilter": "commits-at-tick",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.3.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "commits-at-tick",
+      "dir": "evals/spec-build/commits-at-tick",
+      "source": "mixed",
+      "promptMarkdown": "I'm back on this. I ran `bun test` after your last session: 17 pass, 0 fail, the three wishlist tests included. Tick T2 and stop there; T3 is for tomorrow. We are on branch add-wishlist, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 25,
+      "graders": [
+        {
+          "name": "commit-stated",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "trace",
+            "pattern": "git commit[\\s\\S]{0,400}?T2 [Ss]ave and list",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "t2-ticked",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^- \\[x\\] T2 Save and list",
+            "flags": "m",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 12,
+            "costUsd": 0.171251,
+            "judgeCostUsd": 0,
+            "durationSeconds": 25,
+            "startedAt": "2026-10-19T14:10:38.712Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-vSZxNL/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched git commit[\\s\\S]{0,400}?T2 [Ss]ave and list",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 13,
+            "costUsd": 0.176439,
+            "judgeCostUsd": 0,
+            "durationSeconds": 28,
+            "startedAt": "2026-10-19T14:10:38.712Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-FN7T7u/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched git commit[\\s\\S]{0,400}?T2 [Ss]ave and list",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 12,
+            "costUsd": 0.1727674,
+            "judgeCostUsd": 0,
+            "durationSeconds": 28,
+            "startedAt": "2026-10-19T14:10:38.712Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-uHm4qv/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched git commit[\\s\\S]{0,400}?T2 [Ss]ave and list",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ],
+        "without": [
+          {
+            "score": 0.5,
+            "passed": false,
+            "turns": 8,
+            "costUsd": 0.112518,
+            "judgeCostUsd": 0,
+            "durationSeconds": 38,
+            "startedAt": "2026-10-19T14:11:03.661Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-q0FgOx/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.5,
+            "passed": false,
+            "turns": 5,
+            "costUsd": 0.08671119999999999,
+            "judgeCostUsd": 0,
+            "durationSeconds": 19,
+            "startedAt": "2026-10-19T14:11:06.648Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-GritZV/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.5,
+            "passed": false,
+            "turns": 6,
+            "costUsd": 0.08673840000000001,
+            "judgeCostUsd": 0,
+            "durationSeconds": 21,
+            "startedAt": "2026-10-19T14:11:06.648Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-KTrOWS/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "commit-stated",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern not found in trace",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "t2-ticked",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched ^- \\[x\\] T2 Save and list",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1,
+        "scoreWithout": 0.5,
+        "passRateWithout": 0,
+        "delta": 0.5
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1,
+    "meanDelta": 0.5
+  }
+}
