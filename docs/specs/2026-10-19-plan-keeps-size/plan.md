@@ -18,6 +18,8 @@ plugin/evals/spec-build/reopens-a-ticked-task/           new: T2 ticked, a reque
 plugin/evals/spec-build/writes-inside-scope/             new: the plan lists src/wishlist/ as a folder and T2 needs a new file under it; graded on the file written and the plan unchanged
 plugin/evals/spec-build/asks-before-out-of-plan-file/    changed: the fixture's plan uses the Scope heading and the grader reads the new question
 plugin/evals/spec-plan/writes-plan-and-tasks/            changed: the plan-shape grader expects Scope
+plugin/evals/docs-conventions/drops-empty-sections/      changed: the required-sections grader expects Scope
+plugin/evals/spec-build/redoes-a-polish-request/         changed: the Approach grader reads the Scope heading
 plugin/evals/*/*/fixture.sh, checks/fixture-webshop.sh   changed: the Files heading becomes Scope in every fixture plan
 AGENTS.md                                                changed: the changing-course line names the plan's Scope
 plugin/plugin.json, plugin/.claude-plugin/plugin.json    changed: version 0.4.0
