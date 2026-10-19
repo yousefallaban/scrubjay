@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.296",
+  "startedAt": "2026-10-19T14:21:00.215Z",
+  "durationSeconds": 114,
+  "costUsd": 1.5185618,
+  "partial": false,
+  "suite": {
+    "root": "/Users/yousefallaban/MyProjects/scrubjay/plugin",
+    "ablation": "with-without",
+    "caseFilter": "rechecks-after-change",
+    "threshold": 1,
+    "concurrency": 3,
+    "plugins": [
+      {
+        "name": "scrubjay",
+        "version": "0.3.0",
+        "path": "/Users/yousefallaban/MyProjects/scrubjay/plugin"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "rechecks-after-change",
+      "dir": "evals/spec-build/rechecks-after-change",
+      "source": "mixed",
+      "promptMarkdown": "Change of course: guests should be able to save too, in the browser, up to 100 items. Update what needs updating and recheck the tasks; I will OK the list after that. We are on branch add-wishlist, and this session cannot run commands, so say what you would run instead of running it.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 20,
+      "graders": [
+        {
+          "name": "approved-removed",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "^approved:",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "fourth-claim",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+            "flags": "",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "guest-claim-added",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/spec.md"
+            },
+            "pattern": "guest",
+            "flags": "i",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "list-rewritten",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "(^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+            "flags": "mi",
+            "match": "contains"
+          }
+        },
+        {
+          "name": "no-recheck-line",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": {
+              "source": "file",
+              "path": "docs/specs/2026-10-13-add-wishlist/tasks.md"
+            },
+            "pattern": "^Rechecked",
+            "flags": "m",
+            "match": "not_contains"
+          }
+        },
+        {
+          "name": "skill-fired",
+          "type": "tool_used",
+          "weight": 1,
+          "config": {
+            "tool": "Skill",
+            "input_match": "\"skill\"\\s*:\\s*\"(?:[\\w-]+:)?spec-build\""
+          }
+        },
+        {
+          "name": "waits-for-ok",
+          "type": "regex",
+          "weight": 1,
+          "config": {
+            "target": "last_message",
+            "pattern": "\\bOK\\b|okay|confirm|go ahead",
+            "flags": "i",
+            "match": "contains"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 19,
+            "costUsd": 0.2808802,
+            "judgeCostUsd": 0,
+            "durationSeconds": 54,
+            "startedAt": "2026-10-19T14:21:00.270Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-iS4qYM/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 23,
+            "costUsd": 0.30121600000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 60,
+            "startedAt": "2026-10-19T14:21:00.270Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0nVrCR/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 1,
+            "passed": true,
+            "turns": 21,
+            "costUsd": 0.27934600000000004,
+            "judgeCostUsd": 0,
+            "durationSeconds": 57,
+            "startedAt": "2026-10-19T14:21:00.270Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0SMWQU/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "skill-fired",
+                "passed": true,
+                "weight": 1,
+                "explanation": "Skill called 1x (expected 1..∞)",
+                "withOnly": true,
+                "scored": false
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ],
+        "without": [
+          {
+            "score": 0.8333333333333334,
+            "passed": false,
+            "turns": 18,
+            "costUsd": 0.22454079999999998,
+            "judgeCostUsd": 0,
+            "durationSeconds": 59,
+            "startedAt": "2026-10-19T14:21:54.639Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-15FrXf/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern found (expected absent)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.8333333333333334,
+            "passed": false,
+            "turns": 19,
+            "costUsd": 0.22038380000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 56,
+            "startedAt": "2026-10-19T14:21:57.445Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-0ZicAG/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern found (expected absent)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          },
+          {
+            "score": 0.8333333333333334,
+            "passed": false,
+            "turns": 18,
+            "costUsd": 0.21219500000000002,
+            "judgeCostUsd": 0,
+            "durationSeconds": 47,
+            "startedAt": "2026-10-19T14:22:00.127Z",
+            "error": null,
+            "tracePath": "/private/tmp/e-dJCCV9/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "approved-removed",
+                "passed": false,
+                "weight": 1,
+                "explanation": "pattern found (expected absent)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "fourth-claim",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\{#[\\s\\S]*\\{#[\\s\\S]*\\{#[\\s\\S]*\\{#",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "guest-claim-added",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched guest",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "list-rewritten",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched (^- \\[ \\] T\\d+ [^\\n]*guest|^\\s+- redo:[^\\n]*guest)",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "no-recheck-line",
+                "passed": true,
+                "weight": 1,
+                "explanation": "pattern absent as expected",
+                "withOnly": false,
+                "scored": true
+              },
+              {
+                "name": "waits-for-ok",
+                "passed": true,
+                "weight": 1,
+                "explanation": "matched \\bOK\\b|okay|confirm|go ahead",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 1,
+        "passRate": 1,
+        "scoreWithout": 0.8333333333333334,
+        "passRateWithout": 0,
+        "delta": 0.16666666666666663
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 1,
+    "overallScore": 1,
+    "overallPassRate": 1,
+    "meanDelta": 0.16666666666666663
+  }
+}
