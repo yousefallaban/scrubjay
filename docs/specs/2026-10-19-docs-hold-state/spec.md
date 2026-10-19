@@ -31,7 +31,7 @@ A 13-task spec built over 19 sessions ended with 19 Session lines and 17 Recheck
   e.g. a detour through a Set while T2 is open -> one note line under T2, and nothing under the ticked T1
 - A new session on the spec's branch reads `tasks.md` first and reports the next task and any notes, without the user re-explaining {#resumes}
   was: A new session on the spec's branch reads `tasks.md` first and reports the next task and any notes, without the user re-explaining
-  e.g. a colleague checks out `add-wishlist` -> "T3 is next; under it: handoff: done: export added; red: one test imports the old path; next: fix the import"
+  e.g. the next session on `add-wishlist` opens with "continue" -> "T3 is next; under it: handoff: done: export added; red: one test imports the old path; next: fix the import"
 - A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line, and a size or value it brings goes to `reference/`, never into plan.md's Approach {#polish}
   was: A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line and no recheck line, and a size or value it brings goes to `reference/`, never into plan.md's Approach
   e.g. "make the icon bigger" after T2 is ticked -> T2 is unticked with `redo: icon size`, the size goes to `reference/layout.md`, and the redo line goes at the tick
