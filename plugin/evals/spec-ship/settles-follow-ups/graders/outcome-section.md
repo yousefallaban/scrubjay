@@ -1,5 +1,5 @@
 ---
 type: regex
 target: trace
-pattern: '## Outcome'
+pattern: '## Outcome\s*\n(?![<\s])[^\n]{20,}'
 ---

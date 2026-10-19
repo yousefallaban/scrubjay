@@ -18,6 +18,10 @@ plugin/evals/spec-build/rechecks-after-change/           changed: graders requir
 plugin/evals/spec-build/resumes-from-tasks/              changed: the fixture has no session lines and no grader expects one
 plugin/evals/spec-build/asks-for-the-test-run-first/     changed: the session-line grader goes
 plugin/evals/spec-build/writes-a-handoff/                changed: the session-line grader goes
+plugin/evals/spec-build/redoes-a-polish-request/         changed: the fixture loses its session lines
+plugin/evals/spec-ship/*/prompt.md, checks/fixture-webshop.sh and every fixture.sh   changed: the 0.3.0 block, no session lines, no note under a ticked task, no sessions sentence in the ship prompts
+plugin/skills/spec-start/SKILL.md                        changed: one red flag quoted the block's session line
+checks/by-hand/dogfood.md                                changed: the protocol no longer expects session lines
 plugin/evals/spec-ship/settles-follow-ups/               changed: the Outcome grader expects no session count
 plugin/evals/spec-ship/ships-and-updates-behavior/       changed: the Outcome grader expects no session count
 checks/by-hand/resumes-and-session-line.md               changed: becomes the resumes check; reruns on both agents under the new block

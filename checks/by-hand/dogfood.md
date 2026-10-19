@@ -20,7 +20,7 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 ## Passes when
 
 - The run reaches a PR title and description with every section filled, `status: shipped` in the spec, and `docs/behavior/wishlist/` holding the claims word for word.
-- Step 5's first session names the next task and the note without being told, and `tasks.md` gains a session line per session.
+- Step 5's first session names the next task and the note without being told, and `tasks.md` gains nothing above the tasks; each tick is a commit.
 - The shipped claims match what was asked in step 3.
 
 ## Record

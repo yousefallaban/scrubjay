@@ -1,6 +1,6 @@
 Purpose: rules for `specs/<id>/tasks.md`. Template: `assets/tasks.md`.
 
-Frontmatter: `spec`, the spec id. Nothing above the tasks: no session lines, no recheck lines. The file describes the plan as it stands now; git holds every earlier state, since each tick and each OK'd recheck is a commit.
+Frontmatter: `spec`, the spec id. Nothing above the tasks: no session lines, no recheck lines. The file describes the plan as it stands; git holds every earlier state, since each tick and each OK'd recheck is a commit.
 
 Tasks: `- [ ] T<n> <imperative task> -> <claim IDs, or "check: <command or observable result>">`. Each task fits in one session. Tasks cover the build only; shipping is spec-ship's and is never a task. Numbers are never reused. A claim is written as `capability#id` when its bare ID is not unique in the spec. A task is ticked only when the claims it names are proven, and the tick commits the task's files with the task line as the message.
 

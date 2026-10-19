@@ -1,10 +1,9 @@
 ---
 id: 2026-10-19-docs-hold-state
 kind: feature
-status: draft
+status: building
 summary: "A spec folder file describes the current state and is rewritten in place: no session lines, no recheck lines, no lines under a ticked task, and a commit at every tick so git holds the history"
 request: "Yousef, on 2026-10-19, after a cleanup pass left 19 session lines in his client spec's tasks.md: as we have versioning, the doc should read as if written new, not appended to; keep the latest state"
-approved: {by: yousef, via: in session}
 ---
 # Make every spec file describe the current state
 
@@ -18,16 +17,21 @@ A 13-task spec built over 19 sessions ended with 19 Session lines and 17 Recheck
   e.g. a task reopened and finished again -> tasks.md shows the task ticked, and the earlier state is in the git log, not in the file
 
 ### Add · spec/build
-- spec-build commits the files a task touched when it ticks the task, with the task line as the message, and commits an OK'd recheck as one commit {#commits-at-tick}
-  e.g. T2 ticked -> `feat: T2 save and list, with duplicates kept to one entry [saves-item, no-duplicates, lists-saved]` on the branch, and a hand-made change outside the plan's Files stays uncommitted
+- Every line under a task goes at the tick, so a ticked task carries nothing {#cleared-at-tick}
+  e.g. T2 ticked after a detour through a Set -> the note and the handoff line are gone, and the choice, if lasting, is in `reference/decisions.md`
+- spec-build commits the files a task touched when it ticks the task, with the task line as the message {#commits-at-tick}
+  e.g. T2 ticked -> `feat: T2 save and list, with duplicates kept to one entry [saves-item, no-duplicates, lists-saved]` on the branch, holding the task's files and nothing else
 
 ### Change · spec/build
 - After a change to `spec.md` or to plan.md's Files, the agent rechecks every task, shows each as keep, redo, new or drop with a one-line reason, and rewrites the task list in place without a recheck line {#rechecks-tasks}
   was: After a change to `spec.md` or to plan.md's Files, the agent rechecks every task, shows each as keep, redo, new or drop with a one-line reason, and records one recheck line in `tasks.md` that names only the tasks whose status changed
   e.g. a fourth claim is added -> the session shows T1 to T3 as keep and T4 as new, and tasks.md gains T4 and nothing else
-- What blocked a task, what was tried and dropped, or what a redo changed is kept as at most two lines under that task while it is open, and the lines go at the tick {#notes}
+- What blocked a task, or what was tried and dropped, is kept as a note of at most two lines under that task while it is open {#notes}
   was: What blocked a task, or what was tried and dropped, is kept as a note of at most two lines under that task
-  e.g. T2 ticked after a detour through a Set -> the Set note is gone, and the choice, if lasting, is in `reference/decisions.md`
+  e.g. a detour through a Set while T2 is open -> one note line under T2, and nothing under the ticked T1
+- A new session on the spec's branch reads `tasks.md` first and reports the next task and any notes, without the user re-explaining {#resumes}
+  was: A new session on the spec's branch reads `tasks.md` first and reports the next task and any notes, without the user re-explaining
+  e.g. a colleague checks out `add-wishlist` -> "T3 is next; under it: handoff: done: export added; red: one test imports the old path; next: fix the import"
 - A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line, and a size or value it brings goes to `reference/`, never into plan.md's Approach {#polish}
   was: A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line and no recheck line, and a size or value it brings goes to `reference/`, never into plan.md's Approach
   e.g. "make the icon bigger" after T2 is ticked -> T2 is unticked with `redo: icon size`, the size goes to `reference/layout.md`, and the redo line goes at the tick
@@ -42,6 +46,10 @@ A 13-task spec built over 19 sessions ended with 19 Session lines and 17 Recheck
   was: The claims the block drives, answers-from-docs, resumes, session-line, verifies-on-doubt and names-the-mismatch, are checked by hand on `scrubjay-example` on both agents before release, and the transcripts are kept, since eval runs load no project instructions
   e.g. a fresh Codex session on `add-wishlist` reports "T3 is next" unprompted -> the transcript is saved under the case
 
+### Remove · practice/docs-conventions
+- A reference file describes the current state of its subject: a new run, draft or measurement replaces the paragraph it supersedes, and only `reference/decisions.md` is appended {#reference-is-state}
+  reason: state-not-history says the same for every file in the spec folder, and the capability was one claim over the pack's own cap
+
 ### Remove · spec/build
 - Every session writes one line above the tasks in `tasks.md` with the date, where it resumed, and the gist of the user's first message, never a verdict {#session-line}
   reason: its only reader was the Outcome's session count, which git's dates give without a rule, and 19 of them in one spec were read as noise
@@ -53,3 +61,4 @@ A 13-task spec built over 19 sessions ended with 19 Session lines and 17 Recheck
 - Pushing: spec-build commits locally, and the push stays with the user until spec-ship opens the pull request.
 - A tool that cleans existing spec folders: one prompt does it once per folder after the update.
 - Changing plan.md's rules: Approach already holds shape only, and Files already tracks the current scope.
+- A commit when a session stops before the tick: the handoff line stays uncommitted until the tick, and a colleague on another machine does not see it; raised in the fresh review and deferred, see `reference/follow-ups.md`.

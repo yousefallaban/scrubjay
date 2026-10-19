@@ -1,6 +1,6 @@
 ---
 name: spec-build
-description: Build the active spec one task at a time, test first and in scope. Reads tasks.md first and reports the next task, writes a failing test before the code when a task changes behavior, ticks a task only when its claims are proven and commits at every tick, writes a handoff line when a session stops early, and rechecks the tasks when the spec or the plan changes mid-way. Use when a user asks to build, implement, continue, resume or pick up work on a spec, runs spec-build, says they are back on it or stopping for now, asks what is next, changes their mind about a spec being built, asks for a small change to work already done, or says a change is for later.
+description: Build the active spec one task at a time, test first and in scope. Reads tasks.md first and reports the next task, writes a failing test before the code when a task changes behavior, ticks a task only when its claims are proven and commits at every tick, writes a handoff line when a session stops early, and rechecks the tasks when the spec or the plan changes mid-way. Use when a user asks to build, implement, continue, resume or pick up work on a spec, runs spec-build, says they are back on it or stopping for now, asks where the work stands or what is next, changes their mind about a spec being built, asks for a small change to work already done, or says a change is for later or must not be lost.
 ---
 
 # spec-build
@@ -11,7 +11,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 
 1. Load docs-conventions. `references/tasks.md`, `references/plan.md`, `references/spec.md` and `references/reference.md` apply.
 2. Find the active spec: the folder under the docs path's `specs/` whose slug matches the current branch. With no match, say so and ask which spec to build, or whether to start one.
-3. Read `tasks.md` first. If it doesn't exist, the kind skipped planning: create it from the template with one task per claim in the spec; for a fix that restores a claim, one task naming that claim; for a fix with no claim at all, one task with a `check:`. Then report where the work stands before doing anything else, so nobody has to re-explain: the next unticked task and any note, redo or handoff line under it.
+3. Read `tasks.md` first. If it doesn't exist, the kind skipped planning: create it from the template with one task per claim in the spec; for a fix that restores a claim, one task naming that claim; for a fix with no claim at all, one task with a `check:`. Before any other step, say in one line which task is next and what is under it, note, redo or handoff, so nobody has to re-explain.
 4. If `spec.md` says `status: draft`, set it to `building`.
 5. Run the project's test command from `architecture/stack.md` before touching the task, so the session knows the state it inherited. Green: start the task. Red: report what fails before any edit; when the failure belongs to the open task, continue the task from there; when it does not, stop and say so.
 6. Work the next unticked task only. When it names claims, write the failing test first, named with the claim reference such as `keeps one entry [wishlist/save-item#no-duplicates]`, run it and see it fail, then write the code and run it again. When it names a `check:`, do the check. Run the project's test command from `architecture/stack.md`.
@@ -28,7 +28,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 - A session that stopped before the tick left a `- handoff:` line under the open task.
 - A claim's test carries the claim reference in its name; a test of an internal detail of code a claim covers is named for what it checks and carries none.
 - `git status` shows no changed file outside `plan.md`'s Files list, other than ones the user added to it, and none of the task's files once it is ticked.
-- After a change of course, `tasks.md` holds the task list as the plan now stands with nothing above it, and `spec.md` has no `approved` line if Why or What changes changed.
+- After a change of course, `tasks.md` holds the task list as the plan stands, with nothing above it, and `spec.md` has no `approved` line if Why or What changes changed.
 - After a polish, one task is unticked with a `redo:` line, and plan.md's Approach is unchanged.
 - A change the user deferred is one line in `reference/follow-ups.md`.
 
@@ -41,7 +41,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 | "It's one line in a helper, no need to ask." | A file outside the plan is asked about, every time. |
 | "The tests pass locally, mostly. Tick it." | Tick only on a clean run of the project's test command. |
 | "I'll commit at the end of the session, when it all works." | A tick is a commit, with the task line as the message. Git is the history the files no longer carry. |
-| "The note explains the task, I'll leave it after the tick." | A ticked task carries nothing. A choice worth keeping is a decision; the rest is in the commit. |
+| "The note explains the task, I'll leave it after the tick." | A ticked task carries nothing. A choice worth keeping is a decision; the rest is in git. |
 | "I'll put the user's other edits in the commit too." | Commit the task's files only. A change outside the plan is asked about, not swept in. |
 | "The change is small, no need to touch spec.md." | A change to what gets built is a change to the spec, and the owner says go again. |
 | "I'll just add the extra feature while I'm here." | Scope growth becomes a follow-up spec. |
