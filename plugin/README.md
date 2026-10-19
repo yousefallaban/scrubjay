@@ -65,7 +65,7 @@ Catches: Claude Code reads a `CLAUDE.md` anywhere above your repo in place of `A
 
 **Getting updates**
 
-A change to the pack reaches Claude Code only when the `version` in its manifests goes up: `claude plugin update scrubjay@yousefallaban` compares versions, not commits, and reports "already at the latest version" otherwise. So every released change bumps the version, and a user runs `claude plugin marketplace update yousefallaban` then `claude plugin update scrubjay@yousefallaban` and restarts, or turns auto-update on for the marketplace under Marketplaces in `/plugin`. Codex refetches on `codex plugin marketplace upgrade` with no version check. Copilot CLI uses `copilot plugin update scrubjay`. A copied `skills/` folder is re-copied by hand.
+A change to the pack reaches Claude Code only when the `version` in its manifests goes up: `claude plugin update scrubjay@yousefallaban` compares versions, not commits, and reports "already at the latest version" otherwise. So every released change bumps the version, and a user runs `claude plugin marketplace update yousefallaban` then `claude plugin update scrubjay@yousefallaban` and restarts, or turns auto-update on for the marketplace under Marketplaces in `/plugin`. Codex refetches on `codex plugin marketplace upgrade` with no version check. Copilot CLI uses `copilot plugin update scrubjay`. A copied `skills/` folder is re-copied by hand. A new version changes the pack, not the block it once wrote into a repo's AGENTS.md. After updating, run `docs-init` once in each repo. It rewrites only the text between the project-memory markers and touches no docs file.
 
 ## The commands
 
