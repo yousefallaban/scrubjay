@@ -12,6 +12,8 @@ plugin/skills/spec-ship/SKILL.md                         changed: step 5 and the
 plugin/skills/docs-conventions/SKILL.md                  changed: the charter row for plan.md
 plugin/skills/docs-conventions/references/plan.md        changed: the Scope section's rules
 plugin/skills/docs-conventions/assets/plan.md            changed: the Scope section
+plugin/skills/docs-conventions/assets/agents-block.md    changed: the recheck line says Scope; the four block-driven claims are untouched by it
+plugin/skills/docs-conventions/references/tasks.md       changed: the recheck sentence says Scope
 plugin/evals/spec-build/reopens-a-ticked-task/           new: T2 ticked, a request to do its list differently; graded on T2 reopened with a redo line and no new task
 plugin/evals/spec-build/writes-inside-scope/             new: the plan lists src/wishlist/ as a folder and T2 needs a new file under it; graded on the file written and the plan unchanged
 plugin/evals/spec-build/asks-before-out-of-plan-file/    changed: the fixture's plan uses the Scope heading and the grader reads the new question
