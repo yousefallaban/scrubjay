@@ -17,3 +17,6 @@ Purpose: lasting choices made while building this spec, appended in order, never
 
 ## D6 Three rule gaps the fresh review found, closed in the skill text
 2026-10-18. The review compared the diff with the spec and found three places where the rules contradicted each other or left a case without a home. A file added after "Add it?" is a change to the plan's Files, so it goes through the recheck, with the yes as the OK and a line ending `No task changed.` when nothing moved. A task holds one `redo:` line, the newest, so a second polish replaces it instead of growing past the two-line cap. Any change the user defers goes to `reference/follow-ups.md`, not only one that grows the scope. The claims did not change; the ship-case graders now require the fixture's own follow-up names so the skill's template line cannot satisfy them.
+
+## D7 The resume report names the notes under ticked tasks too
+2026-10-19. The three-run rerun lost two runs of `resumes-from-tasks`: the fixture's only note sits under the ticked T1, and step 3 told the agent to report the notes under the next task, while the `resumes` claim promises "any notes". The skill was narrower than its claim, so step 3 now reports the next task with what is under it and the notes under the ticked tasks. The claim did not change.

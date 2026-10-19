@@ -1,7 +1,7 @@
 ---
 id: 2026-10-18-mid-build-changes
 kind: feature
-status: building
+status: shipped
 summary: A polish request reopens one task, reference files stay current, and deferred changes are settled at ship
 request: the first real spec built with the pack left seventeen recheck lines, a 250-line verification log and a plan full of sizes; make mid-build changes cheap to record
 approved: {by: yousef, via: in session}
