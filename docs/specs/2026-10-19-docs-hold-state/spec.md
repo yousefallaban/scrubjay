@@ -3,6 +3,7 @@ id: 2026-10-19-docs-hold-state
 kind: feature
 status: building
 summary: "A spec folder file describes the current state and is rewritten in place: no session lines, no recheck lines, no lines under a ticked task, and a commit at every tick so git holds the history"
+approved: {by: yousef, via: in session}
 request: "Yousef, on 2026-10-19, after a cleanup pass left 19 session lines in his client spec's tasks.md: as we have versioning, the doc should read as if written new, not appended to; keep the latest state"
 ---
 # Make every spec file describe the current state
