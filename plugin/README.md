@@ -76,7 +76,7 @@ A change to the pack reaches Claude Code only when the `version` in its manifest
 | `spec-start` | start a spec from a sentence, a ticket or commits; settles why and what by grilling, records the owner's go |
 | `spec-plan` | decide how and break the work into tasks that fit one session each; waits for your OK |
 | `spec-build` | build task by task, a failing test first when behavior changes; resumes from `tasks.md`; handles a change of course, a polish and a deferred follow-up |
-| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec, update `docs/behavior/` and `docs/architecture/`, prepare the pull request |
+| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec and the project's conventions, update `docs/behavior/` and `docs/architecture/`, prepare the pull request |
 
 Two practices load on their own: `grilling`, the question rounds, and `docs-conventions`, the file charter, the templates and the claim format.
 

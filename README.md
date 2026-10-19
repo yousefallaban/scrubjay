@@ -99,7 +99,7 @@ After installing the pack, open your project in your coding agent. The steps bel
 
 - **Progress survives a new session.** `tasks.md` records what is done and what comes next. A new person or agent can pick up from that file without reconstructing the conversation.
 
-- **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec. Their findings go into the pull request.
+- **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec and with the project's conventions. Their findings go into the pull request.
 
 - **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks; a small polish reopens one task instead. Changed requirements need renewed approval; extra scope gets a separate spec, and anything deferred is settled when the spec ships.
 
