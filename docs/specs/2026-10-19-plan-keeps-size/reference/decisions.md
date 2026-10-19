@@ -8,3 +8,6 @@ Purpose: lasting choices made while specifying and building plan-keeps-size, app
 
 ## D3 Version 0.4.0
 2026-10-19. Claims change, so the pack's own scheme says MINOR.
+
+## D4 Evals run on the default model after all; cheap models stay for review
+2026-10-19. Supersedes D2. The sonnet runs of the first loop failed cases the default model passes on the unchanged text, redoes-a-polish-request among them, once without even loading the skill, so a miss on sonnet could not be read as a fault in the text. The pack's evidence has been on the default model since 0.1 and stays there; the fresh reviews and other checks keep running on cheaper models, where the saving is real and the result is still readable.
