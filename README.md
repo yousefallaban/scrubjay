@@ -42,7 +42,7 @@ docs/
   specs/<date>-<slug>/                 one folder per change: spec.md, plan.md, tasks.md
 ```
 
-A claim is one testable sentence with an ID and an example. Tests carry the claim's reference in their name, and at ship the claims are copied into `behavior/` word for word, so the docs say exactly what the tests prove.
+A claim is one testable sentence with an ID and an example. A claim's test carries the claim's reference in its name, and at ship the claims are copied into `behavior/` word for word, so the docs say exactly what the tests prove.
 
 ## Install
 
@@ -99,9 +99,9 @@ After installing the pack, open your project in your coding agent. The steps bel
 
 - **Progress survives a new session.** `tasks.md` records what is done and what comes next. A new person or agent can pick up from that file without reconstructing the conversation.
 
-- **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec. Their findings go into the pull request.
+- **Review checks the agreed scope.** A reviewer who did not write the change compares the diff with the spec and with the project's conventions. Their findings go into the pull request.
 
-- **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks. Changed requirements need renewed approval; extra scope gets a separate spec.
+- **Plans can change mid-build.** The workflow updates the relevant document and rechecks the tasks; a small polish reopens one task instead. Changed requirements need renewed approval; extra scope gets a separate spec, and anything deferred is settled when the spec ships.
 
 - **Use it with your existing skills.** The pack is markdown skills and templates, with no service to run. Keep your language, testing and code-quality skills alongside it.
 

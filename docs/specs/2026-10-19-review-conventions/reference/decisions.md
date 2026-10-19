@@ -1,0 +1,13 @@
+Purpose: lasting choices made while specifying and building review-conventions, appended as they are made, never edited.
+
+## D1 Stacked on feature/claim-evidence, ships inside 0.2.0
+2026-10-19. Yousef wants this on the same version as the mid-build-changes and claim-evidence specs, with no bump. As D1 of claim-evidence did, the branch is cut from the spec it stacks on, `feature/claim-evidence`, and its pull request targets that branch, so the three specs land in 0.2.0 through pull request 6. The claim-evidence spec is shipped and reviewed, so a claim added there would remove its go and redo its ship review; a stacked spec costs the same and keeps the branch-to-spec rule.
+
+## D2 The reviewer reads conventions.md and invariants.md, not every architecture file
+2026-10-19. docs-conventions defines `conventions` as "only the rules agents get wrong without being told" and `invariants` as "non-negotiable rules every spec must keep". The other areas describe the current state, which the diff may legitimately change through the plan's Architecture to update at ship. The review prompt names the two rule-holding files, so a project without them has nothing extra to read.
+
+## D3 A convention finding is reported, not repaired at ship
+2026-10-19. Mirrors D3 of claim-evidence: shipping builds nothing, and spec-ship changes code only to remove behavior no claim covers. A convention break sits in covered code, so the Review names the rule and the line and the owner decides before the merge. The eval case grades both: the Review names the rule, and the code file is unchanged.
+
+## D4 One fixture breaks both rule files, and its existing code follows them
+2026-10-19. The fresh review found the case proving only the conventions.md half of `reviews-against-conventions`, a trace grader that any mention of `ShopError` after a Review heading would satisfy, and a step 5 sentence saying spec-ship edits no code, which contradicts step 6. The fixture now carries `architecture/invariants.md` with a rule the wishlist's save also breaks, an unchecked product id, so one case proves the read of both files; the two trace graders require the rule's words within reach of `save` or `wishlist`; and the sentence says spec-ship edits neither the test nor the code the finding names. The fixture departs from a plain copy of `checks/fixture-webshop.sh`: its existing modules throw `ShopError` and check ids, so the break is the diff's alone. The unchanged-file grader is proven jointly with the finding graders, as in flags-a-weak-claim-test: a run passes only when the Review names the breaks and the file is the same.

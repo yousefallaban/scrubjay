@@ -2,7 +2,7 @@ Purpose: section rules for `specs/<id>/plan.md`. Template: `assets/plan.md`.
 
 Frontmatter: `spec`, the spec id.
 
-Approach: required. The shape of the solution in 3 to 8 lines. Don't restate the why.
+Approach: required. The shape of the solution in 3 to 8 lines. Don't restate the why. Shape only: a size or value that arrives mid-build goes to `reference/`, not here.
 
 Trade-offs: optional, when there was a real choice. The options considered and why this one won. A choice that outlives the spec links to its decision record. Not every idea mentioned in passing.
 

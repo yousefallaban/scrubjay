@@ -9,6 +9,10 @@ capability: docs/init
   e.g. an AGENTS.md holding a client's own rules -> those rules stay exactly as they were, the block is added, and `packages/api/AGENTS.md` is listed as not covered
 - With the block in place, a new session answers a question about a documented capability from `behavior/` and cites the claim reference, without reading the code {#answers-from-docs}
   e.g. "how are partial refunds calculated?" -> the answer cites `returns/submit-return#partial-refund` and opens no source file
+- A question about what the code does now, or a doubt about a claim, is answered from the code and the tests that cover it, with the claim quoted beside the finding {#verifies-on-doubt}
+  e.g. "I'm not sure the code rounds half up the way the docs say" -> the session reads `src/returns.ts` and its test, and answers with `returns/submit-return#partial-refund` and what the code does
+- When the code disagrees with a claim, the session states the documented requirement and what the code does instead, and names the fix spec or offers to start one {#names-the-mismatch}
+  e.g. the claim says half-up rounding and the code rounds with floating point -> "Documented: half-up (returns/submit-return#partial-refund). Code: one cent short on some inputs. No fix spec yet; start one?"
 - docs-init makes sure a root CLAUDE.md imports AGENTS.md, creating a one-line CLAUDE.md when the repo has none, and ends by confirming the block loads in a new session {#links-claude-md}
   e.g. a repo with no CLAUDE.md under a parent folder that has one -> `CLAUDE.md` holds `@AGENTS.md`, and a new session shows the block in context
 - When `docs/` already serves a documentation site, docs-init asks for a subfolder and records that path in the block {#docs-path}

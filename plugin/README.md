@@ -75,8 +75,8 @@ A change to the pack reaches Claude Code only when the `version` in its manifest
 | `docs-map` | document one domain of an existing app from its code, the first time work touches it; the owner confirms before anything is written |
 | `spec-start` | start a spec from a sentence, a ticket or commits; settles why and what by grilling, records the owner's go |
 | `spec-plan` | decide how and break the work into tasks that fit one session each; waits for your OK |
-| `spec-build` | build task by task, a failing test first when behavior changes; resumes from `tasks.md`; handles a change of course |
-| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec, update `docs/behavior/` and `docs/architecture/`, prepare the pull request |
+| `spec-build` | build task by task, a failing test first when behavior changes; resumes from `tasks.md`; handles a change of course, a polish and a deferred follow-up |
+| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec and the project's conventions, update `docs/behavior/` and `docs/architecture/`, prepare the pull request |
 
 Two practices load on their own: `grilling`, the question rounds, and `docs-conventions`, the file charter, the templates and the claim format.
 
@@ -104,7 +104,7 @@ docs/
   specs/<date>-<slug>/                 one folder per change: spec.md, plan.md, tasks.md, reference/
 ```
 
-Every file has one job. A claim is one testable sentence with an ID and an example, and tests carry the claim's reference in their name, so anyone can find the test behind a claim.
+Every file has one job. A claim is one testable sentence with an ID and an example, and a claim's test carries the claim's reference in its name, so anyone can find the test behind a claim.
 
 ## Testing a change to the pack
 
