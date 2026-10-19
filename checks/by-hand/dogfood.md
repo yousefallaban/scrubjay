@@ -15,7 +15,7 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 3. spec-start, the wishlist sentence, with Sanne's answers to the obvious rounds in the prompt and the go given explicitly at the end.
 4. spec-plan, with the design answers in the prompt and the OK given explicitly.
 5. spec-build "continue", once per task, each a fresh session. The first of these is the resume check.
-6. spec-ship, with the test result confirmed by the agent itself since this session can run commands, the re-explain count, MINOR confirmed, and "show the PR text".
+6. spec-ship, with the test result confirmed by the agent itself since this session can run commands, MINOR confirmed, and "show the PR text".
 
 ## Passes when
 
