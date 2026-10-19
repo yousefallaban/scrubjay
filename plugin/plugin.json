@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "scrubjay",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A spec workflow and project memory for coding agents, kept in your repo's docs/",
   "author": {
     "name": "Yousef Allaban",

@@ -18,8 +18,8 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 7. Update `behavior/`. For each `### Add · <domain>/<capability>`, create or extend `behavior/<domain>/<capability>.md` from its template with the claims copied word for word. For each Change, replace the claim with that ID in place. For each Remove, delete the claim. Reword nothing.
 8. Update architecture. For each line under Architecture to update at ship in `plan.md`, update that area file from the named reference file, creating it from its template when it doesn't exist. Leave the reference file as it is. Add a domain row to `index.md` only when one is still missing.
 9. Set `status: shipped` in `spec.md`. The status becomes true on the main branch exactly when the pull request merges.
-10. Outcome. Count the Session lines in `tasks.md`, and read `reference/follow-ups.md` when it exists. Ask the user one question with two parts: which of those sessions needed re-explaining, and whether each follow-up line is kept for a spec after the merge or dropped. Compare `request:` with the shipped claims and write one line on what grilling added, changed or kept out. When there are follow-ups, add one line: `Follow-ups: <change>, kept for a spec; <change>, dropped.`
-11. The pull request. Title: `type(scope): objective`, type being the kind written out, `feature` or `fix`, never the short `feat`, and `refactor` for a fix with no behavior change; scope the `issue:` key or else the slug, the spec id without its date, which is also the branch name; objective the spec's title. Description: if the repo has `.github/pull_request_template.md` or `PULL_REQUEST_TEMPLATE.md`, fill its sections and add Review and Outcome at the end. Otherwise use the layout below. Propose Release impact from the kind and the claims, MINOR for a feature, PATCH for a fix with claims, "No release impact" for a fix without, MAJOR when a claim is removed, and ask the user to confirm it in the same question as the sessions. Then ask whether to create the pull request with `gh` or to show the title and description to paste. Without `gh`, show them. Never merge.
+10. Outcome. Read `reference/follow-ups.md` when it exists and ask whether each line is kept for a spec after the merge or dropped. Compare `request:` with the shipped claims and write one line on what grilling added, changed or kept out. When there are follow-ups, add one line: `Follow-ups: <change>, kept for a spec; <change>, dropped.`
+11. The pull request. Title: `type(scope): objective`, type being the kind written out, `feature` or `fix`, never the short `feat`, and `refactor` for a fix with no behavior change; scope the `issue:` key or else the slug, the spec id without its date, which is also the branch name; objective the spec's title. Description: if the repo has `.github/pull_request_template.md` or `PULL_REQUEST_TEMPLATE.md`, fill its sections and add Review and Outcome at the end. Otherwise use the layout below. Propose Release impact from the kind and the claims, MINOR for a feature, PATCH for a fix with claims, "No release impact" for a fix without, MAJOR when a claim is removed, and ask the user to confirm it in the same question as the follow-ups. Then ask whether to create the pull request with `gh` or to show the title and description to paste. Without `gh`, show them. Never merge.
 
 ```
 ## Links
@@ -39,7 +39,7 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 <the fresh reviewer's findings, each uncovered behavior marked removed or claimed, each weak test named, each convention finding with its rule and line, or "No findings.">
 
 ## Outcome
-Sessions: <n>, re-explained: <n>. <what grilling added, changed or kept out>.
+<what grilling added, changed or kept out>.
 Follow-ups: <change>, kept for a spec; <change>, dropped.   only when reference/follow-ups.md exists
 ```
 

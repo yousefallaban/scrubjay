@@ -413,11 +413,9 @@ cat > docs/specs/2026-10-13-add-wishlist/tasks.md <<'FILE'
 ---
 spec: 2026-10-13-add-wishlist
 ---
-Session 2026-10-13: resumed at T1; first message: "build the wishlist".
-
 - [x] T1 Wishlist types and an empty module -> check: `bun test` still passes
-  - note: chose a Map keyed by customer id over an array; lookups by customer are the common case
 - [ ] T2 Save and list, with duplicates kept to one entry -> saves-item, no-duplicates, lists-saved
+  - note: chose a Map keyed by customer id over an array; lookups by customer are the common case
 - [ ] T3 Show the saved count on the order summary -> check: the summary line reads "3 saved"
 FILE
 printf 'Purpose: draft data model for the wishlist.\n\nwishlist_items: customer_id, product_id, added_at; unique (customer_id, product_id)\n' > docs/specs/2026-10-13-add-wishlist/reference/data-model.md
