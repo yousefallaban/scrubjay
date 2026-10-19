@@ -6,7 +6,7 @@ Seven claims, each proven by an eval case or the by-hand block check written bef
 
 ## Files
 ```
-plugin/skills/spec-build/SKILL.md                        changed: no session step; tick step commits and clears the task's lines; recheck rewrites in place; verification and red flags
+plugin/skills/spec-build/SKILL.md                        changed: no session step; tick step commits and clears the task's lines; recheck rewrites in place; verification and red flags; description cut to what it does and when, well under the 1,024-character cap
 plugin/skills/spec-ship/SKILL.md                         changed: step 10 and the PR layout drop the session counts
 plugin/skills/docs-conventions/SKILL.md                  changed: the spec folder holds the current state, git the history, decisions.md appends
 plugin/skills/docs-conventions/references/tasks.md       changed: no session or recheck lines; lines under an open task go at the tick
