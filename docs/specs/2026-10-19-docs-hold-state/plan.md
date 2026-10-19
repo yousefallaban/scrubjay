@@ -16,6 +16,8 @@ plugin/evals/spec-build/commits-at-tick/                 new: T2 built and ticke
 plugin/evals/spec-build/clears-lines-at-tick/            new: T2 carries a note and a handoff line; graded on both gone at the tick and the task ticked
 plugin/evals/spec-build/rechecks-after-change/           changed: graders require the list rewritten in place and no recheck line
 plugin/evals/spec-build/resumes-from-tasks/              changed: the fixture has no session lines and no grader expects one
+plugin/evals/spec-build/asks-for-the-test-run-first/     changed: the session-line grader goes
+plugin/evals/spec-build/writes-a-handoff/                changed: the session-line grader goes
 plugin/evals/spec-ship/settles-follow-ups/               changed: the Outcome grader expects no session count
 plugin/evals/spec-ship/ships-and-updates-behavior/       changed: the Outcome grader expects no session count
 checks/by-hand/resumes-and-session-line.md               changed: becomes the resumes check; reruns on both agents under the new block
