@@ -328,7 +328,7 @@ cat > AGENTS.md <<'FILE'
   disagree, state both, then name the spec that fixes it or offer to start one.
 - Every code change belongs to a spec in docs/specs/. None yet: start one (spec-start).
 - One branch per spec, named after its slug. The active spec is the one matching the current branch.
-- If spec.md or the plan's Files change mid-way, update them, then recheck every task and
+- If spec.md or the plan's Scope change mid-way, update them, then recheck every task and
   rewrite the list in place; a change that touches no claim and no file in the plan reopens
   one task with a redo line instead.
 - Write specs, plans, tasks, glossary terms and decisions into docs/,
@@ -424,7 +424,7 @@ spec: 2026-10-13-add-wishlist
 ## Approach
 A wishlist module keyed by customer id, in memory like the other modules, with save and list. Saving twice is a no-op.
 
-## Files
+## Scope
 src/wishlist.ts            new: save and list per customer
 test/wishlist.test.ts      new: one test per claim, named with the claim reference
 src/index.ts               changed: export the wishlist module

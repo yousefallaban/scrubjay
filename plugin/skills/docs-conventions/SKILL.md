@@ -26,7 +26,7 @@ Project memory lives under the docs path the project-memory block in AGENTS.md n
 | `architecture/<area>.md` | how it's built now | one area per file, created when it first has content | behavior: `behavior/`; history: git; plans: `specs/` | `assets/architecture/` | `references/architecture.md` |
 | `decisions/<date>-<slug>.md` | why a lasting choice was made | context, options, decision, consequences | step-by-step detail: `plan.md` or `reference/` | `assets/decision.md` | `references/decision.md` |
 | `specs/<id>/spec.md` | why this change, and exactly what changes | why, claims under Add, Change and Remove, not doing, open questions | how it's built: `plan.md`; progress: `tasks.md` | `assets/spec.md` | `references/spec.md` |
-| `specs/<id>/plan.md` | how this change is built | approach, files to touch, architecture to update at ship, risks | the why: `spec.md`; progress: `tasks.md` | `assets/plan.md` | `references/plan.md` |
+| `specs/<id>/plan.md` | how this change is built | approach, scope, architecture to update at ship, risks | the why: `spec.md`; progress: `tasks.md` | `assets/plan.md` | `references/plan.md` |
 | `specs/<id>/tasks.md` | where the work stands | tasks with the claims that prove them, lines under the open task | history: git; design discussion: `plan.md` or `decisions/` | `assets/tasks.md` | `references/tasks.md` |
 | `specs/<id>/reference/*` | working material for this spec | anything the spec needs, opening with `Purpose: ...` | the why, the plan, progress: the three files above | none | `references/reference.md` |
 | AGENTS.md block | the workflow and where memory lives | the managed block between the markers | project knowledge: `docs/` | `assets/agents-block.md` | `references/agents-block.md` |
