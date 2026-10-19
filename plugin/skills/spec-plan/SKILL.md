@@ -1,6 +1,6 @@
 ---
 name: spec-plan
-description: Decide how a spec gets built and break it into tasks. Refuses to plan a feature without the owner's recorded go, writes plan.md with the approach, the files to touch and the architecture files to update at ship, writes tasks.md where each task fits one session and names the claims that prove it, puts working material under reference/, and waits for an OK before any code. Use when a user asks to plan a spec, break work into tasks, or runs spec-plan.
+description: Decide how a spec gets built and break it into tasks. Refuses to plan a feature without the owner's recorded go, writes plan.md with the approach, the places the change may land and the architecture files to update at ship, writes tasks.md where each task fits one session and names the claims that prove it, puts working material under reference/, and waits for an OK before any code. Use when a user asks to plan a spec, break work into tasks, or runs spec-plan.
 ---
 
 # spec-plan
@@ -34,7 +34,7 @@ How, and in what order, with nothing built until the user has seen it.
 | "I'll make one task: build it all." | A task fits one session and names its claims. |
 | "I'll start the first task since it's obvious." | The plan is shown, then OK'd, then built. |
 | "The data model sketch can live in plan.md." | Detail goes to `reference/`, with a Purpose line. |
-| "I'll add a last task for shipping, so nothing is forgotten." | Tasks end with the last claim or check. Shipping is spec-ship's, never a task, and the docs the flow writes are not in Files. |
+| "I'll add a last task for shipping, so nothing is forgotten." | Tasks end with the last claim or check. Shipping is spec-ship's, never a task, and the docs the flow writes are not in the Scope. |
 
 ## Fallbacks
 

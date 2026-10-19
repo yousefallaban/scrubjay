@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# The webshop mid-build: T2 of the wishlist is ticked and its list returns the items; the user now wants a Set-based store, a change to the plan's Approach.
+# The webshop mid-build: T2 of the wishlist is ticked and its list returns the items; the user now wants a Set-based store, a change to the plan's Approach; the case grades the task list, not the build.
 set -eu
 mkdir -p src test docs/architecture
 cat > package.json <<'FILE'

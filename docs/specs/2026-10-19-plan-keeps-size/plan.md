@@ -16,9 +16,10 @@ plugin/skills/docs-conventions/assets/agents-block.md    changed: the recheck li
 plugin/skills/docs-conventions/references/tasks.md       changed: the recheck sentence says Scope
 plugin/evals/spec-build/reopens-a-ticked-task/           new: T2 ticked, a request to do its list differently; graded on T2 reopened with a redo line and no new task
 plugin/evals/spec-build/writes-inside-scope/             new: the plan lists src/wishlist/ as a folder and T2 needs a new file under it; graded on the file written and the plan unchanged
-plugin/evals/spec-build/asks-before-out-of-plan-file/    changed: the fixture's plan uses the Scope heading and the grader reads the new question
+plugin/evals/spec-build/asks-before-out-of-plan-file/    changed: the fixture's plan uses the Scope heading
+plugin/evals/spec-ship/names-a-change-outside-scope/     new: the wishlist branch also touched src/orders.ts; graded on the PR naming it under Unrelated changes
+plugin/evals/docs-conventions/drops-empty-sections/      changed: the prompt and grader say Scope
 plugin/evals/spec-plan/writes-plan-and-tasks/            changed: the plan-shape grader expects Scope
-plugin/evals/docs-conventions/drops-empty-sections/      changed: the required-sections grader expects Scope
 plugin/evals/spec-build/redoes-a-polish-request/         changed: the Approach grader reads the Scope heading
 plugin/evals/*/*/fixture.sh, checks/fixture-webshop.sh   changed: the Files heading becomes Scope in every fixture plan
 AGENTS.md                                                changed: the changing-course line names the plan's Scope

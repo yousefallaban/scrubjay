@@ -10,7 +10,7 @@
 - Every code change belongs to a spec in {{docs-path}}/specs/. None yet: start one (spec-start).
 - One branch per spec, named after its slug. The active spec is the one matching the current branch.
 - If spec.md or the plan's Scope change mid-way, update them, then recheck every task and
-  rewrite the list in place; a change that touches no claim and no file in the plan reopens
+  rewrite the list in place; a change that touches no claim and no Scope reopens
   one task with a redo line instead.
 - Write specs, plans, tasks, glossary terms and decisions into {{docs-path}}/,
   never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/{{extra-never-write}}.
