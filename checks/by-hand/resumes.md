@@ -2,7 +2,7 @@ Purpose: the by-hand check for `resumes`, the claim the AGENTS.md block drives t
 
 ## Setup
 
-Branch `hold-state-check` of `scrubjay-example`: the block as shipped, and the wishlist spec mid-build in the current shape, T1 ticked and bare, T2 open with a note and a handoff line that say the code and its three tests exist and were not run, T3 open. `bun test` is green, 17 tests. Claude Code runs with the pack from this repo's `plugin/` folder and the marketplace copy disabled for the run; Codex runs with no pack installed, so the block alone drives it.
+Branch `add-wishlist` of `scrubjay-example`, named after the spec slug as the block requires: the block as shipped, and the wishlist spec mid-build in the current shape, T1 ticked and bare, T2 open with a note and a handoff line that say the code and its three tests exist and were not run, T3 open. `bun test` is green, 17 tests. Claude Code runs with the pack from this repo's `plugin/` folder and the marketplace copy disabled for the run; Codex runs with no pack installed, so the block alone drives it.
 
 ## The check
 
