@@ -36,7 +36,7 @@ From an intent to a spec the owner can say go to, with nothing left open that on
 | "One open question is fine, I'll record the go anyway." | Open questions must be empty first. |
 | "I'll describe how to build it in the spec, it helps." | The spec holds why and what. How goes to plan.md. |
 | "No behavior file for this domain, I'll write claims from memory." | Offer docs-map first, or look up the code before writing a `was:`. |
-| "The block says every session adds its line to tasks.md, so I'll create one now." | tasks.md is written by spec-plan. Until the plan has the owner's OK, the spec folder holds spec.md and reference/ only. |
+| "The block says every session starts at tasks.md, so I'll create one now." | tasks.md is written by spec-plan. Until the plan has the owner's OK, the spec folder holds spec.md and reference/ only. |
 
 ## Fallbacks
 

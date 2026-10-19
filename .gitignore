@@ -25,3 +25,6 @@ coverage/
 *.log
 .eval-results/
 plugin/evals/results/
+
+# Eval runner output, kept out of the pack
+plugin/evals/*/results/

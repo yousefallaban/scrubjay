@@ -15,12 +15,12 @@ Each step is one `claude -p "<prompt>"` or `codex exec "<prompt>" < /dev/null` i
 3. spec-start, the wishlist sentence, with Sanne's answers to the obvious rounds in the prompt and the go given explicitly at the end.
 4. spec-plan, with the design answers in the prompt and the OK given explicitly.
 5. spec-build "continue", once per task, each a fresh session. The first of these is the resume check.
-6. spec-ship, with the test result confirmed by the agent itself since this session can run commands, the re-explain count, MINOR confirmed, and "show the PR text".
+6. spec-ship, with the test result confirmed by the agent itself since this session can run commands, MINOR confirmed, and "show the PR text".
 
 ## Passes when
 
 - The run reaches a PR title and description with every section filled, `status: shipped` in the spec, and `docs/behavior/wishlist/` holding the claims word for word.
-- Step 5's first session names the next task and the note without being told, and `tasks.md` gains a session line per session.
+- Step 5's first session names the next task and the note without being told, and `tasks.md` gains nothing above the tasks; each tick is a commit.
 - The shipped claims match what was asked in step 3.
 
 ## Record
