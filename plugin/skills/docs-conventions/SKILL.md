@@ -38,7 +38,7 @@ Project memory lives under the docs path the project-memory block in AGENTS.md n
   e.g. <a concrete situation> -> <the observable result>
 ```
 
-One testable sentence per claim, then one concrete example. IDs are kebab-case and unique within their capability. The full reference is `domain/capability#claim-id`; tests carry it in their names, and tasks use it whenever the bare ID is not unique in the spec. Observable behavior only: "keeps one entry", never "uses a unique index". A claim in `spec.md` reads exactly as it will in `behavior/`, so shipping copies it without rewording.
+One testable sentence per claim, then one concrete example. IDs are kebab-case and unique within their capability. The full reference is `domain/capability#claim-id`; a claim's test carries it in its name, and tasks use it whenever the bare ID is not unique in the spec. Observable behavior only: "keeps one entry", never "uses a unique index". A claim in `spec.md` reads exactly as it will in `behavior/`, so shipping copies it without rewording.
 
 ## Versions
 

@@ -104,7 +104,7 @@ docs/
   specs/<date>-<slug>/                 one folder per change: spec.md, plan.md, tasks.md, reference/
 ```
 
-Every file has one job. A claim is one testable sentence with an ID and an example, and tests carry the claim's reference in their name, so anyone can find the test behind a claim.
+Every file has one job. A claim is one testable sentence with an ID and an example, and a claim's test carries the claim's reference in its name, so anyone can find the test behind a claim.
 
 ## Testing a change to the pack
 

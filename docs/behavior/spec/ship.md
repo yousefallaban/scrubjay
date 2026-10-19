@@ -9,6 +9,12 @@ capability: spec/ship
   e.g. a fix with a claim under Change and no `approved` line -> "The owner of returns/submit-return hasn't said go"
 - A fresh reviewer that did not write the code compares the diff with `spec.md` and with plan.md's file list, and its findings go into the PR description {#fresh-review}
   e.g. a file changed outside the plan -> listed as a finding
+- The fresh reviewer reads the assertions of each test carrying a claim reference and reports one whose assertions do not prove its claim {#tests-prove-claims}
+  e.g. `keeps one entry [wishlist/save-item#no-duplicates]` only asserts that the second save does not throw -> listed as a finding: the test does not prove no-duplicates
+- A test the review reports as weak is left unchanged at ship, for the owner to fix before the merge {#weak-test-stays}
+  e.g. the weak no-duplicates test -> the test file is the same after spec-ship, and the Review says what the test lacks
+- A helper that the code of a covered claim calls is covered by that claim, and neither it nor an unlabeled test of it is removed at ship {#covered-helpers}
+  e.g. `keyFor`, called by `save`, with a test named `keyFor prefixes the customer id` -> both stay, and the Review lists no removal
 - spec-ship copies the claims in `spec.md` into `behavior/` without rewording, applying each Add, Change and Remove {#updates-behavior}
   e.g. the wishlist ships -> `behavior/wishlist/save-item.md` holds exactly the three claims from the spec
 - spec-ship updates the architecture files plan.md lists, from the reference files it names, and adds a domain row to `index.md` only when one is still missing {#updates-architecture}

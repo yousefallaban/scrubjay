@@ -42,7 +42,7 @@ docs/
   specs/<date>-<slug>/                 one folder per change: spec.md, plan.md, tasks.md
 ```
 
-A claim is one testable sentence with an ID and an example. Tests carry the claim's reference in their name, and at ship the claims are copied into `behavior/` word for word, so the docs say exactly what the tests prove.
+A claim is one testable sentence with an ID and an example. A claim's test carries the claim's reference in its name, and at ship the claims are copied into `behavior/` word for word, so the docs say exactly what the tests prove.
 
 ## Install
 

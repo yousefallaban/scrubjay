@@ -13,8 +13,8 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 2. Find the active spec from the branch. Read `spec.md`, `plan.md`, `tasks.md`. If a task is unticked, say which and stop.
 3. Gate on the go. A feature, or a fix with claims under What changes, needs the `approved` line. Without it, say "The owner of <domain>/<capability> hasn't said go" and stop. A fix with "No behavior change" needs none.
 4. Run the project's test command from `architecture/stack.md`. If anything fails, report it and stop. No docs change on a red run.
-5. Fresh review. Ask a reviewer that did not write the code, a sub-agent with a fresh context or, without one, a separate read-only session of the agent started from the shell with the review prompt, to compare the branch's diff against main with the claims in `spec.md` and the Files list in `plan.md`, and to report: claims with no test carrying their reference, behavior in the diff that no claim covers, files changed outside the plan, and anything in the diff that contradicts a claim. Keep the findings for the pull request; code files outside the plan become its Unrelated changes. The docs the flow itself writes, the spec folder, `behavior/`, `architecture/`, `decisions/`, `glossary.md`, `index.md`, the block in `AGENTS.md` and the `CLAUDE.md` import, are never unrelated.
-6. Uncovered code. For each finding of behavior no claim covers, remove the code and the tests that exercise it, without asking: the spec is the contract. A test-only helper that nothing outside the tests calls is not behavior and stays. Run the tests again and stop on red. The Review section names each removal. An owner who wants the code back adds a claim for it, which is a change to `spec.md` with a new go, and only when the owner says so in the session does the claim get written instead of the removal.
+5. Fresh review. Ask a reviewer that did not write the code, a sub-agent with a fresh context or, without one, a separate read-only session of the agent started from the shell with the review prompt, to compare the branch's diff against main with the claims in `spec.md` and the Files list in `plan.md`, and to report: claims with no test carrying their reference, weak tests, behavior in the diff that no claim covers, files changed outside the plan, and anything in the diff that contradicts a claim. A weak test carries a claim reference but its assertions do not prove that claim: the reference is a label, so the reviewer reads the assertions and says whether they exercise what the claim promises. Keep the findings for the pull request; code files outside the plan become its Unrelated changes. A weak test is reported, not repaired: spec-ship does not edit the test, and the owner decides whether to fix it before the merge. The docs the flow itself writes, the spec folder, `behavior/`, `architecture/`, `decisions/`, `glossary.md`, `index.md`, the block in `AGENTS.md` and the `CLAUDE.md` import, are never unrelated.
+6. Uncovered code. For each finding of behavior no claim covers, remove the code and the tests that exercise it, without asking: the spec is the contract. A test-only helper that nothing outside the tests calls is not behavior and stays. A helper that the code behind a claim calls, and that adds no behavior of its own, belongs to that claim: it stays, and a test of it that carries no reference stays with it. Run the tests again and stop on red. The Review section names each removal. An owner who wants the code back adds a claim for it, which is a change to `spec.md` with a new go, and only when the owner says so in the session does the claim get written instead of the removal.
 7. Update `behavior/`. For each `### Add · <domain>/<capability>`, create or extend `behavior/<domain>/<capability>.md` from its template with the claims copied word for word. For each Change, replace the claim with that ID in place. For each Remove, delete the claim. Reword nothing.
 8. Update architecture. For each line under Architecture to update at ship in `plan.md`, update that area file from the named reference file, creating it from its template when it doesn't exist. Leave the reference file as it is. Add a domain row to `index.md` only when one is still missing.
 9. Set `status: shipped` in `spec.md`. The status becomes true on the main branch exactly when the pull request merges.
@@ -36,7 +36,7 @@ Code and docs land together, reviewed by someone who didn't write them, and the 
 **Release impact:** <No release impact | PATCH | MINOR | MAJOR>
 
 ## Review
-<the fresh reviewer's findings, each uncovered behavior marked removed or claimed, or "No findings.">
+<the fresh reviewer's findings, each uncovered behavior marked removed or claimed and each weak test named, or "No findings.">
 
 ## Outcome
 Sessions: <n>, re-explained: <n>. <what grilling added, changed or kept out>.
@@ -51,12 +51,15 @@ Follow-ups: <change>, kept for a spec; <change>, dropped.   only when reference/
 - `spec.md` says `status: shipped` and carries the `approved` line when claims changed.
 - The pull request text has every section filled and no placeholder.
 - Every line of `reference/follow-ups.md` is named in the Outcome as kept for a spec or dropped.
+- A weak test is named in the Review section, and that test reads as it did before the ship.
 
 ## Rationalizations and red flags
 
 | Excuse | Rule |
 | --- | --- |
 | "One flaky test, I'll ship anyway." | Red run, no ship. Fix or stop. |
+| "The test carries the claim's ID, so the claim is proven." | The ID is a label. The reviewer reads the assertions; a test that only checks that nothing throws proves nothing about one entry, and the Review says so. |
+| "The helper has no claim and its test has no reference, so it's uncovered." | A helper that the code behind a claim calls belongs to that claim. Remove only behavior that no claim covers. |
 | "I reviewed my own diff carefully." | The reviewer is a fresh context that didn't write the code. A review done in this session is never written up as fresh: without a sub-agent, start a separate session from the shell, or, without a shell, stop and hand the user the review prompt. |
 | "I'll tidy the claim wording while copying." | Claims are copied word for word. Rewording is a Change in a later spec. |
 | "No owner around, but the fix is small." | A fix with claims needs the go. Show the text to paste and stop. |
