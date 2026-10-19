@@ -1,7 +1,7 @@
 ---
 id: 2026-10-19-review-conventions
 kind: feature
-status: draft
+status: shipped
 summary: "The ship review also reports what in the diff breaks a rule in architecture/conventions.md or invariants.md, and leaves the fix to the owner"
 request: "A third reviewer's findings, relayed by Yousef on 2026-10-19: the fresh review compares the diff with the spec and the plan only, so a change can satisfy every claim and still break a project rule; review both"
 approved: {by: yousef, via: in session}

@@ -15,6 +15,10 @@ capability: spec/ship
   e.g. the weak no-duplicates test -> the test file is the same after spec-ship, and the Review says what the test lacks
 - A helper that the code of a covered claim calls is covered by that claim, and neither it nor an unlabeled test of it is removed at ship {#covered-helpers}
   e.g. `keyFor`, called by `save`, with a test named `keyFor prefixes the customer id` -> both stay, and the Review lists no removal
+- The fresh reviewer reads `architecture/conventions.md` and `architecture/invariants.md` beside the spec and the plan, and reports anything in the diff that breaks a rule in them {#reviews-against-conventions}
+  e.g. conventions.md says errors thrown from `src/` are `ShopError`, and the new `save` throws a bare `Error` -> listed in the Review as a convention finding, naming the rule and the line
+- Code the review reports as breaking a convention is left unchanged at ship, for the owner to fix before the merge {#convention-finding-stays}
+  e.g. the bare `Error` in `save` -> `src/wishlist.ts` is the same after spec-ship, and the Review says which rule it breaks
 - spec-ship copies the claims in `spec.md` into `behavior/` without rewording, applying each Add, Change and Remove {#updates-behavior}
   e.g. the wishlist ships -> `behavior/wishlist/save-item.md` holds exactly the three claims from the spec
 - spec-ship updates the architecture files plan.md lists, from the reference files it names, and adds a domain row to `index.md` only when one is still missing {#updates-architecture}
