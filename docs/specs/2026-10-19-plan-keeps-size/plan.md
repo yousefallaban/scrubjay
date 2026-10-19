@@ -17,7 +17,7 @@ plugin/evals/spec-build/writes-inside-scope/             new: the plan lists src
 plugin/evals/spec-build/asks-before-out-of-plan-file/    changed: the fixture's plan uses the Scope heading and the grader reads the new question
 plugin/evals/spec-plan/writes-plan-and-tasks/            changed: the plan-shape grader expects Scope
 plugin/evals/*/*/fixture.sh, checks/fixture-webshop.sh   changed: the Files heading becomes Scope in every fixture plan
-AGENTS.md, README.md, plugin/README.md                   changed: the lines that name the plan's Files
+AGENTS.md                                                changed: the changing-course line names the plan's Scope
 plugin/plugin.json, plugin/.claude-plugin/plugin.json    changed: version 0.4.0
 ```
 
