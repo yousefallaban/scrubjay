@@ -26,7 +26,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 - `tasks.md` has this session's line, and a ticked task has a passing test per claim it names.
 - The test command ran, or its run was asked for, before the task's first edit.
 - A session that stopped before the tick left a `- handoff:` line under the open task, and a ticked task has none.
-- Every test added carries a claim reference in its name.
+- A claim's test carries the claim reference in its name; a test of an internal detail of code a claim covers is named for what it checks and carries none.
 - `git status` shows no changed file outside `plan.md`'s Files list, other than ones the user added to it.
 - After a change of course, `tasks.md` has a Rechecked line that names no kept task, and `spec.md` has no `approved` line if Why or What changes changed.
 - After a polish, one task is unticked with a `redo:` line, no line was added above the tasks for it, and plan.md's Approach is unchanged.
@@ -37,6 +37,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 | Excuse | Rule |
 | --- | --- |
 | "The test would be trivial, I'll write the code first." | The failing test is the proof the task asks for. Write it first, watch it fail. |
+| "Every test needs a claim reference, I'll put one on the helper test." | A reference says the test proves that claim. A helper test is named for what it checks and carries none. |
 | "It's one line in a helper, no need to ask." | A file outside the plan is asked about, every time. |
 | "The tests pass locally, mostly. Tick it." | Tick only on a clean run of the project's test command. |
 | "The change is small, no need to touch spec.md." | A change to what gets built is a change to the spec, and the owner says go again. |

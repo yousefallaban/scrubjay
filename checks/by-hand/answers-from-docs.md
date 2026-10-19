@@ -11,7 +11,7 @@ Purpose: the by-hand check for the claims the AGENTS.md block drives, answers-fr
 Start a fresh non-interactive session in the repo and ask one question that the behavior file answers and the code answers differently:
 
 - Claude Code: `claude -p "How is the refund for a partial return calculated?" --max-turns 8 --output-format stream-json --verbose`
-- Codex: `codex exec --json --sandbox read-only "How is the refund for a partial return calculated?"`
+- Codex: `codex exec --json --sandbox read-only "How is the refund for a partial return calculated?" < /dev/null`, since Codex reads stdin when it is not a terminal
 
 Passes when the answer cites `returns/submit-return#partial-refund` or quotes the claim, and the transcript shows no read of `src/returns.ts`. Fails when the agent reads the code first, or answers from the code, which says one thing the claim does not: the code rounds with floating point and is one cent short on some inputs.
 
@@ -23,3 +23,5 @@ Passes when the answer cites `returns/submit-return#partial-refund` or quotes th
 | 2026-10-12 | Codex 0.154.0, after D55 | yes; cited `docs/behavior/returns/submit-return.md:10` and quoted the half-up rule | no; listed `docs/behavior` and read the behavior file and `stack.md` only | `transcripts/2026-10-12-codex-answers-from-docs-2.jsonl` |
 | 2026-10-12 | Claude Code 2.1.272, after D55 | yes; quoted `{#partial-refund}` with its line | yes, after the docs: read `src/returns.ts`, `src/orders.ts` and the tests to compare | `transcripts/2026-10-12-claude-code-answers-from-docs-2.jsonl` |
 | 2026-10-12 | Claude Code 2.1.272, after D56 | yes; quoted `{#partial-refund}` with its line and said no code was read | no; read `docs/index.md`, listed `docs/`, read the behavior file | `transcripts/2026-10-12-claude-code-answers-from-docs-3.jsonl` |
+| 2026-10-19 | Claude Code 2.1.296, block as shipped at 0.2.0 | yes; cited `#partial-refund` at `submit-return.md:10` and said the docs answer it directly | no; read `docs/index.md`, the behavior file and nothing else | `transcripts/2026-10-19-claude-answers-from-docs.jsonl`; control run for verifies-on-doubt |
+| 2026-10-19 | Codex 0.162.1, block as shipped at 0.2.0 | yes; cited `submit-return.md:10` and gave the worked example | no; read `docs/index.md` and the behavior file | `transcripts/2026-10-19-codex-answers-from-docs.jsonl`; control run for verifies-on-doubt |

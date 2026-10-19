@@ -7,6 +7,8 @@ capability: spec/build
   e.g. T1's tests pass -> T1 is ticked, and the build moves to T2
 - When a task changes behavior, spec-build writes a failing test, named with the claim reference, before the code {#test-first}
   e.g. `keeps one entry [wishlist/save-item#no-duplicates]` fails, then passes
+- A test of an internal detail of code a claim covers is named for what it checks and carries no claim reference {#supporting-tests}
+  e.g. a test of the `keyFor` helper behind `save` -> named `keyFor prefixes the customer id`, with no claim reference
 - spec-build sets the status to building, and creates `tasks.md` first when the kind skipped planning {#sets-building}
   e.g. a one-step fix -> `tasks.md` with one task, and status building
 - A new session on the spec's branch reads `tasks.md` first and reports the next task and any notes, without the user re-explaining {#resumes}
