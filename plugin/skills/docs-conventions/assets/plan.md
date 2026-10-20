@@ -8,8 +8,9 @@ spec: "{{spec id}}"
 <!-- optional: when there was a real choice. Options considered and why this one won.
 A choice that outlives the spec links to its decision record. -->
 
-## Files
-<!-- required: the annotated file tree. This is the scope the review checks the diff against. -->
+## Scope
+<!-- required: the folders or files the change may land in; a folder covers everything under it.
+This is where the build may write without asking and what the review checks the diff against. -->
 {{path}}    {{new | changed | deleted}}: {{one-line reason}}
 
 ## Architecture to update at ship
