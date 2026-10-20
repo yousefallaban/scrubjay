@@ -1,7 +1,7 @@
 ---
 id: 2026-10-19-plan-keeps-size
 kind: feature
-status: draft
+status: shipped
 summary: "A request about finished work reopens its task instead of adding one, and the plan names the folders a change may land in instead of every file, so the plan keeps its planned size through the build"
 approved: {by: yousef, via: in session}
 request: "Yousef, on 2026-10-19, after the cleanup of his client spec: six planned tasks became 48 because every request to do finished work differently was added as a task, and the plan's file list reached 173 paths that had to be maintained; he agrees with Matt Pocock that path lists go stale"
