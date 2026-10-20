@@ -15,11 +15,11 @@ capability: spec/build
   e.g. the next session on `add-wishlist` opens with "continue" -> "T3 is next; under it: handoff: done: export added; red: one test imports the old path; next: fix the import"
 - What blocked a task, or what was tried and dropped, is kept as a note of at most two lines under that task while it is open {#notes}
   e.g. a detour through a Set while T2 is open -> one note line under T2, and nothing under the ticked T1
-- spec-build asks before touching a file that is not listed in plan.md {#stays-in-scope}
-  e.g. a fix needs a shared helper changed -> "This file isn't in the plan. Add it?"
+- spec-build asks before touching a path outside plan.md's Scope {#stays-in-scope}
+  e.g. T3 needs a line in `src/orders.ts`, which no Scope entry covers -> "This is outside the plan's Scope. Add it?"
 - When the user changes course mid-spec, the agent updates the file the change belongs to: `spec.md` for why or what, `plan.md` for how, `reference/` for details {#updates-owner-file}
   e.g. "guests should be able to save too" -> a new claim in `spec.md`
-- After a change to `spec.md` or to plan.md's Files, the agent rechecks every task, shows each as keep, redo, new or drop with a one-line reason, and rewrites the task list in place without a recheck line {#rechecks-tasks}
+- After a change to `spec.md` or to plan.md's Scope, the agent rechecks every task, shows each as keep, redo, new or drop with a one-line reason, and rewrites the task list in place without a recheck line {#rechecks-tasks}
   e.g. a fourth claim is added -> the session shows T1 to T3 as keep and T4 as new, and tasks.md gains T4 and nothing else
 - No affected task is built until the user OKs the recheck {#waits-for-recheck-ok}
   e.g. the user drops T4 -> the list is updated, then the build continues
@@ -31,7 +31,7 @@ capability: spec/build
   e.g. a session that cannot run commands says "continue" -> "Run `bun test` and tell me the result" comes before any edit to `src/` or `test/`
 - When a session stops before its task is ticked, spec-build writes one handoff line under the task: what exists, what is red or unfinished, and the next step; the line goes when the task is ticked {#handoff}
   e.g. `- handoff: done: failing test for no-duplicates; red: save not written; next: write save in src/wishlist.ts`
-- A mid-build request that changes no claim and adds no file to the plan reopens its task with a `redo:` line, and a size or value it brings goes to `reference/`, never into plan.md's Approach {#polish}
+- A mid-build request that changes no claim and no Scope reopens its task with a `redo:` line, and a size or value it brings goes to `reference/`, never into plan.md's Approach {#polish}
   e.g. "make the icon bigger" after T2 is ticked -> T2 is unticked with `redo: icon size`, the size goes to `reference/layout.md`, and the redo line goes at the tick
 - A change of course that adds to what a claim says writes a new claim or replaces the claim, so each claim stays one testable sentence with one example {#one-sentence-claims}
   e.g. "also show how many items are saved" arrives while `lists-saved` exists -> a new claim with its own ID, not a longer `lists-saved`
@@ -39,3 +39,7 @@ capability: spec/build
   e.g. T2 ticked after a detour through a Set -> the note and the handoff line are gone, and the choice, if lasting, is in `reference/decisions.md`
 - spec-build commits the files a task touched when it ticks the task, with the task line as the message {#commits-at-tick}
   e.g. T2 ticked -> `feat: T2 save and list, with duplicates kept to one entry [saves-item, no-duplicates, lists-saved]` on the branch, holding the task's files and nothing else
+- A request that changes work a ticked task did reopens that task with a `redo:` line instead of adding a task {#reopens-not-appends}
+  e.g. "keep the entries in a Set of product ids" after T2 built an array -> T2 is unticked with `redo: Set of product ids`, and the task count is unchanged
+- A file added inside a folder the Scope lists is written without a question {#writes-inside-scope}
+  e.g. the Scope lists `src/wishlist/` and T2 needs `src/wishlist/keys.ts` -> the file is written, and plan.md is unchanged

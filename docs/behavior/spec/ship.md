@@ -7,8 +7,8 @@ capability: spec/ship
   e.g. one failing test -> no docs change, and the failure is reported
 - spec-ship does not ship a feature, or a fix that changes behavior, without a recorded go {#ships-with-go}
   e.g. a fix with a claim under Change and no `approved` line -> "The owner of returns/submit-return hasn't said go"
-- A fresh reviewer that did not write the code compares the diff with `spec.md` and with plan.md's file list, and its findings go into the PR description {#fresh-review}
-  e.g. a file changed outside the plan -> listed as a finding
+- A fresh reviewer that did not write the code compares the diff with `spec.md` and with plan.md's Scope, and its findings go into the PR description {#fresh-review}
+  e.g. a file changed outside the Scope -> listed as a finding
 - The fresh reviewer reads the assertions of each test carrying a claim reference and reports one whose assertions do not prove its claim {#tests-prove-claims}
   e.g. `keeps one entry [wishlist/save-item#no-duplicates]` only asserts that the second save does not throw -> listed as a finding: the test does not prove no-duplicates
 - A test the review reports as weak is left unchanged at ship, for the owner to fix before the merge {#weak-test-stays}
@@ -27,7 +27,7 @@ capability: spec/ship
   e.g. the PR merges -> code, docs and `status: shipped` land on main together
 - spec-ship asks whether to create the PR or show its title and description to paste. Without `gh` it shows them. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges {#pr-choice}
   e.g. "show" chosen -> `feature(HUB-123): Add wishlist`, or `feature(add-wishlist): Add wishlist` without a ticket, and the description, ready to paste
-- The PR description fills the repo's own pull request template when it has one, and otherwise spec-ship's: Links, the ticket and the spec; Description, the why and the claims added, changed or removed; Unrelated changes, the files changed outside plan.md or `None.`; Release impact, derived from the kind and the claims and confirmed by the user; Review, the fresh reviewer's findings; Outcome {#pr-template}
+- The PR description fills the repo's own pull request template when it has one, and otherwise spec-ship's: Links, the ticket and the spec; Description, the why and the claims added, changed or removed; Unrelated changes, the changes outside plan.md's Scope or `None.`; Release impact, derived from the kind and the claims and confirmed by the user; Review, the fresh reviewer's findings; Outcome {#pr-template}
   e.g. a feature with `issue: HUB-123` -> `- **Jira:** [HUB-123: Add wishlist](https://example.atlassian.net/browse/HUB-123)`, `**Release impact:** MINOR`, and `None.` under Unrelated changes
 - The PR description states what changed between the request and the shipped claims, and what became of each line in `reference/follow-ups.md`: kept for a spec or dropped {#reports-outcome}
   e.g. a spec with two deferred changes -> `Grilling added guest saving and kept sharing out. Follow-ups: share by link, kept for a spec; price alerts, dropped.`
