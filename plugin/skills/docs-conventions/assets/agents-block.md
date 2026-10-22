@@ -14,5 +14,10 @@
   one task with a redo line instead.
 - Write specs, plans, tasks, glossary terms and decisions into {{docs-path}}/,
   never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/{{extra-never-write}}.
-- Before opening a pull request, ship the spec (spec-ship), which writes the PR title and description.
+- A review on a spec branch checks that every claim has a test carrying its reference whose
+  assertions prove it, that nothing in the diff contradicts a claim or lands outside plan.md's
+  Scope, that code no claim covers is removed at ship, and that architecture/conventions.md
+  and invariants.md hold.
+- Before opening a pull request, ship the spec (spec-ship): the fresh review, the docs update
+  and the pull request come from it.
 <!-- project-memory:end -->
