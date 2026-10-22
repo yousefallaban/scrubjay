@@ -35,3 +35,6 @@ Purpose: lasting choices made while specifying and building ship-ends-clean, app
 
 ## D12 Two claims reworded with the owner's go after the second review
 2026-10-22. The second fresh review found two rules in the skill with no claim behind them, both from the first review's fix: a removal lands as its own commit, and no code changes before the answer to the findings question. Yousef said go to carrying them into the claims: `ships-in-one-commit` now says the docs commit follows any removal commit, and `asks-after-review` says no code and no docs change before the answer. The follow-ups sentence that said more than the spec allows went back to "the lines stay as deferred work".
+
+## D13 The pull request is opened with whatever GitHub access the agent has
+2026-10-22. The claim and the skill named `gh`, one vendor's tool, while the Codex and Copilot apps open pull requests through their own GitHub connections and a sandboxed Codex may have no `gh` at all. Yousef said go: create means push and open with what the agent has, `gh` or the app's connection, and with neither the text is shown. The question to the user is unchanged.
