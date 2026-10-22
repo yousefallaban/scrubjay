@@ -2,7 +2,7 @@
 id: 2026-10-22-ship-ends-clean
 kind: feature
 status: draft
-summary: "spec-ship ends in the conversation: the review findings appear in the agent's own form, a contradicted or untested claim stops the ship, the docs land in one commit, and one question opens a short pull request"
+summary: "spec-ship ends in the conversation: the review findings appear in the agent's own form, a contradicted or untested claim stops the ship, the docs land in one commit, and the pull request is created or shown only when asked, after one decision point on the findings"
 approved: {by: yousef, via: in session}
 request: "Yousef, on 2026-10-22, after shipping a real spec with canon: the review and the PR text were saved as files in a temp folder, the next step after the review was unclear, the PR description carried verification and workflow text a merger does not need, and he will keep running the agents' native reviews beside spec-ship"
 ---
@@ -20,13 +20,15 @@ A real ship with the pack ended in two files in a temporary folder, the review r
 - The PR description fills the repo's own pull request template when it has one, and otherwise holds the why in two lines, one line per claim added, changed or removed, the ticket link when the spec has an issue key, the spec as a link that opens on GitHub, the open findings with each removal in one line, the changes outside plan.md's Scope, and the release impact derived from the kind and the claims {#pr-template}
   was: The PR description fills the repo's own pull request template when it has one, and otherwise spec-ship's: Links, the ticket and the spec; Description, the why and the claims added, changed or removed; Unrelated changes, the changes outside plan.md's Scope or `None.`; Release impact, derived from the kind and the claims and confirmed by the user; Review, the fresh reviewer's findings; Outcome
   e.g. the wishlist with a weak test left open -> `Open: test/wishlist.test.ts:22 asserts only that save does not throw`, `Removed at ship: clearWishlist, no claim`, `Release impact: MINOR`, and no Outcome section and no question about the impact
-- spec-ship prints the PR title and description in the conversation, then asks one question: open the pull request, or stop with the text as shown. Opening pushes the branch and creates the PR with `gh`; without `gh` only the text is shown. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges {#pr-choice}
+- After the docs commit, spec-ship asks whether to create the pull request with `gh` or show its title and description to paste, and writes nothing of the pull request before the answer. Without `gh` it shows them. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges {#pr-choice}
   was: spec-ship asks whether to create the PR or show its title and description to paste. Without `gh` it shows them. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges
-  e.g. "open" -> the branch is pushed, `gh pr create` runs with the printed title and body, and the PR address is the last line; "stop" -> nothing else happens
+  e.g. "create" -> the branch is pushed, `gh pr create` runs with the title and the description, and the PR address is the last line; "show" -> both are printed to paste, and nothing else happens
 
 ### Add · spec/ship
 - A claim the diff contradicts, or a claim with no test carrying its reference, stops the ship before any docs change, naming the claim and the two ways on: fix, which reopens the task that built it, or a change to the claim with a new go {#stops-on-contract-break}
   e.g. `save()` writes to one shared list while `#per-customer` promises a list per customer -> "`#per-customer` is contradicted at src/wishlist.ts:41. No docs changed. Say fix to reopen T3, or change the claim in spec.md", and `status` and `behavior/` are unchanged
+- After the review, spec-ship says which findings block and which are optional, suggests fix or leave for each optional one, and asks one question, fix, naming them, go on to the pull request, or stop; no docs change before the answer {#asks-after-review}
+  e.g. a weak test and an import reordered outside the Scope -> "Nothing blocks. Optional: the weak no-duplicates test, suggest fix; the orders.ts import order, suggest leave. Fix which, go on to the PR, or stop?", and `behavior/` is untouched until the answer
 - Saying fix on a finding reopens the task that built the code through spec-build, with a `redo:` line naming the finding, and the ship runs again after the tick {#fix-reopens-task}
   e.g. "fix the weak test" -> T2 is unticked with `redo: the no-duplicates test asserts one entry`, the test is rewritten, run red then green and ticked, and the ship starts over from the tests
 - The docs the ship writes land in one commit, `docs: ship <slug>`, before the pull request, and the ship writes no file outside the repository {#ships-in-one-commit}

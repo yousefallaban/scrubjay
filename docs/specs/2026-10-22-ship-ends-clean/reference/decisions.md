@@ -17,3 +17,9 @@ Purpose: lasting choices made while specifying and building ship-ends-clean, app
 
 ## D6 Fix means reopen
 2026-10-22. The ship repairs nothing. "fix" on a finding is a request about finished work, which the 0.4.0 rule already answers: the task that built the code is reopened with a redo line, built and ticked, and the ship runs again.
+
+## D7 The pull request is created or shown only when asked, after a decision point on the findings
+2026-10-22. Supersedes the single end question in D4. Yousef: the pull request is the result of the ship and nothing of it is generated until he asks. After the review the ship says what blocks and what is optional, suggests fix or leave for each optional finding, and asks fix, go on or stop; on go on the docs land in one commit and the ship asks create or show. Two questions, each where there is something to decide, and the body is never printed unasked.
+
+## D8 The option-question spec is dropped for now
+2026-10-22. asks-with-options, planned as a sentence at every ask in six skills, was dropped before its first task: every shape of it costs context on runs that ask nothing, and the pack adds text only on evidence from real use. If the five asks left in the flow still read clumsy after this spec has shipped a real change, it returns as a ten-line practice loaded only at an ask.
