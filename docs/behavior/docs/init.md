@@ -21,3 +21,4 @@ capability: docs/init
   e.g. an `openspec/` folder -> the block lists it as never-write, and the folder is untouched
 - Running docs-init again only refreshes the block between the markers {#rerun-safe}
   e.g. a rerun after a pack update -> the block text is updated, and no docs file changes
+- The block tells a reviewer what a review on a spec branch checks: every claim has a test carrying its reference whose assertions prove it, nothing in the diff contradicts a claim, nothing lands outside plan.md's Scope, code no claim covers is removed at ship, and the rules in `architecture/conventions.md` and `invariants.md` hold {#block-names-review-checks}
