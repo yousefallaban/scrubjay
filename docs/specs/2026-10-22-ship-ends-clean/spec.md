@@ -27,12 +27,12 @@ A real ship with the pack ended in two files in a temporary folder, the review r
 ### Add · spec/ship
 - A claim the diff contradicts, or a claim with no test carrying its reference, stops the ship before any docs change, naming the claim and the two ways on: fix, which reopens the task that built it, or a change to the claim with a new go {#stops-on-contract-break}
   e.g. `save()` writes to one shared list while `#per-customer` promises a list per customer -> "`#per-customer` is contradicted at src/wishlist.ts:41. No docs changed. Say fix to reopen T3, or change the claim in spec.md", and `status` and `behavior/` are unchanged
-- After the review, spec-ship says which findings block and which are optional, suggests fix or leave for each optional one, and asks one question, fix, naming them, go on to the pull request, or stop; no docs change before the answer {#asks-after-review}
+- After the review, spec-ship says which findings block and which are optional, suggests fix or leave for each optional one, and asks one question, fix, naming them, go on to the pull request, or stop; no code and no docs change before the answer {#asks-after-review}
   e.g. a weak test and an import reordered outside the Scope -> "Nothing blocks. Optional: the weak no-duplicates test, suggest fix; the orders.ts import order, suggest leave. Fix which, go on to the PR, or stop?", and `behavior/` is untouched until the answer
 - Saying fix on a finding reopens the task that built the code through spec-build, with a `redo:` line naming the finding, and the ship runs again after the tick {#fix-reopens-task}
   e.g. "fix the weak test" -> T2 is unticked with `redo: the no-duplicates test asserts one entry`, the test is rewritten, run red then green and ticked, and the ship starts over from the tests
-- The docs the ship writes land in one commit, `docs: ship <slug>`, before the pull request, and the ship writes no file outside the repository {#ships-in-one-commit}
-  e.g. `behavior/wishlist/save-item.md`, `architecture/data-model.md` and the shipped status -> one commit `docs: ship add-wishlist`, and no report or body file in any temp folder
+- The docs the ship writes land in one commit, `docs: ship <slug>`, after any removal of uncovered code, which lands as its own commit, and the ship writes no file outside the repository {#ships-in-one-commit}
+  e.g. `clearWishlist` removed, then `behavior/wishlist/save-item.md`, `architecture/data-model.md` and the shipped status -> `refactor: remove clearWishlist, no claim covers it` followed by `docs: ship add-wishlist`, and no report or body file in any temp folder
 - Code from any source meets the same contract at ship: a change another review or tool made is covered by the claim whose code it serves or removed as uncovered, and that review's findings do not stand in for the fresh review {#any-source-same-contract}
   e.g. a native code review added input validation to `save()` that no claim names -> it is removed at ship and named under Removed, and the fresh review still runs
 
@@ -48,5 +48,5 @@ A real ship with the pack ended in two files in a temporary folder, the review r
 - No format of the pack's own for findings: no labels, no numbering protocol, no confidence scores. The agent shows a review the way it always does.
 - No call to a native review command such as `codex review` or `/code-review` from spec-ship. Parked until a by-hand run shows the contract checks survive inside one.
 - No question per finding. The findings are shown once; fix is said in words.
-- No screenshot handling. A repo template with a Screenshots section gets "attach by hand" and the local paths; no image is committed or uploaded.
+- No screenshot handling. A template section the layout has no part for is left out.
 - No question about release impact and none about follow-ups. The impact is derived; the follow-ups stay in their file.

@@ -32,3 +32,6 @@ Purpose: lasting choices made while specifying and building ship-ends-clean, app
 
 ## D11 The pull request question is proven by hand, the no-gh path by eval
 2026-10-22. An eval session has no shell and so no `gh`, which is exactly the case where the skill shows the text without asking. A case that waited for the create-or-show question therefore failed on the skill's own fallback, in two runs of three. The case now grades the no-gh path, the text coming after the docs commit, and the question is checked by hand on the example repo where `gh` exists.
+
+## D12 Two claims reworded with the owner's go after the second review
+2026-10-22. The second fresh review found two rules in the skill with no claim behind them, both from the first review's fix: a removal lands as its own commit, and no code changes before the answer to the findings question. Yousef said go to carrying them into the claims: `ships-in-one-commit` now says the docs commit follows any removal commit, and `asks-after-review` says no code and no docs change before the answer. The follow-ups sentence that said more than the spec allows went back to "the lines stay as deferred work".
