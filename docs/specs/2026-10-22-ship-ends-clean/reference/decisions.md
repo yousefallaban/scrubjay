@@ -23,3 +23,12 @@ Purpose: lasting choices made while specifying and building ship-ends-clean, app
 
 ## D8 The option-question spec is dropped for now
 2026-10-22. asks-with-options, planned as a sentence at every ask in six skills, was dropped before its first task: every shape of it costs context on runs that ask nothing, and the pack adds text only on evidence from real use. If the five asks left in the flow still read clumsy after this spec has shipped a real change, it returns as a ten-line practice loaded only at an ask.
+
+## D9 The question comes before the removal, and a removal is its own commit
+2026-10-22. The fresh review of this spec found that step 6 removed uncovered code before step 7 could stop on a contradiction, and that the docs commit never carried the removal, so a created pull request could say "Removed at ship" about code still on the branch. The order is now: findings, the one question, then on go on the removal as `refactor: remove <what>, no claim covers it`, then the docs. A stop leaves the branch as it was.
+
+## D10 A trace grader never matches the skill's own words
+2026-10-22. The skill text is in the transcript the moment the skill loads, so a grader that looks for a phrase the skill contains passes without the agent doing anything. Every trace grader in this spec anchors on something only the fixture has, a claim ID, a task number, a file name, or on a question mark the skill's text does not carry.
+
+## D11 The pull request question is proven by hand, the no-gh path by eval
+2026-10-22. An eval session has no shell and so no `gh`, which is exactly the case where the skill shows the text without asking. A case that waited for the create-or-show question therefore failed on the skill's own fallback, in two runs of three. The case now grades the no-gh path, the text coming after the docs commit, and the question is checked by hand on the example repo where `gh` exists.

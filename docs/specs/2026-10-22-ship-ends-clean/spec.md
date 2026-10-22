@@ -1,7 +1,7 @@
 ---
 id: 2026-10-22-ship-ends-clean
 kind: feature
-status: draft
+status: building
 summary: "spec-ship ends in the conversation: the review findings appear in the agent's own form, a contradicted or untested claim stops the ship, the docs land in one commit, and the pull request is created or shown only when asked, after one decision point on the findings"
 approved: {by: yousef, via: in session}
 request: "Yousef, on 2026-10-22, after shipping a real spec with canon: the review and the PR text were saved as files in a temp folder, the next step after the review was unclear, the PR description carried verification and workflow text a merger does not need, and he will keep running the agents' native reviews beside spec-ship"
