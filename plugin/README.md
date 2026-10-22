@@ -76,7 +76,7 @@ A change to the pack reaches Claude Code only when the `version` in its manifest
 | `spec-start` | start a spec from a sentence, a ticket or commits; settles why and what by grilling, records the owner's go |
 | `spec-plan` | decide how and break the work into tasks that fit one session each; waits for your OK |
 | `spec-build` | build task by task, a failing test first when behavior changes; resumes from `tasks.md`; handles a change of course, a polish and a deferred follow-up |
-| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec and the project's conventions, update `docs/behavior/` and `docs/architecture/`, prepare the pull request |
+| `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec and the project's conventions and show its findings, update `docs/behavior/` and `docs/architecture/` in one commit, then create or show the pull request when asked |
 
 Two practices load on their own: `grilling`, the question rounds, and `docs-conventions`, the file charter, the templates and the claim format.
 
@@ -88,7 +88,7 @@ On an existing repo:
 2. Open a new session and ask "where does project memory live?". It answers with `docs/index.md`. That is bet one working.
 3. `spec-start <one sentence about what you want>`. A feature is grilled in rounds, each question with a recommended answer; a fix is written in one pass. When the domain has no behavior docs yet, it offers `docs-map` first.
 4. Say go. For a feature, `spec-plan`, then OK the plan. Then `spec-build`, one task per session if you like; a new session picks up from `tasks.md` without re-explaining.
-5. `spec-ship`. Tests, a fresh review, the docs updated from the spec's claims, and a pull request title and description ready to paste.
+5. `spec-ship`. Tests, a fresh review shown in the conversation with one decision on its findings, the docs updated from the spec's claims in one commit, then the pull request created or shown, as you choose.
 
 ## What it writes into your repo
 

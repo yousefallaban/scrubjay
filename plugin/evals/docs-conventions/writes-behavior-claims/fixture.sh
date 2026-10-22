@@ -17,11 +17,16 @@ cat > AGENTS.md <<'MD'
 - Every code change belongs to a spec in docs/specs/. None yet: start one (spec-start).
 - One branch per spec, named after its slug. The active spec is the one matching the current branch.
 - If spec.md or the plan's Scope change mid-way, update them, then recheck every task and
-  rewrite the list in place; a change that touches no claim and no file in the plan reopens
+  rewrite the list in place; a change that touches no claim and no Scope reopens
   one task with a redo line instead.
 - Write specs, plans, tasks, glossary terms and decisions into docs/,
   never into SPEC.md, tasks/, CONTEXT.md or docs/superpowers/.
-- Before opening a pull request, ship the spec (spec-ship), which writes the PR title and description.
+- A review on a spec branch checks that every claim has a test carrying its reference whose
+  assertions prove it, that nothing in the diff contradicts a claim or lands outside plan.md's
+  Scope, that code no claim covers is removed at ship, and that architecture/conventions.md
+  and invariants.md hold.
+- Before opening a pull request, ship the spec (spec-ship): the fresh review, the docs update
+  and the pull request come from it.
 <!-- project-memory:end -->
 MD
 cat > docs/index.md <<'MD'

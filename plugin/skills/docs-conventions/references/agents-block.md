@@ -5,3 +5,5 @@ The block sits between `<!-- project-memory:start -->` and `<!-- project-memory:
 Slots: `{{docs-path}}` is `docs`, or the subfolder chosen when docs/ already serves a documentation site. `{{extra-never-write}}` lists the folders of any Spec Kit, OpenSpec or Kiro setup found, written as `, openspec/ or .kiro/specs/`, and is empty when there are none.
 
 The block holds the workflow and where memory lives, never project knowledge; that goes in docs/.
+
+The block also says what a review on a spec branch checks, in one paragraph, so any reviewer that reads AGENTS.md, in the agent or on the code host, runs the same five checks as spec-ship's fresh review: a test per claim whose assertions prove it, no contradiction, nothing outside the Scope, uncovered code removed, conventions and invariants held.
