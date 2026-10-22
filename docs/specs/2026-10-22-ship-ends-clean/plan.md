@@ -17,7 +17,7 @@ plugin/skills/docs-conventions/references/agents-block.md       changed: the rul
 plugin/evals/spec-ship/                                         changed: graders that pin the old layout, the follow-ups case repurposed, five new cases
 plugin/evals/docs-init/rerun-refreshes-block-only/              changed: a grader for the Review paragraph in the refreshed block
 checks/fixture-webshop.sh, plugin/evals/*/*/fixture.sh          changed: the block in every fixture AGENTS.md carries the Review paragraph
-checks/by-hand/dogfood.md                                       changed: a ship row per agent on the 0.5.0 text
+checks/by-hand/                                                 changed: a ship check section with a row per agent in dogfood.md, and its transcripts
 plugin/README.md                                                changed: the spec-ship row and step say the PR is opened from the conversation
 AGENTS.md                                                       changed: the Shipping line names the one docs commit
 plugin/plugin.json, plugin/.claude-plugin/plugin.json           changed: version 0.5.0
