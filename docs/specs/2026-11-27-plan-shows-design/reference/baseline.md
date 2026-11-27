@@ -59,6 +59,9 @@ Every spec-build case passed its three runs, 19 of 19. Of spec-ship, 8 of 21 cas
 
 Without the pack, shows-the-design scores 0.09, draws-no-diagram-inside-one-module 0.14 and writes-plan-and-tasks 0.33. After D25 the diagrams kept their labels to a few words, and one drew the signed-out case as an `alt` block. Between the first and second run, shows-the-design ran eight more times on its own: four on the rule as first written, with no diagram in any, and four on the rule of D24, with a numbered sequence in each.
 
+## At ship
+The fresh review found no case behind `approach-is-complete`: the graders counted Approach lines and none looked for a decision. shows-the-design now has a grader for the decision its prompt gives, that the wishlist asks the sign-in service who is signed in, as a line of its own. It passes on the five plans kept from the changed skills, three from the runner on the default model and two by hand, and fails on the 0.5.0 plan. The two transcripts of the plan check no longer show the home folder of the machine they ran on.
+
 ## Limits
 - One or two runs per case, on Sonnet, by hand. The `tool_used` graders and the transcript graders are not covered by a by-hand run. The runner's results are in the section above.
 - Three of the by-hand agents reported that a Skill tool in their session loaded an older installed copy of docs-conventions before they read the files under test. They said they followed the files under test. Later runs were told not to use a Skill tool.
