@@ -74,7 +74,7 @@ A change to the pack reaches Claude Code only when the `version` in its manifest
 | `docs-init` | add project memory to a repo: `docs/index.md`, `docs/architecture/stack.md`, the project-memory block in `AGENTS.md`, the `CLAUDE.md` import |
 | `docs-map` | document one domain of an existing app from its code, the first time work touches it; the owner confirms before anything is written |
 | `spec-start` | start a spec from a sentence, a ticket or commits; settles why and what by grilling, records the owner's go |
-| `spec-plan` | decide how and break the work into tasks that fit one session each; waits for your OK |
+| `spec-plan` | decide how and break the work into tasks that fit one session each; the plan opens with what you read to judge the design, the approach in plain words, a diagram when a picture helps and the contracts that are new or change shape as code; waits for your OK |
 | `spec-build` | build task by task, a failing test first when behavior changes; resumes from `tasks.md`; handles a change of course, a polish and a deferred follow-up |
 | `spec-ship` | run the tests, have a fresh reviewer compare the diff with the spec and the project's conventions and show its findings, update `docs/behavior/` and `docs/architecture/` in one commit, then create or show the pull request when asked |
 
@@ -87,7 +87,7 @@ On an existing repo:
 1. `docs-init`. Answer four things: what the product is, the first domain and its owner, your issue tracker if you have one, and whether the detected test command is right. It writes `docs/index.md`, `docs/architecture/stack.md`, the block in `AGENTS.md`, and the `CLAUDE.md` import.
 2. Open a new session and ask "where does project memory live?". It answers with `docs/index.md`. That is bet one working.
 3. `spec-start <one sentence about what you want>`. A feature is grilled in rounds, each question with a recommended answer; a fix is written in one pass. When the domain has no behavior docs yet, it offers `docs-map` first.
-4. Say go. For a feature, `spec-plan`, then OK the plan. Then `spec-build`, one task per session if you like; a new session picks up from `tasks.md` without re-explaining.
+4. Say go. For a feature, `spec-plan`, then OK the plan: every line above its Scope is yours to read, and what the agent could not read from the code is marked "Not checked". Then `spec-build`, one task per session if you like; a new session picks up from `tasks.md` without re-explaining.
 5. `spec-ship`. Tests, a fresh review shown in the conversation with one decision on its findings, the docs updated from the spec's claims in one commit, then the pull request created or shown, as you choose.
 
 ## What it writes into your repo

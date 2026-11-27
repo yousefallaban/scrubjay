@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: shows-the-design
+context:
+  scaffold_script: fixture.sh

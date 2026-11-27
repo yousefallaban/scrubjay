@@ -26,7 +26,7 @@ Project memory lives under the docs path the project-memory block in AGENTS.md n
 | `architecture/<area>.md` | how it's built now | one area per file, created when it first has content | behavior: `behavior/`; history: git; plans: `specs/` | `assets/architecture/` | `references/architecture.md` |
 | `decisions/<date>-<slug>.md` | why a lasting choice was made | context, options, decision, consequences | step-by-step detail: `plan.md` or `reference/` | `assets/decision.md` | `references/decision.md` |
 | `specs/<id>/spec.md` | why this change, and exactly what changes | why, claims under Add, Change and Remove, not doing, open questions | how it's built: `plan.md`; progress: `tasks.md` | `assets/spec.md` | `references/spec.md` |
-| `specs/<id>/plan.md` | how this change is built | approach, scope, architecture to update at ship, risks | the why: `spec.md`; progress: `tasks.md` | `assets/plan.md` | `references/plan.md` |
+| `specs/<id>/plan.md` | how this change is built | first what the owner reads, approach, how it works and contracts; then scope as a tree, architecture to update at ship, risks | the why: `spec.md`; progress: `tasks.md` | `assets/plan.md` | `references/plan.md` |
 | `specs/<id>/tasks.md` | where the work stands | tasks with the claims that prove them, lines under the open task | history: git; design discussion: `plan.md` or `decisions/` | `assets/tasks.md` | `references/tasks.md` |
 | `specs/<id>/reference/*` | working material for this spec | anything the spec needs, opening with `Purpose: ...` | the why, the plan, progress: the three files above | none | `references/reference.md` |
 | AGENTS.md block | the workflow and where memory lives | the managed block between the markers | project knowledge: `docs/` | `assets/agents-block.md` | `references/agents-block.md` |
@@ -49,6 +49,16 @@ One testable sentence per claim, then one concrete example. IDs are kebab-case a
 ## Writing
 
 Every file the pack writes is in plain words. No opener that announces what follows, no hedge or intensifier, no jargon, no em dash, no rhetorical setup. Active voice, one idea per sentence, a specific over an adjective: a number, a name, an example. The templates' limits are the length; a file that needs more words than its template allows needs a shorter idea.
+
+## Text the owner reads to decide
+
+Some text exists so the owner can say yes or no: `spec.md`, the owner's part of `plan.md`, a question, a finding. Before writing any of it, ask yourself: why does the reader need this, and does it help them judge? A line with no answer is cut, or moved to the part the agent works from. The question stays in your head and is never written into the file.
+
+- One complete fact per line. Say who does what, and why when that is not obvious. Don't cut words until the reader has to guess what is meant.
+- Product words first. A code name or file name comes after, in backticks, and only when the reader needs it to find the thing: "the page that lists all products", not "the catalogue view".
+- Short common words, and sentences of about 20 words at most. The reader may not be a native speaker.
+- What the reader has to decide comes before the detail.
+- Never a list for the look of it. A fragment with no verb, or a line that repeats its heading, helps nobody judge.
 
 ## Verification
 

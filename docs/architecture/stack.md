@@ -16,5 +16,5 @@ area: stack
 | --- | --- |
 | Test | `sh checks/run.sh` |
 | Lint | `python3 checks/check.py` |
-| Evals | `claude plugin eval plugin --scaffold --allow-tools Write Edit --trust-plugin` |
+| Evals | `claude plugin eval plugin --scaffold --allow-tools Write Edit --trust-plugin`; add `--eval-dir evals/<skill>` for one skill's cases, and `--case <name> --ablation none` for one case without the runs that leave the pack out |
 | Install locally | `claude plugin marketplace add .` then `claude plugin install scrubjay@yousefallaban` |

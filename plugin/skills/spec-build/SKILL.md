@@ -11,7 +11,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 
 1. Load docs-conventions. `references/tasks.md`, `references/plan.md`, `references/spec.md` and `references/reference.md` apply.
 2. Find the active spec: the folder under the docs path's `specs/` whose slug matches the current branch. With no match, say so and ask which spec to build, or whether to start one.
-3. Read `tasks.md` first. If it doesn't exist, the kind skipped planning: create it from the template with one task per claim in the spec; for a fix that restores a claim, one task naming that claim; for a fix with no claim at all, one task with a `check:`. Before any other step, say in one line which task is next and what is under it, note, redo or handoff, so nobody has to re-explain.
+3. Read `tasks.md` first. If it doesn't exist, the kind skipped planning. Look first at what the fix has to change: when it would add or alter a contract, which is what another module or system calls or reads, or a dependency between modules, it is planned first. Say so and run spec-plan, which writes `plan.md` with its owner's part and `tasks.md` and waits for the OK; write no code and no test before that OK. Otherwise create `tasks.md` from the template with one task per claim in the spec; for a fix that restores a claim, one task naming that claim; for a fix with no claim at all, one task with a `check:`. Before any other step, say in one line which task is next and what is under it, note, redo or handoff, so nobody has to re-explain.
 4. If `spec.md` says `status: draft`, set it to `building`.
 5. Run the project's test command from `architecture/stack.md` before touching the task, so the session knows the state it inherited. Green: start the task. Red: report what fails before any edit; when the failure belongs to the open task, continue the task from there; when it does not, stop and say so.
 6. Work the next unticked task only. When it names claims, write the failing test first, named with the claim reference such as `keeps one entry [wishlist/save-item#no-duplicates]`, run it and see it fail, then write the code and run it again. When it names a `check:`, do the check. Run the project's test command from `architecture/stack.md`.
@@ -38,6 +38,7 @@ One task at a time, test first, in scope, and resumable by anyone.
 | --- | --- |
 | "The test would be trivial, I'll write the code first." | The failing test is the proof the task asks for. Write it first, watch it fail. |
 | "Every test needs a claim reference, I'll put one on the helper test." | A reference says the test proves that claim. A helper test is named for what it checks and carries none. |
+| "It's a fix, and a fix skips the plan." | A fix that adds or alters a contract or a dependency between modules is planned first, and no code is written before the OK. |
 | "It's one line in a helper, no need to ask." | A path outside the plan's Scope is asked about, every time. |
 | "The tests pass locally, mostly. Tick it." | Tick only on a clean run of the project's test command. |
 | "I'll commit at the end of the session, when it all works." | A tick is a commit, with the task line as the message. Git is the history the files no longer carry. |

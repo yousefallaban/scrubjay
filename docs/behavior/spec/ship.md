@@ -20,8 +20,8 @@ capability: spec/ship
   e.g. the bare `Error` in `save` -> `src/wishlist.ts` is the same after spec-ship, and the Review says which rule it breaks
 - spec-ship copies the claims in `spec.md` into `behavior/` without rewording, applying each Add, Change and Remove {#updates-behavior}
   e.g. the wishlist ships -> `behavior/wishlist/save-item.md` holds exactly the three claims from the spec
-- spec-ship updates the architecture files plan.md lists, from the reference files it names, and adds a domain row to `index.md` only when one is still missing {#updates-architecture}
-  e.g. plan.md lists `data-model.md, from reference/data-model.md` -> `architecture/data-model.md` holds the wishlist table, and the reference file is unchanged
+- spec-ship updates the architecture files plan.md lists, from the plan section or the reference file each entry names, and adds a domain row to `index.md` only when one is still missing {#updates-architecture}
+  e.g. plan.md lists `contracts.md, from Contracts` -> `architecture/contracts.md` holds `saveItem`, and plan.md is unchanged
 - spec-ship sets the status to shipped inside the same pull request {#sets-shipped}
   e.g. the PR merges -> code, docs and `status: shipped` land on main together
 - After the docs commit, spec-ship asks whether to create the pull request or show its title and description to paste, and writes nothing of the pull request before the answer. Creating uses whatever GitHub access the agent has, `gh` or the app's own connection; with neither, it shows them. The title is `type(scope): objective`: the kind as type, `refactor` for a fix with no behavior change, the issue key or else the slug as scope, and the spec's title as objective. spec-ship never merges {#pr-choice}
