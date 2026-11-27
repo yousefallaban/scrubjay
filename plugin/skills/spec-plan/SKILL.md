@@ -1,6 +1,6 @@
 ---
 name: spec-plan
-description: Decide how a spec gets built and break it into tasks. Refuses to plan a feature without the owner's recorded go, writes plan.md with the approach, the places the change may land and the architecture files to update at ship, writes tasks.md where each task fits one session and names the claims that prove it, puts working material under reference/, and waits for an OK before any code. Use when a user asks to plan a spec, break work into tasks, or runs spec-plan.
+description: Decide how a spec gets built and break it into tasks. Refuses to plan a feature without the owner's recorded go, writes plan.md, first the part the owner reads, the approach, the contracts that change as code, the dependencies that change as one diagram and the choices made for the owner, then the places the change may land and the architecture files to update at ship, writes tasks.md where each task fits one session and names the claims that prove it, puts working material under reference/, and waits for an OK before any code. Use when a user asks to plan a spec, break work into tasks, or runs spec-plan.
 ---
 
 # spec-plan
@@ -12,16 +12,18 @@ How, and in what order, with nothing built until the user has seen it.
 1. Load docs-conventions and grilling. `references/plan.md`, `references/tasks.md`, `references/reference.md` and `references/decision.md` apply.
 2. Find the active spec from the branch. Read `spec.md`, the domain's `behavior/` files, and `architecture/`.
 3. Gate. For a feature, `spec.md` must carry the `approved` line. Without it, say "The go is missing" and stop; nothing is planned. A fix is planned only when it takes several steps, and needs no go to be planned.
-4. Settle the how. Where there is a real choice, grill on it in rounds with a recommended answer. A choice that outlives the spec becomes a decision record the moment it settles. Sketches, drafts and research go under `reference/`, each file opening with `Purpose: ...`.
-5. Write `plan.md` from the template: Approach in 3 to 8 lines; Trade-offs when there was a real choice; Scope as the folders or files the change may land in, each new or changed or deleted with a one-line reason, a folder covering everything under it, which is where spec-build may write and what the review checks the diff against; Architecture to update at ship, each area file with the reference file it comes from; Rollout and Risks only when real. Delete the sections that would be empty.
+4. Settle the how. Read the code the change touches, to find the contracts it adds or alters and the modules that start or stop depending on each other. Where there is a real choice, grill on it in rounds with a recommended answer. A choice made without asking is a pick, and every pick is listed in the plan. A choice that outlives the spec becomes a decision record the moment it settles. Sketches, drafts and research go under `reference/`, each file opening with `Purpose: ...`.
+5. Write `plan.md` from the template, in two parts. First what the owner reads to say OK: Approach in 3 to 8 lines; Contracts when the change adds or alters what another module or system calls or reads, as code in the project's language, changed members only; Dependencies when a dependency between modules is added or altered, as one mermaid flowchart of about ten nodes at most; Picks, one line per choice made for the owner, the choice over the alternative, because the reason. That part is about 40 lines at most, and nothing the owner has to agree to stays only in `reference/`. Then what the build works from: Scope as the folders or files the change may land in, each new or changed or deleted with a one-line reason, a folder covering everything under it, which is where spec-build may write and what the review checks the diff against; Architecture to update at ship, each area file with the plan section or the reference file it comes from; Rollout and Risks only when real. Delete the sections that would be empty.
 6. Write `tasks.md` from the template: tasks in dependency order, each small enough for one session, each ending in `-> <claim IDs>` for the claims whose tests prove it, or `-> check: <command or observable result>`. Every claim in the spec is named by at least one task. Numbers are never reused.
-7. Show the plan and the tasks and wait for an OK. Change what the user asks, show again. Write no code and no test.
+7. Show the plan, its owner's part in full, and the tasks, and wait for an OK. Change what the user asks, show again. Write no code and no test.
 8. Report the next step: spec-build.
 
 ## Verification
 
 - A feature has an `approved` line, or nothing was written.
 - `plan.md` has Approach and Scope, and every path the tasks will touch is under it.
+- Every contract the tasks will add or alter is under Contracts as code, every dependency between modules they add or alter is in the Dependencies flowchart, and every choice made without asking is a line under Picks.
+- The lines above Scope number about 40 at most.
 - Every claim ID in `spec.md` appears in at least one task, and every task has a `->`.
 - `git status` shows no code or test file changed.
 - Every `reference/` file starts with `Purpose:`.
@@ -33,7 +35,12 @@ How, and in what order, with nothing built until the user has seen it.
 | "The go will surely come, let me plan ahead." | No `approved` line, no plan. |
 | "I'll make one task: build it all." | A task fits one session and names its claims. |
 | "I'll start the first task since it's obvious." | The plan is shown, then OK'd, then built. |
-| "The data model sketch can live in plan.md." | Detail goes to `reference/`, with a Purpose line. |
+| "The data model sketch can live in plan.md." | The sketch goes to `reference/`, with a Purpose line. The types that change go under Contracts, as code. |
+| "The types are in the sketch under reference/, the owner can read them there." | What the owner agrees to is in the plan. The OK never depends on a `reference/` file. |
+| "The Approach names the functions, that shows the design." | A signature in prose is not a contract. Contracts is code, changed members only. |
+| "It's a small choice, no need to list it." | A choice made without asking is a pick: one line, the choice over the alternative, because the reason. |
+| "I'll draw the whole module graph so the diagram is complete." | Only the dependencies the change adds or alters, and the modules they connect. |
+| "The owner's part is 70 lines, the change is just big." | Past about 40 lines, cut what the OK does not need or split the spec. |
 | "I'll add a last task for shipping, so nothing is forgotten." | Tasks end with the last claim or check. Shipping is spec-ship's, never a task, and the docs the flow writes are not in the Scope. |
 
 ## Fallbacks
