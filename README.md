@@ -26,7 +26,7 @@ Six commands you run, two practices the agent loads on its own: `grilling`, the 
 | `docs-init` | add project memory to a repo: `docs/index.md`, the stack, the block in `AGENTS.md` |
 | `docs-map` | document one domain of an existing app from its code, the first time work touches it |
 | `spec-start` | start a spec from a sentence, a ticket or commits; grill it into claims; record the go |
-| `spec-plan` | decide how and break the work into tasks that fit one session each |
+| `spec-plan` | decide how, show you the design before any code, and break the work into tasks that fit one session each |
 | `spec-build` | build task by task, test first; a new session resumes from `tasks.md` |
 | `spec-ship` | run the tests, get a fresh review, update `docs/`, prepare the pull request |
 
@@ -85,7 +85,7 @@ After installing the pack, open your project in your coding agent. The steps bel
 
 3. **Describe a small change.** Run `spec-start` with a request such as "Customers can save products to a wishlist." Answer the questions, review the resulting spec, and say go when the scope is right.
 
-4. **Approve the plan.** Run `spec-plan`. Review the approach and task list, then give your OK before building starts.
+4. **Approve the plan.** Run `spec-plan`. The plan opens with the part you read: what will be built, a diagram when a picture helps, and the contracts that are new or change, as code. Review it and the task list, then give your OK before building starts.
 
 5. **Build and resume.** Run `spec-build` to work through the tasks. To pick up later, open a new session and say "continue"; the agent resumes from `tasks.md`.
 
