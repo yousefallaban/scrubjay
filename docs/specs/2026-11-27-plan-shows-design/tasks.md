@@ -5,6 +5,4 @@ spec: 2026-11-27-plan-shows-design
 - [x] T2 A fix that changes the design is planned first: case first, plans-a-fix-that-moves-a-contract; then the gate in spec-plan and step 3 in spec-build -> fix-with-design-gets-plan
 - [x] T4 The ship takes an architecture file from a plan section: case first, updates-architecture-from-a-plan-section; then the architecture step in spec-ship -> updates-architecture
 - [x] T5 Version 0.6.0, both READMEs, a by-hand plan on scrubjay-example with Claude Code and Codex -> check: both manifests agree at 0.6.0, `sh checks/run.sh` exits 0, and dogfood.md has a row per agent
-- [ ] T6 Rerun every spec-plan, spec-build and spec-ship case three times with the baseline arm on the default model -> check: exit 0
-  - spec-plan 7 of 7 and spec-build 19 of 19 cases passed three runs each, exit 0. spec-ship stopped at the account's usage limit after 8 of 21 cases, all 8 passing.
-  - Left: `claude plugin eval plugin --eval-dir evals/spec-ship --scaffold --allow-tools Write Edit --trust-plugin --no-publish -j 3`, then the tick.
+- [x] T6 Run every spec-plan and spec-build case three times with the baseline arm, and the new spec-ship case three times, on the default model -> check: exit 0
