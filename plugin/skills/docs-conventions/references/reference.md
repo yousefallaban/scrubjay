@@ -6,4 +6,4 @@ A reference file describes the current state of its subject, not a log. A new ru
 
 What the owner has to agree to is never only here: a contract that changes is under Contracts in `plan.md`, and a sketch here is working material the OK does not depend on.
 
-Never the why, the plan or progress; those live in spec.md, plan.md and tasks.md. A reference file is not edited at ship; the architecture files plan.md lists are updated from it, and the reference file stays as it was when the spec shipped.
+Never the why, the plan or progress; those live in spec.md, plan.md and tasks.md. A reference file is not edited at ship; the architecture files plan.md lists are updated from the plan section or the reference file each entry names, and the reference file stays as it was when the spec shipped.
