@@ -53,8 +53,9 @@ The eval runner worked again later on 2026-11-27, and every spec-plan case ran t
 | first | 6 of 7 | shows-the-design: no diagram in two runs of three, and one Approach without bold topics |
 | second, after D24 | 6 of 7 | draws-no-diagram-inside-one-module: the grader looked for the claim on task T1 only, and two valid task lists named it on T2 |
 | third, with that grader reading any task | 7 of 7 | nothing |
+| shows-the-design alone, after D25 | all three runs | one run numbered its steps in the labels and not with `autonumber`, which the grader did not accept; with the grader reading both, all three plans pass |
 
-Without the pack, shows-the-design scores 0.09, draws-no-diagram-inside-one-module 0.14 and writes-plan-and-tasks 0.33. Between the first and second run, shows-the-design ran eight more times on its own: four on the rule as first written, with no diagram in any, and four on the rule of D24, with a numbered sequence in each.
+Without the pack, shows-the-design scores 0.09, draws-no-diagram-inside-one-module 0.14 and writes-plan-and-tasks 0.33. After D25 the diagrams kept their labels to a few words, and one drew the signed-out case as an `alt` block. Between the first and second run, shows-the-design ran eight more times on its own: four on the rule as first written, with no diagram in any, and four on the rule of D24, with a numbered sequence in each.
 
 ## Limits
 - One or two runs per case, on Sonnet, by hand. The `tool_used` graders and the transcript graders are not covered by a by-hand run. The runner's results are in the section above.
