@@ -43,3 +43,5 @@ capability: spec/build
   e.g. "keep the entries in a Set of product ids" after T2 built an array -> T2 is unticked with `redo: Set of product ids`, and the task count is unchanged
 - A file added inside a folder the Scope lists is written without a question {#writes-inside-scope}
   e.g. the Scope lists `src/wishlist/` and T2 needs `src/wishlist/keys.ts` -> the file is written, and plan.md is unchanged
+- A fix whose build would add or alter a contract or a dependency between modules is planned first, and no code is written before the owner's OK {#fix-with-design-gets-plan}
+  e.g. `spec-start move the price lookup into a pricing module` as a fix -> `plan.md` with Contracts is shown, and no code is written before the OK; a typo fix -> one pass and no plan

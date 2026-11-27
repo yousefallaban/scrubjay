@@ -17,3 +17,5 @@ capability: practice/docs-conventions
   e.g. a Why that opens "In today's fast-paced world, it's worth noting that" -> rewritten as the problem, who has it and what it costs, in two to five lines
 - A file in the spec folder describes the current state and is rewritten in place, with git as its history, and only `reference/decisions.md` appends {#state-not-history}
   e.g. a task reopened and finished again -> tasks.md shows the task ticked, and the earlier state is in the git log, not in the file
+- Text the owner has to read to decide is written so they can judge it: one complete fact per line, in product words, with a code name only where it is needed to find the thing {#written-to-judge}
+  e.g. "The page that lists all products loads the full list and sorts it by name", not "The catalogue view reuses the list read"

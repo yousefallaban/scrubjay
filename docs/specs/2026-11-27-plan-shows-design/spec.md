@@ -1,7 +1,7 @@
 ---
 id: 2026-11-27-plan-shows-design
 kind: feature
-status: building
+status: shipped
 summary: "The plan opens with the part the owner reads to judge the design: the approach in plain words, the contracts that are new or change shape as code, and a diagram when a picture helps"
 request: "Yousef, on 2026-11-27, after reading the specs of a real project built with the pack and another team's design guide: the plan gets his OK without showing the architecture; he wants the contracts, the diagram and the architecture in view before any code, and no big file to read without a real benefit"
 approved: {by: yousef, via: in session}
