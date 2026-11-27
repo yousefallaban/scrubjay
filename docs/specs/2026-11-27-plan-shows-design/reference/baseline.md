@@ -45,8 +45,19 @@ The same three specs were planned again under D11 to D13, and one intent was wri
 ## The third trial
 The same three specs were planned a third time under D17 to D19. The plans were 86, 63 and 62 lines above the Scope. No plan listed choices. The decisions that matter were lines in the Approach, 13, 10 and 6 of them, often two to four sentences long. Each plan had at most three contract blocks; the helper that only moved was one Approach line and the cache keys were gone. Every diagram rendered: two numbered sequences and one set of grouped boxes. The largest plan carried 14 Not checked marks, most of them because the trial's copy held the frontend only and the agent could not read the server. Each agent reported three to five questions it would have asked. Yousef read the middle plan and gave the go (D20).
 
+## In the runner
+The eval runner worked again later on 2026-11-27, and every spec-plan case ran three times on the default model, each with a run without the pack beside it.
+
+| Run | Cases passing all three runs | What failed |
+| --- | --- | --- |
+| first | 6 of 7 | shows-the-design: no diagram in two runs of three, and one Approach without bold topics |
+| second, after D24 | 6 of 7 | draws-no-diagram-inside-one-module: the grader looked for the claim on task T1 only, and two valid task lists named it on T2 |
+| third, with that grader reading any task | 7 of 7 | nothing |
+
+Without the pack, shows-the-design scores 0.09, draws-no-diagram-inside-one-module 0.14 and writes-plan-and-tasks 0.33. Between the first and second run, shows-the-design ran eight more times on its own: four on the rule as first written, with no diagram in any, and four on the rule of D24, with a numbered sequence in each.
+
 ## Limits
-- One or two runs per case, on Sonnet, by hand. The `tool_used` graders and the transcript graders are not covered by a by-hand run. The runner worked again later the same day, and draws-no-diagram-inside-one-module ran in it once on the default model: 8 of 8 graders. The release rerun uses the runner's three runs on the default model.
+- One or two runs per case, on Sonnet, by hand. The `tool_used` graders and the transcript graders are not covered by a by-hand run. The runner's results are in the section above.
 - Three of the by-hand agents reported that a Skill tool in their session loaded an older installed copy of docs-conventions before they read the files under test. They said they followed the files under test. Later runs were told not to use a Skill tool.
 - The trials covered a frontend only, and their agents could not ask the owner anything.
 - No grader checks that a diagram renders or that a line reads well. Both were checked by eye.

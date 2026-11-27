@@ -31,6 +31,6 @@ plugin/plugin.json, plugin/.claude-plugin/plugin.json   changed: version 0.6.0
 ## Risks
 - What crosses a boundary is the agent's judgment. In the trial two wordings gave five and six contracts for the same feature; a case pins one known contract present and one internal helper absent.
 - "Written so the owner can judge" cannot be graded as such. The cases grade its visible signs, and a plan can pass them and still be hard to read; the by-hand row records what a person thought of it.
-- Whether a diagram helps is a judgment. One case expects a diagram where three parts work together and one expects none for a change inside one module; nothing grades whether the picture is clear.
+- When to draw is now a test the agent can see, three or more parts passing something in an order (D24). One case expects a diagram there and one expects none for a change inside one module; nothing grades whether the picture is clear.
 - A grader can pin the mermaid fence, numbered steps and labelled arrows, never that the diagram renders. Rendering is checked by hand.
 - The proofs of T1 to T4 are by-hand runs on Sonnet, one or two per case. T6 is the first run of every case in the runner, three times on the default model, and can still show a case that passes only sometimes.

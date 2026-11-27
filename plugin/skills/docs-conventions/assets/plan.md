@@ -3,15 +3,15 @@ spec: "{{spec id}}"
 ---
 ## Approach
 <!-- required: what will be built, as a list with one complete fact per line, as many lines as
-the owner needs to judge. Start each line with the thing it is about. Product words; a code name
+the owner needs to judge. Start each line with the thing it is about, in bold. Product words; a code name
 only to find the thing. A decision is a line here when it changes what a user sees or can do,
 crosses a boundary, or removes something. Where the route is not the obvious one, give the reason
 in the same line. Where a line rests on something that could not be read from the code, end it
 with **Not checked:** and what was assumed. No list of choices and no options that were not taken. -->
 
 ## How it works
-<!-- only when a picture explains the change faster than text. One mermaid diagram of the kind
-that fits the case. Numbered steps where there is an order, a plain label on every arrow,
+<!-- only when a picture explains the change faster than text: three or more modules or outside
+services pass something to each other in an order. One mermaid diagram of the kind that fits the case. Numbered steps where there is an order, a plain label on every arrow,
 boxes named in product words. Never a picture of which module imports which. -->
 
 ## Contracts
