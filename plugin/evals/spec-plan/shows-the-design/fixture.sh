@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# The webshop with project memory initialized and no behavior documented yet.
+# The webshop with project memory initialized, a wishlist spec with the go, and a sign-in package that is not installed.
 set -eu
 mkdir -p src test docs/architecture
 cat > package.json <<'FILE'
@@ -10,6 +10,9 @@ cat > package.json <<'FILE'
   "type": "module",
   "scripts": {
     "test": "bun test"
+  },
+  "dependencies": {
+    "@webshop/session": "^2.1.0"
   }
 }
 FILE
@@ -165,6 +168,10 @@ export function refundReturn(ret: Return): Return {
   if (ret.status !== "approved") throw new Error("Only an approved return can be refunded");
   return { ...ret, status: "refunded" };
 }
+FILE
+cat > src/session.ts <<'FILE'
+// The sign-in service ships as its own package and is installed at deploy time.
+export { currentCustomerId } from "@webshop/session";
 FILE
 cat > src/index.ts <<'FILE'
 export * from "./products";

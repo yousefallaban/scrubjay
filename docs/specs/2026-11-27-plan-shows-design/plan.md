@@ -2,35 +2,35 @@
 spec: 2026-11-27-plan-shows-design
 ---
 ## Approach
-The plan template gains three sections between Approach and Scope: Contracts, Dependencies and Picks, and Picks takes the place of Trade-offs. Every line above Scope is what the owner reads, held to about 40 lines. spec-plan fills the sections from the code it reads and shows them before the OK, and the rule that sent design detail to `reference/` is turned around for what the owner has to agree to. spec-build gains two stops: a fix that would change a contract or a dependency is planned first, and a task asks before it leaves the Contracts or Dependencies the plan shows. spec-ship's reviewer gains one kind of finding, and an architecture entry may name a plan section. Each claim is proven by an eval case written before its rule, baseline first. The draft template is in [reference/plan-template.md](./reference/plan-template.md). The version goes to 0.6.0.
+The plan template gets an owner's part above the Scope: Approach, How it works and Contracts. How it works is a diagram and is written only when a picture helps. Trade-offs goes: the Approach says what will be built, and a guess is marked where it appears with the words Not checked. Contracts holds only what is new or changes shape and crosses a boundary, one small code block per boundary under a plain label. The Scope becomes a tree. docs-conventions gains one rule for any text the owner reads to decide, and spec-plan applies it to the owner's part. spec-build plans a fix first when it would change a contract or a dependency. spec-ship may update an architecture file from a plan section. Each claim is proven by an eval case written before its rule. The draft template is in [reference/plan-template.md](./reference/plan-template.md). The version goes to 0.6.0.
 
 ## Trade-offs
-- Picks replaces Trade-offs, over keeping both: two headings for the same thing are more to read. A plan with a Trade-offs heading is read the same way.
-- The owner's part is every line above Scope, over a wrapper heading: it costs no line, and a grader can count it.
+- No section for choices, over a list in three lines each: in the second trial that list made the plans two to three times longer, and it repeated the Approach. A plan with Trade-offs stays valid.
+- The owner's part is every line above Scope, over a wrapper heading: it costs no line, and a grader can find it.
+- The writing rule is tested with what a grader can see, a bullet per fact in Approach, a label over each code block and no long prose line, over a judge model: the cases stay free to run and give the same verdict each time.
 - The fix rule sits in spec-build and spec-plan, over spec-start: spec-start has not read enough code to know which contracts a fix touches.
-- Every fixture's plan gains a Contracts section, over a rule that skips older plans: one rule with no exception, and a plan written before 0.6.0 costs its project one question.
+- Fixtures keep their flat Scope lines, over rewriting 35 of them: the old format stays valid, and only new plans are written as a tree.
 
 ## Scope
 ```
-plugin/skills/docs-conventions/assets/plan.md           changed: Contracts, Dependencies and Picks above Scope
-plugin/skills/docs-conventions/references/plan.md       changed: the rules for the three sections and the owner's 40 lines
+plugin/skills/docs-conventions/assets/plan.md           changed: the owner's part, the diagram rule and the Scope tree
+plugin/skills/docs-conventions/references/plan.md       changed: the rules for each section
 plugin/skills/docs-conventions/references/reference.md  changed: what the owner agrees to is never only here
-plugin/skills/docs-conventions/SKILL.md                 changed: the charter row for plan.md
+plugin/skills/docs-conventions/SKILL.md                 changed: the charter row for plan.md and the rule for text the owner reads
 plugin/skills/spec-plan/SKILL.md                        changed: the gate for a fix, steps 4, 5 and 7, the verification and the red flags
-plugin/skills/spec-build/SKILL.md                       changed: a fix that changes the design is planned first; the stop before leaving the design
-plugin/skills/spec-ship/SKILL.md                        changed: the reviewer's design finding; an architecture file from a plan section
-plugin/evals/spec-plan/                                 changed: new cases for the owner's part, and the plan-shape grader
-plugin/evals/spec-build/                                changed: new cases for the planned fix and the stop
-plugin/evals/spec-ship/                                 changed: new cases for the design finding and the plan-section source
-checks/fixture-webshop.sh, plugin/evals/*/*/fixture.sh  changed: the plan in every fixture gains its Contracts
-checks/by-hand/                                         changed: a plan row per agent in dogfood.md, with the lines the owner reads
+plugin/skills/spec-build/SKILL.md                       changed: a fix that changes the design is planned first
+plugin/skills/spec-ship/SKILL.md                        changed: an architecture file from a plan section
+plugin/evals/spec-plan/                                 changed: the cases for the owner's part, the writing rule, the diagram and the tree
+plugin/evals/spec-build/                                changed: the case for the planned fix
+plugin/evals/spec-ship/                                 changed: the case for the plan-section source
+checks/by-hand/                                         changed: a plan row per agent in dogfood.md
 plugin/README.md, README.md                             changed: the spec-plan row says what the plan shows
 plugin/plugin.json, plugin/.claude-plugin/plugin.json   changed: version 0.6.0
 ```
 
 ## Risks
-- A plan written before 0.6.0 shows no contracts, so its next task that exports something asks once. `stays-in-design` covers the question; the one-time cost is accepted.
-- What counts as a contract is the agent's judgment. The case grades code under Contracts and the unchanged `Product` type absent from it, which pins the line at one point only; an internal helper has no name a grader can know in advance.
-- A grader can pin the mermaid fence and one edge, never that the diagram renders. Rendering is checked by hand on the example repo.
-- The 40 lines are graded as the lines between Approach and Scope. A plan can pass and still be padded; the by-hand row records what the owner actually had to read.
-- The eval session has no shell, so the planned-fix case grades that plan.md exists and `src/` is unchanged, not that the build resumes after the OK.
+- What crosses a boundary is the agent's judgment. In the trial two wordings gave five and six contracts for the same feature; a case pins one known contract present and one internal helper absent.
+- "Written so the owner can judge" cannot be graded as such. The cases grade its visible signs, and a plan can pass them and still be hard to read; the by-hand row records what a person thought of it.
+- Whether a diagram helps is a judgment. One case expects a diagram where three parts work together and one expects none for a change inside one module; nothing grades whether the picture is clear.
+- A grader can pin the mermaid fence, numbered steps and labelled arrows, never that the diagram renders. Rendering is checked by hand.
+- The proofs of T1 to T4 are by-hand runs on Sonnet, one or two per case. T6 is the first run of every case in the runner, three times on the default model, and can still show a case that passes only sometimes.

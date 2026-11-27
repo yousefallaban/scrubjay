@@ -392,6 +392,7 @@ capability: returns/submit-return
   e.g. refunding a return support hasn't approved -> refused
 FILE
 git init -q && git add -A && git -c user.name=fixture -c user.email=fixture@example.com commit -q -m fixture
+git checkout -q -b move-price-lookup
 mkdir -p docs/specs/2026-10-13-move-price-lookup
 cat > docs/specs/2026-10-13-move-price-lookup/spec.md <<'FILE'
 ---
